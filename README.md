@@ -1,12 +1,26 @@
-# Trade Journal
+# Trade — Claude Code Skill
 
-Personal trading knowledge base for active US-equity options trading. Organized as a **tree structure** for prompt-efficient agent access — each file is small enough to load on demand without flooding context.
+Personal US-equity options trading knowledge base, packaged as a **Claude Code skill** invocable as `/trade`. Organized as a **tree structure** for prompt-efficient agent access — each file is small enough to load on demand without flooding context.
+
+## Install
+
+The repo lives at `~/trade/`. To make `/trade` discoverable as a skill, symlink into Claude's skill directory:
+
+```bash
+ln -s ~/trade ~/.claude/skills/trade
+```
+
+Then in any Claude Code session, the skill auto-triggers on trading-related prompts (per the description in `SKILL.md` frontmatter), or can be invoked explicitly via `/trade`.
+
+`CLAUDE.md` is also kept as a thin `@SKILL.md` import so that working *inside* `~/trade/` automatically loads the same content as project memory.
 
 ## Layout
 
 ```
 trade/
-├── CLAUDE.md           # Agent entry point — user profile, response rules, knowledge-base index
+├── SKILL.md            # Skill entry point — frontmatter + user profile + index
+├── CLAUDE.md           # @SKILL.md import (auto-loads when cwd is ~/trade/)
+├── metadata.json       # Skill metadata
 ├── README.md           # This file
 ├── strategies.md       # Always-relevant: structure-to-regime matching, setup checklist
 ├── pitfalls/           # 15 analytical biases, one file per rule
@@ -23,10 +37,11 @@ trade/
 
 ## Why this structure
 
-Inspired by [Vercel agent-skills react-best-practices](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices). The agent loads `CLAUDE.md` and the two `README.md` indexes upfront (small), and reads individual rule/case-study files only when a specific trade situation calls for them. This avoids loading ~50KB of trading content for every conversation.
+Inspired by [Vercel agent-skills react-best-practices](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices). The agent loads `SKILL.md` (entry) and the two `README.md` indexes upfront (small), and reads individual rule/case-study files only when a specific trade situation calls for them. This avoids loading ~50KB of trading content for every conversation.
 
 ## How to extend
 
 - **New pitfall**: copy `pitfalls/_template.md` → `pitfalls/NN-slug.md`, add row to `pitfalls/README.md` table
 - **New case study**: copy `ticker/_template.md` → `ticker/<ticker>-YYYY-MM.md`, add row to `ticker/README.md` table
 - **Strategy update**: edit `strategies.md` directly — it stays flat because it's always-relevant framework
+- **Skill description tweak**: edit the YAML `description` field in `SKILL.md` frontmatter (controls what triggers the skill)

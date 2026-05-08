@@ -1,0 +1,9 @@
+{
+  "name": "trade",
+  "version": "1.0.0",
+  "author": "himself65",
+  "license": "MIT",
+  "description": "Personal US-equity options trading knowledge base — pitfalls library, case studies, structure-to-regime framework.",
+  "categories": ["trading", "options", "finance"],
+  "entrypoint": "SKILL.md"
+}
