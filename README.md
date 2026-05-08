@@ -4,15 +4,15 @@ Personal US-equity options trading knowledge base, packaged as a **Claude Code s
 
 ## Install
 
-The repo lives at `~/trade/`. To make `/trade` discoverable as a skill, symlink into Claude's skill directory:
+Clone directly into Claude's skill directory:
 
 ```bash
-ln -s ~/trade ~/.claude/skills/trade
+cd ~/.claude/skills && git clone https://github.com/himself65/trade.git
 ```
 
 Then in any Claude Code session, the skill auto-triggers on trading-related prompts (per the description in `SKILL.md` frontmatter), or can be invoked explicitly via `/trade`.
 
-`CLAUDE.md` is also kept as a thin `@SKILL.md` import so that working *inside* `~/trade/` automatically loads the same content as project memory.
+`CLAUDE.md` is kept as a thin `@SKILL.md` import so that working *inside* the skill directory automatically loads the same content as project memory.
 
 ## Layout
 
