@@ -7,10 +7,12 @@ description: >
   "should I sell put on TSLA", "what's the structure for NVDA earnings"). Triggers
   on mentions of multi-leg options (Jade Lizard, bull put spread, iron condor,
   diagonal, calendar), IV/IV crush, channel checks, earnings positioning, AH price
-  action, or any single-stock options play. Provides concrete strikes, IV-aware
-  structures, probability-weighted scenarios drawn from a curated library of 15
-  trading pitfalls and prior case studies (INTC, Mag-7, APP). Pulls market data
-  via Funda AI API. Responds in Chinese with English technical terms.
+  action, LEAPS / stock replacement, dealer GEX / gamma exposure / max pain /
+  options chain analysis, or any single-stock options play. Provides concrete
+  strikes, IV-aware structures, probability-weighted scenarios drawn from a curated
+  library of 18 trading pitfalls, a gamma/options-structure framework, and prior
+  case studies (INTC, Mag-7, APP). Pulls market data via Funda AI API. Responds in
+  Chinese with English technical terms.
 ---
 
 # Trade — Options Trading Assistant
@@ -67,8 +69,9 @@ This skill uses lazy loading — read individual reference files only when relev
 
 | File | Description |
 |---|---|
-| `references/strategies.md` | Structure-to-regime matching, setup checklist, position management. Always relevant; load when planning a new trade. |
-| `references/pitfalls/README.md` | Index of 15 trading pitfalls with quick lookup by trade type. |
+| `references/strategies.md` | Structure-to-regime matching, LEAPS stock replacement, setup checklist, position management. Always relevant; load when planning a new trade. |
+| `references/gamma-framework.md` | Dealer GEX + options chain + IV term + flow → multi-factor probability map. Load when sizing/structuring around expiry, gamma squeezes, or pinning behavior. |
+| `references/pitfalls/README.md` | Index of 18 trading pitfalls with quick lookup by trade type. |
 | `references/pitfalls/NN-*.md` | Individual pitfall rules — load only when a relevant trade situation arises. |
 | `references/ticker/README.md` | Index of closed trade case studies (INTC, Mag-7, APP). |
 | `references/ticker/<name>.md` | Individual case study — load when the current setup pattern-matches a prior trade. |
@@ -83,6 +86,10 @@ This skill uses lazy loading — read individual reference files only when relev
 | High-vol single name (APP/MSTR/COIN/PLTR) | `references/pitfalls/12`, `13`, `15`; `references/ticker/app-2026-05.md` |
 | Sell-the-news fade attempt | `references/pitfalls/01`, `02`, `03`, `04`; `references/ticker/intc-2026-04.md` |
 | Multi-name cluster earnings | `references/pitfalls/09`, `10`, `11`; `references/ticker/mag7-2026-q1.md` |
+| LEAPS / stock-replacement thesis | `references/strategies.md` (LEAPS section); `references/pitfalls/11`, `16`, `18` |
+| Vol-mispricing / IV-thesis claim | `references/pitfalls/16`, `18` |
+| Expiry-day / gamma squeeze / pinning | `references/gamma-framework.md`; `references/pitfalls/17` |
+| Dealer flow / options market structure question | `references/pitfalls/17`; `references/gamma-framework.md` |
 
 ## Adding to the Knowledge Base
 

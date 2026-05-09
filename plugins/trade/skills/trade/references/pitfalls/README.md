@@ -1,6 +1,6 @@
 # Trading Pitfalls
 
-15 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant.
+18 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant.
 
 ## Index
 
@@ -21,6 +21,9 @@
 | 13 | MEDIUM | Take-profit discipline beats target-price obsession | `13-take-profit-discipline.md` |
 | 14 | HIGH | Single channel-check is a sample, not a population | `14-channel-check-sample-bias.md` |
 | 15 | MEDIUM | AH order-book lopsidedness is a fade signal at extremes | `15-orderbook-fade-signal.md` |
+| 16 | HIGH | Don't conflate drift with vol; BSM already prices log-normal paths | `16-bsm-drift-vs-vol.md` |
+| 17 | HIGH | Dealer flow + 0DTE drive options moves, not retail psychology | `17-dealer-flow-not-retail.md` |
+| 18 | MEDIUM | Roll frequency is independent from IV thesis — over-rolling kills the alpha | `18-roll-frequency-vs-iv-thesis.md` |
 
 ## Quick Lookup by Trade Type
 
@@ -28,8 +31,11 @@
 - **Directional / fundamental**: 1, 2, 3, 4
 - **Volatile / manipulator tapes**: 12, 13, 15
 - **Channel-check / fundamental research**: 14
-- **Structure / vol regime**: 6, 7, 8
+- **Structure / vol regime**: 6, 7, 8, 18
 - **Sentiment / sector mood**: 9, 10
+- **LEAPS / stock replacement**: 11, 16, 18
+- **Options market structure / dealer flow**: 17 (also see `../gamma-framework.md`)
+- **Vol-thesis reasoning**: 16
 
 ## Adding a New Pitfall
 

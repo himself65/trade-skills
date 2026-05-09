@@ -17,6 +17,53 @@ Decision framework for matching options structures to market state.
 
 ---
 
+## LEAPS Stock Replacement (Cash + LEAPS vs 100 Shares)
+
+Replacing 100 shares with deep ITM LEAPS + cash. **Capital efficiency play, not an alpha generator.**
+
+### Conditions for Validity (ALL must hold)
+
+1. **Delta ≥ 0.85** (extrinsic value < 10% of total premium)
+2. **IV Rank < 70** — not at vol peak; otherwise paying peak vega
+3. **Holding window ≥ 6 months**
+4. **Stock has no/negligible dividend** (dividend forfeited otherwise)
+
+### Mechanics
+
+| | 100 shares ($100) | Deep ITM LEAPS + cash |
+|---|---|---|
+| Capital tied up | $10,000 | ~$2,500–3,000 |
+| Delta exposure | 100 | ~85 |
+| Cash carry on idle | $0 | ~$280/yr @ 4% on $7k |
+| Max loss | $10,000 | ~$3,000 |
+| Dividend | Yes | No |
+| Bid-ask drag | Low | Medium |
+| Roll/exit friction | None | 5–10% on LEAPS bid-ask |
+
+**The actual edge**: 2–3% annualized cash carry advantage on equivalent delta exposure, with capped downside. NOT vol mispricing capture (see pitfall 16).
+
+### Failure Modes
+
+- **High IVR entry** → vega tax. IV crush from 100 → 50 = ~50% premium loss on entry-IV component alone.
+- **OTM LEAPS** (delta <0.7) is leveraged speculation, not stock replacement. Don't conflate.
+- **High-dividend stocks** → forgone dividend > cash carry advantage.
+- **Bid-ask drag** on roll/exit can exceed cash carry over short holding periods.
+
+### When NOT to Use
+
+- Single-quarter directional bet (use vertical spreads)
+- Earnings event hedging (use credit structures)
+- High IVR period (you're paying peak vega)
+- Stock with rich dividend yield (e.g., banks, REITs)
+
+### Cross-References
+
+- Pitfall 11 — LEAPS through earnings = vega tax
+- Pitfall 16 — drift vs vol confusion (the wrong reason to like LEAPS)
+- Pitfall 18 — roll frequency vs IV thesis (don't over-roll the replacement position)
+
+---
+
 ## Trade Setup Checklist (Before Entering)
 
 1. **Tape check**: What have the last 3 daily closes done? Volume profile? Where's support/resistance?
