@@ -2,5 +2,12 @@
   "private": true,
   "name": "trade-skills",
   "version": "1.0.0",
-  "description": "Personal options trading Claude Code plugin marketplace."
+  "description": "Personal options trading Claude Code plugin marketplace.",
+  "scripts": {
+    "bump": "ccbump"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "devDependencies": {
+    "ccbump": "^0.2.1"
+  }
 }

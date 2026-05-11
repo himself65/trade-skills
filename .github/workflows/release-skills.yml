@@ -1,0 +1,40 @@
+name: Release Skills
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Zip each skill
+        run: |
+          mkdir -p dist
+          for plugin_dir in plugins/*/; do
+            plugin_name=$(basename "$plugin_dir")
+            for skill_dir in "${plugin_dir}skills/"/*/; do
+              [ -d "$skill_dir" ] || continue
+              skill_name=$(basename "$skill_dir")
+              (cd "${plugin_dir}skills" && zip -r "../../../dist/${skill_name}.zip" "$skill_name/")
+              echo "Zipped: $skill_name (from $plugin_name)"
+            done
+          done
+
+      - name: Create release
+        run: |
+          gh release create "${{ github.ref_name }}" dist/*.zip \
+            --title "v${{ steps.version.outputs.version }}" \
+            --generate-notes \
+            --latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
