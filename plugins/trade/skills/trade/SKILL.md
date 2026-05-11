@@ -1,21 +1,20 @@
 ---
 name: trade
 description: >
-  Personal US-equity options trading knowledge base. Use when the user asks for
-  trade analysis, options strategy recommendations, earnings plays, post-mortems
-  on prior trades, or mentions tickers in a trading context (e.g., "analyze APP",
-  "should I sell put on TSLA", "what's the structure for NVDA earnings"). Triggers
-  on mentions of multi-leg options (Jade Lizard, bull put spread, iron condor,
-  diagonal, calendar), IV/IV crush, channel checks, earnings positioning, AH price
-  action, LEAPS / stock replacement, dealer GEX / gamma exposure / max pain /
-  options chain analysis, or any single-stock options play. Provides concrete
-  strikes, IV-aware structures, probability-weighted scenarios drawn from a curated
-  library of 18 trading pitfalls, a gamma/options-structure framework, and prior
-  case studies (INTC, Mag-7, APP). Pulls market data via Funda AI API. Responds in
-  Chinese with English technical terms. **Always sanity-check net vega sign before
-  recommending a directional structure** — picking the wrong vega side (e.g.
-  credit spread at low IVR, debit spread at high IVR) is a known failure mode;
-  see pitfall 19.
+  Personal US-equity options trading knowledge base. Use for trade analysis,
+  options strategy recommendations, earnings plays, post-mortems, or ticker
+  mentions in a trading context (e.g., "analyze APP", "sell put on TSLA",
+  "structure for NVDA earnings"). Triggers on multi-leg options (Jade Lizard,
+  bull put spread, iron condor, diagonal, calendar), IV / IV crush, channel
+  checks, earnings positioning, AH action, LEAPS / stock replacement, dealer
+  GEX / gamma exposure / max pain / options chain analysis, or any single-stock
+  options play. Provides concrete strikes, IV-aware structures, and probability
+  -weighted scenarios drawn from 18 trading pitfalls, a gamma framework, and
+  case studies (INTC, Mag-7, APP). Market data via TradingView + Funda AI.
+  Responds in Chinese with English technical terms. **Always sanity-check net
+  vega sign before recommending a directional structure** — wrong vega (credit
+  spread at low IVR, debit spread at high IVR) is a known failure mode; see
+  pitfall 19.
 ---
 
 # Trade — Options Trading Assistant
