@@ -12,7 +12,10 @@ description: >
   strikes, IV-aware structures, probability-weighted scenarios drawn from a curated
   library of 18 trading pitfalls, a gamma/options-structure framework, and prior
   case studies (INTC, Mag-7, APP). Pulls market data via Funda AI API. Responds in
-  Chinese with English technical terms.
+  Chinese with English technical terms. **Always sanity-check net vega sign before
+  recommending a directional structure** — picking the wrong vega side (e.g.
+  credit spread at low IVR, debit spread at high IVR) is a known failure mode;
+  see pitfall 19.
 ---
 
 # Trade — Options Trading Assistant
@@ -71,7 +74,7 @@ This skill uses lazy loading — read individual reference files only when relev
 |---|---|
 | `references/strategies.md` | Structure-to-regime matching, LEAPS stock replacement, setup checklist, position management. Always relevant; load when planning a new trade. |
 | `references/gamma-framework.md` | Dealer GEX + options chain + IV term + flow → multi-factor probability map. Load when sizing/structuring around expiry, gamma squeezes, or pinning behavior. |
-| `references/pitfalls/README.md` | Index of 18 trading pitfalls with quick lookup by trade type. |
+| `references/pitfalls/README.md` | Index of 19 trading pitfalls with quick lookup by trade type. |
 | `references/pitfalls/NN-*.md` | Individual pitfall rules — load only when a relevant trade situation arises. |
 | `references/ticker/README.md` | Index of closed trade case studies (INTC, Mag-7, APP). |
 | `references/ticker/<name>.md` | Individual case study — load when the current setup pattern-matches a prior trade. |
@@ -80,7 +83,7 @@ This skill uses lazy loading — read individual reference files only when relev
 
 | Situation | Files to load |
 |-----------|---------------|
-| New trade analysis request | `references/strategies.md` |
+| New trade analysis request | `references/strategies.md`; `references/pitfalls/19` (vega-axis sanity check) |
 | Earnings play | `references/pitfalls/05`, `07`, `09`, `10`, `11` |
 | Channel-check-driven thesis | `references/pitfalls/14` |
 | High-vol single name (APP/MSTR/COIN/PLTR) | `references/pitfalls/12`, `13`, `15`; `references/ticker/app-2026-05.md` |

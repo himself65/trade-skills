@@ -1,6 +1,6 @@
 # Trading Pitfalls
 
-18 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant.
+19 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant.
 
 ## Index
 
@@ -24,18 +24,20 @@
 | 16 | HIGH | Don't conflate drift with vol; BSM already prices log-normal paths | `16-bsm-drift-vs-vol.md` |
 | 17 | HIGH | Dealer flow + 0DTE drive options moves, not retail psychology | `17-dealer-flow-not-retail.md` |
 | 18 | MEDIUM | Roll frequency is independent from IV thesis — over-rolling kills the alpha | `18-roll-frequency-vs-iv-thesis.md` |
+| 19 | HIGH | Direction and vega are independent axes — match BOTH to regime | `19-direction-vega-independent-axes.md` |
 
 ## Quick Lookup by Trade Type
 
 - **Earnings**: 5, 7, 9, 10, 11
-- **Directional / fundamental**: 1, 2, 3, 4
+- **Directional / fundamental**: 1, 2, 3, 4, 19
 - **Volatile / manipulator tapes**: 12, 13, 15
 - **Channel-check / fundamental research**: 14
-- **Structure / vol regime**: 6, 7, 8, 18
+- **Structure / vol regime**: 6, 7, 8, 18, 19
 - **Sentiment / sector mood**: 9, 10
 - **LEAPS / stock replacement**: 11, 16, 18
 - **Options market structure / dealer flow**: 17 (also see `../gamma-framework.md`)
-- **Vol-thesis reasoning**: 16
+- **Vol-thesis reasoning**: 16, 19
+- **Credit vs debit at low/high IV**: 7, 19
 
 ## Adding a New Pitfall
 

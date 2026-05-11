@@ -6,14 +6,19 @@ Decision framework for matching options structures to market state.
 
 ## Structure-to-Regime Matching
 
-| Regime | Best Structure | Why |
-|--------|---------------|-----|
-| **High IV (IV Rank >70) + bullish** | Bull put spread (credit) | Collect IV crush + directional alignment |
-| **High IV + bearish** | Bear call spread (credit) | Same — sell IV, right direction |
-| **High IV + neutral/range-bound** | Iron condor | Double-sided premium harvest |
-| **Low IV + strong directional** | Debit spread (bull call / bear put) | IV has room to rise, cheap premium |
-| **High IV term skew (front >> back)** | Calendar / diagonal | Sell expensive front, own cheap back |
-| **Uncertain direction, want to bet on move** | Long straddle — ONLY if IV <50% | Otherwise IV crush kills you |
+> ⚠️ **Direction and vega are two axes — match BOTH** (see pitfall 19). A "bullish" view does not automatically map to a "bullish-named" structure. Bull put spread (credit) and bull call spread (debit) are **both** bullish but opposite vega. **Pick the row by IV regime first, then check direction**, not the other way around.
+
+| Regime | Best Structure | Vega sign | Why |
+|--------|---------------|---|-----|
+| **High IV (IV Rank >70) + bullish** | Bull put spread (credit) | **short** | Collect IV crush + directional alignment |
+| **High IV + bearish** | Bear call spread (credit) | **short** | Same — sell IV, right direction |
+| **High IV + neutral/range-bound** | Iron condor | **short** | Double-sided premium harvest |
+| **Low IV (IVR <30) + bullish** | **Bull call debit spread** | **long** | IV mean-reverts up; long vega + long delta |
+| **Low IV (IVR <30) + bearish** | **Bear put debit spread** | **long** | Same — buy IV, right direction |
+| **High IV term skew (front >> back)** | Calendar / diagonal | mixed | Sell expensive front, own cheap back |
+| **Uncertain direction, want to bet on move** | Long straddle — ONLY if IV <50% | long | Otherwise IV crush kills you |
+
+**Sanity check before submitting any directional trade**: write down the net vega sign. Long vega at IVR <30 ✓ or short vega at IVR >70 ✓ — anything else needs an explicit written reason (e.g., "I expect IV to compress further because X"). Defaulting to the wrong vega side is the single most common framework-violation failure mode.
 
 ---
 
