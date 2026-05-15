@@ -10,7 +10,7 @@ description: >
   GEX / gamma exposure / max pain / options chain analysis, or any single-stock
   options play. Provides concrete strikes, IV-aware structures, and probability
   -weighted scenarios drawn from 21 trading pitfalls, a gamma framework, and
-  case studies (INTC, Mag-7, APP, NOK). Market data via TradingView + Funda AI.
+  case studies (INTC, Mag-7, APP, NOK, CBRS). Market data via TradingView + Funda AI.
   Responds in Chinese with English technical terms. **Always sanity-check net
   vega sign before recommending a directional structure** — wrong vega (credit
   spread at low IVR, debit spread at high IVR) is a known failure mode; see
@@ -80,7 +80,7 @@ This skill uses lazy loading — read individual reference files only when relev
 | `references/price-action-framework.md` | Orderbook microstructure mental model — buy/sell imbalance, target-price divergence, vacuum zones, consensus shifts, float composition. Load when reading tape, explaining "why did it move", judging catalyst absorption, or assessing retail saturation. |
 | `references/pitfalls/README.md` | Index of 19 trading pitfalls with quick lookup by trade type. |
 | `references/pitfalls/NN-*.md` | Individual pitfall rules — load only when a relevant trade situation arises. |
-| `references/ticker/README.md` | Index of closed trade case studies (INTC, Mag-7, APP). |
+| `references/ticker/README.md` | Index of trade case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS). |
 | `references/ticker/<name>.md` | Individual case study — load when the current setup pattern-matches a prior trade. |
 
 ## When to Read Which File
@@ -104,6 +104,7 @@ This skill uses lazy loading — read individual reference files only when relev
 | High IV but no near-term event (>30 days to earnings) | `references/pitfalls/21`, `7`; `references/ticker/nok-2026-04.md` |
 | Thematic re-rate / sector co-rally / KOL-amplified setup | `references/pitfalls/20`, `21`; `references/ticker/nok-2026-04.md` |
 | About to call "IV crush coming" or "fade incoming" | **MANDATORY**: `references/pitfalls/20`, `21` — pull flow data + catalyst clock BEFORE publishing the prediction |
+| Hot IPO / pre-options-listing / lock-up front-run | `references/ticker/cbrs-2026-05.md`; `references/pitfalls/12`, `13`, `15` |
 
 ## Adding to the Knowledge Base
 
