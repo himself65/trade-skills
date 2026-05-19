@@ -54,7 +54,43 @@ Read each template file from `references/commands/templates/` of this skill and 
 | `references/commands/templates/twitter-template.yaml` | `twitter/_template.yaml` |
 | `references/commands/templates/writedown-template.md` | `writedowns/_template.md` |
 
-### 4. Tell the user how to add content
+### 4. Add the knowledge dir to gitignore
+
+The knowledge dir is **always meant to stay local** — it holds personal trade notes, copied substack content, screenshots, and writedowns that should never be committed back to a shared repo. Make sure it's ignored everywhere.
+
+**Always do both, in this order:**
+
+**4a. Local project `.gitignore`.** If a `.gitignore` exists in the project root (resolve via `git rev-parse --show-toplevel`), check whether it already ignores the knowledge dir. If not, append:
+
+```
+# Personal trade knowledge scaffolded by `/trade setup` — never commit.
+<knowledge-dir-relative-to-repo-root>/
+```
+
+If no git repo is detected, skip 4a silently.
+
+**4b. User's global gitignore.** Resolve the path in this order:
+
+1. `git config --global --get core.excludesfile` — if set, use that path.
+2. Else `$XDG_CONFIG_HOME/git/ignore`.
+3. Else `$HOME/.config/git/ignore` (the git default when `XDG_CONFIG_HOME` is unset).
+
+Create the file (and parent directory) if it doesn't exist. **Do not** modify `git config` — when `core.excludesfile` is unset, git auto-uses `~/.config/git/ignore`, so writing the file is enough.
+
+Check whether the file already contains a `knowledge/` (or equivalent) entry. If not, append:
+
+```
+# Personal trade knowledge scaffolded by `/trade setup` — never commit.
+knowledge/
+```
+
+The global entry is intentionally unanchored so it matches a `knowledge/` directory at any depth in any project. If the user picked a non-default knowledge-dir name (e.g., `notes/trade-kb`), append both `knowledge/` (for default) and the chosen pattern.
+
+**Idempotency:** never duplicate entries. Skip and report if already present.
+
+Report to the user which files were edited (project `.gitignore`, global gitignore) and which were already correct.
+
+### 5. Tell the user how to add content
 
 After scaffolding, explain the two ingestion paths:
 
@@ -72,7 +108,8 @@ After scaffolding, explain the two ingestion paths:
 ## Constraints
 
 - **Always ask for the directory first.** Never assume a target path.
-- **Never write outside the user-confirmed directory.**
-- **Never overwrite existing files.** Skip and report.
+- **Never write outside the user-confirmed directory** — except the two gitignore files in step 4.
+- **Never overwrite existing files.** Skip and report. Gitignore writes are append-only and deduped.
+- **Never modify `git config`.** Step 4b creates `~/.config/git/ignore` if needed; git picks it up automatically.
 
 Parsing rules (file types, field extraction, slug naming, idempotency) live in [`import.md`](import.md) — this command only handles scaffolding.
