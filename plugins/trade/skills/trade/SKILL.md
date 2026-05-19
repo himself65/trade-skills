@@ -1,27 +1,21 @@
 ---
 name: trade
-version: 1.4.0
-user-invocable: true
-argument-hint: "[setup | import <file> | analysis [ticker] | <natural-language analysis>]"
 description: >
-  Personal US-equity options trading knowledge base. Use for trade analysis,
-  options strategy recommendations, earnings plays, post-mortems, or ticker
+  Personal US-equity options trading knowledge base with subcommands.
+  `/trade setup` scaffolds a personal knowledge directory (substack, X,
+  writedowns) and gitignores it. `/trade import [filepath]` parses one raw
+  file (PDF, screenshot, text) into structured YAML. `/trade analysis` (or
+  any unrecognized first word) runs the default analysis flow. Use for
+  trade analysis, options strategy, earnings plays, post-mortems, or ticker
   mentions in a trading context (e.g., "analyze APP", "sell put on TSLA",
-  "structure for NVDA earnings"). Also handles personal-knowledge management:
-  `/trade setup` scaffolds a knowledge directory; `/trade import <file>` parses
-  raw substack PDFs or X / twitter screenshots into structured YAML; `/trade
-  analysis` (or any unrecognized first word) runs the default analysis flow.
-  Triggers on multi-leg options (Jade Lizard, bull put spread, iron condor,
-  diagonal, calendar), IV / IV crush, channel checks, earnings positioning,
-  AH action, LEAPS / stock replacement, dealer GEX / gamma exposure / max
-  pain / options chain analysis, or any single-stock options play. Provides
-  concrete strikes, IV-aware structures, and probability-weighted scenarios
-  drawn from 21 trading pitfalls, a gamma framework, and case studies (INTC,
-  Mag-7, APP, NOK, CBRS). Market data via TradingView + Funda AI. Responds
-  in Chinese with English technical terms. **Always sanity-check net vega
-  sign before recommending a directional structure** — wrong vega (credit
-  spread at low IVR, debit spread at high IVR) is a known failure mode; see
-  pitfall 19.
+  "structure for NVDA earnings"). Triggers on multi-leg options (Jade
+  Lizard, bull put spread, iron condor, diagonal, calendar), IV / IV crush,
+  channel checks, earnings positioning, AH action, LEAPS / stock
+  replacement, dealer GEX, gamma exposure, max pain, options chain
+  analysis. Backed by 21 pitfalls, a gamma framework, and case studies
+  (INTC, Mag-7, APP, NOK, CBRS). TradingView + Funda for data; replies
+  in Chinese. Sanity-check vega sign before any directional structure;
+  wrong vega is a known failure (pitfall 19).
 ---
 
 # Trade — Options Trading Assistant
