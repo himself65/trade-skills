@@ -1,6 +1,6 @@
 # Trading Pitfalls
 
-21 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant.
+22 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant.
 
 ## Index
 
@@ -27,6 +27,7 @@
 | 19 | HIGH | Direction and vega are independent axes — match BOTH to regime | `19-direction-vega-independent-axes.md` |
 | 20 | HIGH | Post-earnings momentum continuation overrides intraday fade pattern when fundamentals + sector + flow align | `20-post-earnings-momentum-vs-fade.md` |
 | 21 | HIGH | Elevated IV without a near-term event = demand-driven, not event-driven — check catalyst clock + flow first | `21-event-iv-vs-demand-iv.md` |
+| 22 | HIGH | Bond yields don't "cause" equity moves — both are downstream of the same macro drivers | `22-yields-not-causal.md` |
 
 ## Quick Lookup by Trade Type
 
@@ -43,6 +44,7 @@
 - **Post-earnings drift / continuation**: 9, 10, **20**
 - **Multi-week thematic re-rate / sector co-move**: **20**, **21**
 - **Pattern recognition vs flow data check**: **20**, **21** (always pull data before applying pattern)
+- **Macro framing / yield narratives**: **22** (yield moves are a symptom, not a cause)
 
 ## Adding a New Pitfall
 
