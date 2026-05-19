@@ -1,9 +1,17 @@
 ---
 name: trade
+version: 1.4.0
+user-invocable: true
+argument-hint: "[setup | import <file> | analysis [ticker] | <natural-language analysis>]"
 description: >
   Personal US-equity options trading knowledge base. Use for trade analysis,
   strategy recommendations, earnings plays, post-mortems, or ticker mentions
-  in a trading context (e.g., "analyze APP"). Triggers on multi-leg options
+  in a trading context (e.g., "analyze APP", "sell put on TSLA", "structure
+  for NVDA earnings"). Also handles personal-knowledge management: `/trade
+  setup` scaffolds a knowledge directory; `/trade import <file>` parses raw
+  substack PDFs or X / twitter screenshots into structured YAML; `/trade
+  analysis` (or any unrecognized first word) runs the default analysis flow,
+  auto-loading the user's knowledge directory. Triggers on multi-leg options
   (Jade Lizard, bull put spread, iron condor, diagonal, calendar), IV / IV
   crush, channel checks, earnings positioning, AH action, LEAPS / stock
   replacement, dealer GEX / gamma / max pain / options chain analysis,
@@ -19,7 +27,7 @@ description: >
 
 # Trade — Options Trading Assistant
 
-Active US-equity options trader's personal knowledge base. Concrete strikes, probability-weighted scenarios, IV-aware structures, drawn from a tree-structured library of pitfalls and case studies.
+Active US-equity options trader's personal knowledge base. Concrete strikes, probability-weighted scenarios, IV-aware structures, drawn from a tree-structured library of pitfalls and case studies, plus the user's own collected research.
 
 ## Hard Rules (read before any prediction or structure recommendation)
 
@@ -37,7 +45,7 @@ Active US-equity options trader's personal knowledge base. Concrete strikes, pro
 
 ## Data Access
 
-**MUST use Funda AI API for all market data** — quotes, options chains, IV/Greeks, GEX, flow, fundamentals, sentiment, congressional trades, earnings transcripts. Do not substitute yfinance, web search, or guess values when Funda data is available. Use the `funda-data` skill (or `finance-data-providers:funda-data`) to fetch.
+**Use TradingView desktop reader (`finance-data-providers:tradingview-reader`) FIRST** for quotes, options chains, IV, screener, watchlists, gainers / losers. Fall back to **Funda AI API (`finance-data-providers:funda-data`)** for anything TradingView can't provide: fundamentals, filings, transcripts, analyst estimates, options flow / GEX, supply chain, sentiment, Polymarket, congressional trades, economics. Do not substitute yfinance, web search, or guesses.
 
 **Credentials live in the root repo `.env`, not the worktree.** When running inside a worktree (path matches `.claude/worktrees/*`), the worktree itself has no `.env` — resolve to the main repo's `.env` by stripping the `.claude/worktrees/<name>` suffix from the current working directory.
 
@@ -76,50 +84,51 @@ Active US-equity options trader's personal knowledge base. Concrete strikes, pro
 | Low IV + directional | Debit spread | Long-vega structure inherently uncapped on upside if single-leg |
 | Front-week IV >> back-month | Diagonal / calendar | **Banned if conviction ≥ 4** — pin structures fail in directional tails |
 
-## Reference Files
+## Commands
 
-This skill uses lazy loading — read individual reference files only when relevant.
+| Command | Description | Reference |
+|---|---|---|
+| `setup` | Scaffold a personal knowledge directory (`./knowledge/` by default) for substack posts, X / twitter threads, and writedowns | [references/commands/setup.md](references/commands/setup.md) |
+| `import <file_path>` | Parse one raw artifact (PDF, image, text) into structured YAML inside the knowledge directory | [references/commands/import.md](references/commands/import.md) |
+| `analysis [ticker | situation]` | Default trade analysis flow — preflight (knowledge dir, vega sanity, market data), then situation-specific loads | [references/commands/analysis.md](references/commands/analysis.md) |
 
-| File | Description |
+### Routing rules
+
+1. **No argument** → render the commands table above as the user-facing menu and ask what they'd like to do.
+2. **First word matches `setup`, `import`, or `analysis`** → load the matching reference file and follow its instructions. Everything after the command name is the argument (file path, ticker, situation, etc.).
+3. **First word doesn't match** → default to `analysis`. Load [references/commands/analysis.md](references/commands/analysis.md) and treat the full input as the analysis target. This is the common case for natural language ("analyze NVDA", "structure for TSLA earnings", "sell put on APP", a single ticker, etc.).
+
+The always-on content above (Hard Rule, User Profile, Data Access, Response Rules, Core Principles, Structure-to-Regime) applies to every command. Subcommand references add their specific workflow on top.
+
+## Always-relevant frameworks
+
+These reference files are domain-wide and may be loaded by any command when relevant:
+
+| File | When to load |
 |---|---|
-| `references/strategies.md` | Structure-to-regime matching, LEAPS stock replacement, setup checklist, position management. Always relevant; load when planning a new trade. |
-| `references/gamma-framework.md` | Dealer GEX + options chain + IV term + flow → multi-factor probability map. Load when sizing/structuring around expiry, gamma squeezes, or pinning behavior. |
-| `references/price-action-framework.md` | Orderbook microstructure mental model — buy/sell imbalance, target-price divergence, vacuum zones, consensus shifts, float composition. Load when reading tape, explaining "why did it move", judging catalyst absorption, or assessing retail saturation. |
-| `references/pitfalls/README.md` | Index of 25 trading pitfalls with quick lookup by trade type. |
-| `references/pitfalls/NN-*.md` | Individual pitfall rules — load only when a relevant trade situation arises. |
-| `references/ticker/README.md` | Index of trade case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW). |
-| `references/ticker/<name>.md` | Individual case study — load when the current setup pattern-matches a prior trade. |
-
-## When to Read Which File
-
-| Situation | Files to load |
-|-----------|---------------|
-| New trade analysis request | `references/strategies.md`; `references/pitfalls/19` (vega-axis), **`references/pitfalls/24` (asymmetry-axis check)** |
-| Reading tape / explaining a move / vacuum-zone identification | `references/price-action-framework.md` |
-| "Why did the stock react this way to news?" | `references/price-action-framework.md`; `references/pitfalls/08` |
-| Retail saturation / KOL-amplified setup / social-media-saturation check | `references/price-action-framework.md` (float composition); `references/pitfalls/20`, `21`; `references/ticker/nok-2026-04.md` |
-| Earnings play | `references/pitfalls/05`, `07`, `09`, `10`, `11`, `20`, `21`, **`24`** |
-| Channel-check-driven thesis | `references/pitfalls/14`, **`24`** (confluence ≥ 3 sources overrides single-source discount → activates asymmetry rule) |
-| High-vol single name (APP/MSTR/COIN/PLTR) | `references/pitfalls/12`, `13`, `15`, `23`; `references/ticker/app-2026-05.md` |
-| Exit / take-profit decision — "let it run to target" vs book now | `references/pitfalls/13`, `23` (hazard rate sets the optimal exit threshold) |
-| Sell-the-news fade attempt | `references/pitfalls/01`, `02`, `03`, `04`, `20`; `references/ticker/intc-2026-04.md`, `references/ticker/nok-2026-04.md` |
-| Multi-name cluster earnings | `references/pitfalls/09`, `10`, `11`; `references/ticker/mag7-2026-q1.md` |
-| LEAPS / stock-replacement thesis | `references/strategies.md` (LEAPS section); `references/pitfalls/11`, `16`, `18`, `21`, `23` |
-| Vol-mispricing / IV-thesis claim | `references/pitfalls/16`, `18`, `21` |
-| Expiry-day / gamma squeeze / pinning | `references/gamma-framework.md`; `references/pitfalls/17` |
-| Dealer flow / options market structure question | `references/pitfalls/17`, `21`; `references/gamma-framework.md` |
-| Post-earnings gap-up + intraday fade (consider holding vs reversal) | `references/pitfalls/20`, `10`; `references/ticker/nok-2026-04.md` |
-| High IV but no near-term event (>30 days to earnings) | `references/pitfalls/21`, `7`; `references/ticker/nok-2026-04.md` |
-| Thematic re-rate / sector co-rally / KOL-amplified setup | `references/pitfalls/20`, `21`, **`24`**; `references/ticker/nok-2026-04.md`, `references/ticker/snow-2026-05.md` |
-| About to call "IV crush coming" or "fade incoming" | **MANDATORY**: `references/pitfalls/20`, `21` — pull flow data + catalyst clock BEFORE publishing the prediction |
-| Hot IPO / pre-options-listing / lock-up front-run | `references/ticker/cbrs-2026-05.md`; `references/pitfalls/12`, `13`, `15` |
-| **About to recommend Jade Lizard / Iron Condor / Calendar / Diagonal** | **MANDATORY**: `references/pitfalls/24`; `references/ticker/snow-2026-05.md`; `references/ticker/tsem-2026-05.md` — run the bull-conviction count + counterfactual P/L matrix FIRST. If count ≥ 4, these structures are forbidden. |
-| **High-conviction bull setup (channel confluence + thematic re-rate + de-risked stock)** | `references/pitfalls/24`; `references/ticker/snow-2026-05.md`; `references/strategies.md` (asymmetry-rule section) — use naked short put / bull put spread / risk reversal / long call, NOT Jade Lizard or IC |
-| **Structure choice for directional conviction (high or low gap to consensus)** | `references/ticker/tsem-2026-05.md`, `references/ticker/snow-2026-05.md`; `references/pitfalls/24`, `19`, `6` |
-| **VIX / volatility hedge / "short the market" via VIX / tail-crash hedge** | **MANDATORY**: `references/pitfalls/25` (anchor to the future not spot; contango bleed; beta<1; debit-spread skew bite); `references/strategies.md` (VIX section); `references/ticker/vix-2026-06.md` — pull the VIX term structure (VIX9D/VIX/VIX3M/VIX6M) and model P/L off the future, never spot |
+| [references/strategies.md](references/strategies.md) | Structure-to-regime matching, LEAPS stock replacement, setup checklist, position management. Loaded by default in `analysis`. |
+| [references/gamma-framework.md](references/gamma-framework.md) | Dealer GEX + options chain + IV term + flow → multi-factor probability map. Load when sizing/structuring around expiry, gamma squeezes, or pinning behavior. |
+| [references/price-action-framework.md](references/price-action-framework.md) | Orderbook microstructure mental model. Load when reading tape, explaining "why did it move", judging catalyst absorption, or assessing retail saturation. |
+| [references/pitfalls/README.md](references/pitfalls/README.md) | Index of 25 trading pitfalls — lookup by trade type. |
+| [references/pitfalls/NN-*.md](references/pitfalls/) | Individual pitfall rules — load when a relevant trade situation arises. The `analysis` reference has a full situation → pitfall map. |
+| [references/ticker/README.md](references/ticker/README.md) | Index of trade case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX). |
+| [references/ticker/&lt;name&gt;.md](references/ticker/) | Individual case study — load when the current setup pattern-matches a prior trade. |
+| `<knowledge>/` (user-chosen path, scaffolded by `/trade setup`) | User-owned documents. `substack/*.yaml` and `twitter/*.yaml` are parsed external content; `writedowns/*.md` are user-authored notes; any other subdir (e.g. a curated module) is loaded too. `*/raw/` holds source PDFs / screenshots and is normally not loaded. Checked at the start of every `analysis` — see `references/commands/analysis.md` for the full situation → reference map. |
 
 ## Adding to the Knowledge Base
+
+### Curated library (this skill — shared)
 
 - **New pitfall**: copy `references/pitfalls/_template.md` → `references/pitfalls/NN-slug.md`, add row to `references/pitfalls/README.md` table
 - **New case study**: copy `references/ticker/_template.md` → `references/ticker/<ticker>-YYYY-MM.md`, add row to `references/ticker/README.md` table
 - **Strategy update**: edit `references/strategies.md` directly — it stays flat because it's always-relevant framework
+
+### Personal knowledge (user's cwd — private)
+
+For documents the user collects themselves (substack posts, X / twitter threads, their own writedowns):
+
+- Run `/trade setup` once to scaffold the knowledge directory (user chooses the path; default `./knowledge/`).
+- Run `/trade import <file_path>` to parse each new raw artifact (PDF, screenshot, text) into structured YAML.
+- Author writedowns directly as markdown in `<knowledge>/writedowns/`.
+
+The `analysis` command auto-loads matching files from the knowledge dir on every invocation — see [references/commands/analysis.md](references/commands/analysis.md).
