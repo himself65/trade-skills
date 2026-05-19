@@ -1,28 +1,24 @@
 ---
 name: trade
-version: 1.4.0
-user-invocable: true
-argument-hint: "[setup | import <file> | analysis [ticker] | <natural-language analysis>]"
 description: >
-  Personal US-equity options trading knowledge base. Use for trade analysis,
-  strategy recommendations, earnings plays, post-mortems, or ticker mentions
-  in a trading context (e.g., "analyze APP", "sell put on TSLA", "structure
-  for NVDA earnings"). Also handles personal-knowledge management: `/trade
-  setup` scaffolds a knowledge directory; `/trade import <file>` parses raw
-  substack PDFs or X / twitter screenshots into structured YAML; `/trade
-  analysis` (or any unrecognized first word) runs the default analysis flow,
-  auto-loading the user's knowledge directory. Triggers on multi-leg options
-  (Jade Lizard, bull put spread, iron condor, diagonal, calendar), IV / IV
-  crush, channel checks, earnings positioning, AH action, LEAPS / stock
-  replacement, dealer GEX / gamma / max pain / options chain analysis,
-  single-stock options plays, or VIX / volatility hedging (VIX call-spread,
-  "short the market", tail / crash hedge, contango). Concrete strikes,
-  IV-aware structures, probability-weighted scenarios from 25 pitfalls, a
-  gamma framework, and case studies (INTC, APP, NOK, TSEM, SNOW, MDB, VIX).
-  Market data via TradingView + Funda AI. Chinese response, English technical
-  terms. **Check 3 axes before any structure**: vega sign matches IVR
-  (pitfall 19); delta matches thesis; asymmetry — bull-conviction ≥ 4
-  (pitfall 24) forbids Jade Lizard / IC / Calendar.
+  Personal US-equity options trading knowledge base with subcommands.
+  `/trade setup` scaffolds a personal knowledge directory (substack, X,
+  writedowns). `/trade import [filepath]` parses one raw file (PDF,
+  screenshot, text) into structured YAML. `/trade analysis` (or any
+  unrecognized first word) runs the default analysis flow, auto-loading
+  the user's knowledge directory. Use for trade analysis, options
+  strategy, earnings plays, post-mortems, or ticker mentions in a trading
+  context (e.g., "analyze APP", "sell put on TSLA", "NVDA earnings").
+  Triggers on multi-leg options (Jade Lizard, bull put spread, iron
+  condor, diagonal, calendar), IV / IV crush, channel checks, earnings
+  positioning, AH action, LEAPS / stock replacement, dealer GEX / gamma /
+  max pain / options chain analysis, or VIX / volatility hedging (VIX
+  call-spread, tail / crash hedge, contango). Backed by 25 pitfalls, a
+  gamma framework, and case studies (INTC, APP, NOK, TSEM, SNOW, MDB,
+  VIX). TradingView + Funda for data; replies in Chinese. Check 3 axes
+  before any structure: vega sign vs IVR (pitfall 19), delta vs thesis,
+  asymmetry — bull-conviction >= 4 forbids Jade Lizard / IC / Calendar
+  (pitfall 24).
 ---
 
 # Trade — Options Trading Assistant
