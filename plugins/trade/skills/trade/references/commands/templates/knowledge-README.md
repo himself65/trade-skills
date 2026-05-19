@@ -11,8 +11,8 @@ The `trade` skill will automatically scan this directory for context that matche
 External posts usually start life as a **PDF export** or a **screenshot**. The flow:
 
 1. Drop the raw artifact in `substack/raw/` or `twitter/raw/`. Supported: `.pdf`, `.png`, `.jpg`, `.jpeg`, `.webp`, `.txt`, or a copy-pasted text file.
-2. Run `/trade:trade-import <file_path>` (or ask in natural language: "import `substack/raw/anonresearch-nvda.pdf`").
-3. The `trade-import` skill reads the artifact, extracts fields per `_template.yaml`, and writes a structured YAML alongside the raw folder. Example output: `substack/anonresearch-nvda-thesis.yaml`.
+2. Run `/trade import <file_path>` (or ask in natural language: "import `substack/raw/anonresearch-nvda.pdf`").
+3. The `import` flow reads the artifact, extracts fields per `_template.yaml`, and writes a structured YAML alongside the raw folder. Example output: `substack/anonresearch-nvda-thesis.yaml`.
 4. The raw artifact is never modified or deleted. Move or remove it yourself if you want to.
 
 ### User-authored writedowns — direct markdown
@@ -55,13 +55,9 @@ User documents **augment** the curated library, they don't replace it. Pitfalls 
 
 ## Git tracking
 
-Up to you. Common patterns:
+`/trade setup` adds `knowledge/` to both your project `.gitignore` and your global gitignore (`~/.config/git/ignore`) so it never gets committed by accident. This is the safe default — your trade notes stay on your machine.
 
-- **Track everything.** Useful if you want versioned notes.
-- **Gitignore `knowledge/`.** Useful if you want private notes that never leave your machine.
-- **Track parsed YAML, gitignore `raw/`.** Mixed approach if raw artifacts are large or include copyrighted material.
-
-A reasonable `.gitignore` snippet:
+If you actually want to version-track this directory in a specific repo, remove the entry from that repo's `.gitignore` (the global one will still keep it out of every other repo). If you want a partial setup — track parsed YAML but exclude the large raw artifacts — replace the project `.gitignore` entry with:
 
 ```
 knowledge/*/raw/
@@ -69,4 +65,4 @@ knowledge/*/raw/
 
 ## Re-running setup
 
-Running `/trade:trade-setup` again is safe — it never overwrites existing files. It will only fill in missing scaffolding (subdirectories, templates, this README).
+Running `/trade setup` again is safe — it never overwrites existing files. It will only fill in missing scaffolding (subdirectories, templates, this README, gitignore entries).

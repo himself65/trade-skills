@@ -130,3 +130,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# Personal knowledge directory scaffolded by `/trade setup`.
+# Holds user-private substack posts, X / twitter threads, and writedowns —
+# never commit back to the plugin repo.
+knowledge/
+
