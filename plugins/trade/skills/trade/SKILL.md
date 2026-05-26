@@ -9,7 +9,7 @@ description: >
   checks, earnings positioning, AH action, LEAPS / stock replacement, dealer
   GEX / gamma exposure / max pain / options chain analysis, or any single-stock
   options play. Provides concrete strikes, IV-aware structures, and probability
-  -weighted scenarios drawn from 21 trading pitfalls, a gamma framework, and
+  -weighted scenarios drawn from 23 trading pitfalls, a gamma framework, and
   case studies (INTC, Mag-7, APP, NOK, CBRS). Market data via TradingView + Funda AI.
   Responds in Chinese with English technical terms. **Always sanity-check net
   vega sign before recommending a directional structure** — wrong vega (credit
@@ -78,7 +78,7 @@ This skill uses lazy loading — read individual reference files only when relev
 | `references/strategies.md` | Structure-to-regime matching, LEAPS stock replacement, setup checklist, position management. Always relevant; load when planning a new trade. |
 | `references/gamma-framework.md` | Dealer GEX + options chain + IV term + flow → multi-factor probability map. Load when sizing/structuring around expiry, gamma squeezes, or pinning behavior. |
 | `references/price-action-framework.md` | Orderbook microstructure mental model — buy/sell imbalance, target-price divergence, vacuum zones, consensus shifts, float composition. Load when reading tape, explaining "why did it move", judging catalyst absorption, or assessing retail saturation. |
-| `references/pitfalls/README.md` | Index of 19 trading pitfalls with quick lookup by trade type. |
+| `references/pitfalls/README.md` | Index of 23 trading pitfalls with quick lookup by trade type. |
 | `references/pitfalls/NN-*.md` | Individual pitfall rules — load only when a relevant trade situation arises. |
 | `references/ticker/README.md` | Index of trade case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS). |
 | `references/ticker/<name>.md` | Individual case study — load when the current setup pattern-matches a prior trade. |
@@ -93,10 +93,11 @@ This skill uses lazy loading — read individual reference files only when relev
 | Retail saturation / KOL-amplified setup / social-media-saturation check | `references/price-action-framework.md` (float composition); `references/pitfalls/20`, `21`; `references/ticker/nok-2026-04.md` |
 | Earnings play | `references/pitfalls/05`, `07`, `09`, `10`, `11`, `20`, `21` |
 | Channel-check-driven thesis | `references/pitfalls/14` |
-| High-vol single name (APP/MSTR/COIN/PLTR) | `references/pitfalls/12`, `13`, `15`; `references/ticker/app-2026-05.md` |
+| High-vol single name (APP/MSTR/COIN/PLTR) | `references/pitfalls/12`, `13`, `15`, `23`; `references/ticker/app-2026-05.md` |
+| Exit / take-profit decision — "let it run to target" vs book now | `references/pitfalls/13`, `23` (hazard rate sets the optimal exit threshold) |
 | Sell-the-news fade attempt | `references/pitfalls/01`, `02`, `03`, `04`, `20`; `references/ticker/intc-2026-04.md`, `references/ticker/nok-2026-04.md` |
 | Multi-name cluster earnings | `references/pitfalls/09`, `10`, `11`; `references/ticker/mag7-2026-q1.md` |
-| LEAPS / stock-replacement thesis | `references/strategies.md` (LEAPS section); `references/pitfalls/11`, `16`, `18`, `21` |
+| LEAPS / stock-replacement thesis | `references/strategies.md` (LEAPS section); `references/pitfalls/11`, `16`, `18`, `21`, `23` |
 | Vol-mispricing / IV-thesis claim | `references/pitfalls/16`, `18`, `21` |
 | Expiry-day / gamma squeeze / pinning | `references/gamma-framework.md`; `references/pitfalls/17` |
 | Dealer flow / options market structure question | `references/pitfalls/17`, `21`; `references/gamma-framework.md` |
