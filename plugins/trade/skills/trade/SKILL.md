@@ -2,24 +2,19 @@
 name: trade
 description: >
   Personal US-equity options trading knowledge base. Use for trade analysis,
-  options strategy recommendations, earnings plays, post-mortems, or ticker
-  mentions in a trading context (e.g., "analyze APP", "sell put on TSLA",
-  "structure for NVDA earnings"). Triggers on multi-leg options (Jade Lizard,
-  bull put spread, iron condor, diagonal, calendar), IV / IV crush, channel
-  checks, earnings positioning, AH action, LEAPS / stock replacement, dealer
-  GEX / gamma exposure / max pain / options chain analysis, or any single-stock
-  options play. Provides concrete strikes, IV-aware structures, and probability
-  -weighted scenarios drawn from 24 trading pitfalls, a gamma framework, and
-  case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW). Market data via
-  TradingView + Funda AI. Responds in Chinese with English technical terms.
-  **Always sanity-check THREE axes before recommending any structure**:
-  (1) net vega sign — wrong vega (credit spread at low IVR, debit spread at
-  high IVR) is a known failure mode (pitfall 19); (2) net delta direction
-  matches thesis; (3) **upside asymmetry** — when bull-conviction count ≥ 4
-  (pitfall 24), capped-upside structures (Jade Lizard, Iron Condor, Calendar)
-  are FORBIDDEN regardless of IV regime. Pitfall 7 is a vega-axis rule, not
-  an asymmetry-axis rule — "high IV → sell premium" does not authorize
-  Jade Lizard or IC when bull conviction is high.
+  strategy recommendations, earnings plays, post-mortems, or ticker mentions
+  in a trading context (e.g., "analyze APP", "sell put on TSLA", "structure
+  for NVDA earnings"). Triggers on multi-leg options (Jade Lizard, bull put
+  spread, iron condor, diagonal, calendar), IV / IV crush, channel checks,
+  earnings positioning, AH action, LEAPS / stock replacement, dealer GEX /
+  gamma exposure / max pain / options chain analysis, or any single-stock
+  options play. Concrete strikes, IV-aware structures, probability-weighted
+  scenarios from 24 pitfalls, a gamma framework, and case studies (INTC,
+  Mag-7, APP, NOK, TSEM, CBRS, SNOW). Market data via TradingView + Funda
+  AI. Chinese response, English technical terms. **Check 3 axes before any
+  structure**: vega sign matches IVR (pitfall 19); delta matches thesis;
+  asymmetry — bull-conviction ≥ 4 (pitfall 24) forbids Jade Lizard / IC /
+  Calendar regardless of IV. Pitfall 7 fixes vega sign, not structure.
 ---
 
 # Trade — Options Trading Assistant
