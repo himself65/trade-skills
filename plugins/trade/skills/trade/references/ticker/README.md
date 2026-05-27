@@ -12,6 +12,7 @@ One file per closed trade arc. Designed for lazy loading — the index lists tic
 | NOK | Q1 2026 + post-ER re-rate | 2026-04-23 (in-progress) | profit (+100% on Jun-27 LEAPS, ongoing exposure) | Post-earnings momentum continuation beats intraday-fade pattern when fundamentals + sector + flow align; elevated IV without near-term event is demand-driven, not event-driven | `nok-2026-04.md` |
 | TSEM | Q1 2026 earnings | 2026-05-13 | profit (small, ~5-15% of capital) | Direction call right (Bull), structure choice wrong — diagonal calendar capped upside in the very scenario predicted; high directional conviction calls for directional defined-risk (bull put spread / risk reversal), not pin-style calendars | `tsem-2026-05.md` |
 | CBRS | IPO debut (Nasdaq) | 2026-05-14 | loss on Day-1 long stock (cut ~$290 vs ~$300-311 entry); options plan open | Right thesis, wrong trade: went long Day-1 against the file's own anti-rules, took a small loss; only the cut salvaged it. Plus hot-AI-IPO modeling (no roadshow-range anchoring; fully-diluted incl. warrants; edge is pre-IPO + greenshoe + lock-up, not Day-1) | `cbrs-2026-05.md` |
+| SNOW | Q1 FY26 earnings (Cortex Code GA) | 2026-05-27 | loss (small, $50/contract if taken — vs counterfactual long calls +$4,500) | **Canonical**: Jade Lizard recommended into a 6/8 bull-conviction setup; AH +35.75% (3.2 SD) made the capped-upside structure forbidden. Asymmetry is a third axis beyond direction + vega. Confluence ≥ 3 independent channel checks overrides single-source discount rule. | `snow-2026-05.md` |
 
 ## Quick Lookup by Pattern
 
@@ -21,11 +22,15 @@ One file per closed trade arc. Designed for lazy loading — the index lists tic
 - **Post-earnings momentum + sector co-rally + demand-IV**: `nok-2026-04.md`
 - **Analyst error: gap-up fade misread / IV crush misread**: `nok-2026-04.md`
 - **KOL amplification / thematic re-rate**: `nok-2026-04.md`
-- **High-conviction directional setup → structure selection**: `tsem-2026-05.md`
+- **High-conviction directional setup → structure selection**: `tsem-2026-05.md`, `snow-2026-05.md`
 - **Diagonal/calendar strike placement vs implied move ratio**: `tsem-2026-05.md`
 - **AI optical / silicon photonics earnings play**: `tsem-2026-05.md`
 - **Hot AI IPO / pre-options-listing / lock-up front-run**: `cbrs-2026-05.md`
 - **Execution-vs-analysis gap / traded against your own anti-rules / right thesis wrong trade**: `cbrs-2026-05.md`
+- **Capped-upside structure failure / Jade Lizard in bull tail**: `snow-2026-05.md`
+- **Channel-check confluence (N≥3 sources) overrides sample-bias discount**: `snow-2026-05.md`
+- **AI platform re-rate / thematic multiple expansion / new-customer tier disclosure**: `snow-2026-05.md`
+- **Bull-conviction count → asymmetry rule activates**: `snow-2026-05.md`
 
 ## Adding a New Case Study
 

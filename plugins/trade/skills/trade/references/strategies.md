@@ -4,21 +4,76 @@ Decision framework for matching options structures to market state.
 
 ---
 
+## Three Axes Must Match: Direction, Vega, AND Asymmetry
+
+> ⚠️ **Pitfall 19** named Direction + Vega as two independent axes. **Pitfall 24** added a third: **Asymmetry / upside profile**. A structure that matches direction + vega can still be catastrophically wrong if it caps upside in the very scenario you predicted. Jade Lizard, Iron Condor, Calendar, and Diagonal all CAP upside — they are neutral or pin structures. When bull-conviction count ≥ 4 (see below), they are forbidden regardless of vega-axis fit.
+
+### Bull-Conviction Count (mandatory pre-structure check)
+
+Tally before picking structure. Each = 1 point:
+
+- [ ] 3+ independent channel checks aligned bullish
+- [ ] Sector / thematic narrative actively re-rating
+- [ ] Stock down >20% from recent high (de-risked setup)
+- [ ] Past 4 quarters: ≥3 positive earnings reactions
+- [ ] NEW information likely to be disclosed (new customer tier, new product class, guide raise, M&A)
+- [ ] Net options flow back-month bullish (call premium dominance, 5-day rolling)
+- [ ] Short interest >10% (squeeze potential)
+- [ ] Implied move materially below recent realized average
+
+**Score ≥ 4 → high-conviction bull → asymmetry rule activates → banned structures take effect.**
+
+(Symmetric rule applies for high-conviction bear: tally inverse factors; banned structures become bear put spread cousins, etc.)
+
+---
+
 ## Structure-to-Regime Matching
 
-> ⚠️ **Direction and vega are two axes — match BOTH** (see pitfall 19). A "bullish" view does not automatically map to a "bullish-named" structure. Bull put spread (credit) and bull call spread (debit) are **both** bullish but opposite vega. **Pick the row by IV regime first, then check direction**, not the other way around.
+**Pick the row by IV regime first, then check direction**, not the other way around.
 
-| Regime | Best Structure | Vega sign | Why |
-|--------|---------------|---|-----|
-| **High IV (IV Rank >70) + bullish** | Bull put spread (credit) | **short** | Collect IV crush + directional alignment |
-| **High IV + bearish** | Bear call spread (credit) | **short** | Same — sell IV, right direction |
-| **High IV + neutral/range-bound** | Iron condor | **short** | Double-sided premium harvest |
-| **Low IV (IVR <30) + bullish** | **Bull call debit spread** | **long** | IV mean-reverts up; long vega + long delta |
-| **Low IV (IVR <30) + bearish** | **Bear put debit spread** | **long** | Same — buy IV, right direction |
-| **High IV term skew (front >> back)** | Calendar / diagonal | mixed | Sell expensive front, own cheap back |
-| **Uncertain direction, want to bet on move** | Long straddle — ONLY if IV <50% | long | Otherwise IV crush kills you |
+| Regime | Best Structure | Vega sign | Caps upside? | Why |
+|--------|---------------|---|---|-----|
+| **High IV (IV Rank >70) + mildly bullish** (conviction <4) | Bull put spread (credit) | **short** | At credit | Collect IV crush + directional alignment, modest upside acceptable |
+| **High IV + HIGH-conviction bull (≥4)** | **Naked short put far OTM, OR bull put spread, OR risk reversal, OR long call (accept vega tax)** | short / mixed / long | varies — must be uncapped OR small credit accepted | **Asymmetry rule** — banned: Jade Lizard, IC, calendars, covered calls |
+| **High IV + bearish** | Bear call spread (credit) | **short** | At credit | Same — sell IV, right direction |
+| **High IV + neutral/range-bound** (NO directional conviction) | Iron condor | **short** | Both sides | Double-sided premium harvest — ONLY when truly no directional edge |
+| **High IV + manipulator-tape (APP/MSTR/COIN/PLTR)** | Jade Lizard + leveraged-proxy scalp | short | At credit | Manipulator tapes whip both directions — Jade Lizard fits because you genuinely have no directional edge. **NOT a substitute for "high IV + bullish".** |
+| **Low IV (IVR <30) + bullish** | **Bull call debit spread** | **long** | At long strike | IV mean-reverts upward, debit structures gain on both axes |
+| **Low IV (IVR <30) + bearish** | **Bear put debit spread** | **long** | At long strike | Same — buy IV, right direction |
+| **High IV term skew (front >> back)** | Calendar / diagonal | mixed | At short strike (PIN) | Sell expensive front, own cheap back — ONLY if implied move < strike distance × 0.75 AND directional conviction <4 |
+| **Uncertain direction, want to bet on move** | Long straddle — ONLY if IV <50% | long | Uncapped | Otherwise IV crush kills you |
 
-**Sanity check before submitting any directional trade**: write down the net vega sign. Long vega at IVR <30 ✓ or short vega at IVR >70 ✓ — anything else needs an explicit written reason (e.g., "I expect IV to compress further because X"). Defaulting to the wrong vega side is the single most common framework-violation failure mode.
+**Sanity-check sequence before submitting any directional trade**:
+
+1. **Vega sign**: Long vega at IVR <30 ✓ or short vega at IVR >70 ✓
+2. **Direction**: Net delta sign matches directional thesis
+3. **Asymmetry** (the often-missed step): Compute max P/L if your **high-conviction scenario** prints — bull case +20%, +35%, +50% for bull trades; bear case symmetric. If candidate structure shows FLAT or LOSS in your conviction scenario AND bull-conviction count ≥ 4 → REJECT and pick uncapped alternative.
+
+Defaulting to the wrong vega side is the most common framework-violation failure mode. Defaulting to a **capped-upside structure when bull conviction is high** is the *second* most common — and is more expensive because the move usually prints precisely when conviction is high.
+
+### Banned-Structure Quick Reference
+
+| Conviction state | Banned structures |
+|---|---|
+| High-conviction bull (count ≥ 4) | Jade Lizard, Iron Condor, Calendar, Diagonal (tight strikes), Covered Call, Bear-Call-Spread-component combos |
+| High-conviction bear (mirror) | Reverse Jade Lizard, Iron Condor, calendars below current price, cash-secured-put-as-income on falling-knife |
+| Neutral (no directional edge) | Naked directional structures (risk reversal, synthetic long/short, single-side debit spreads) |
+
+---
+
+## Counterfactual P/L Matrix (Mandatory for ≥4-conviction Setups)
+
+Before submitting any structure when bull-conviction count ≥ 4, fill out:
+
+| Structure | P/L @ spot | P/L @ +10% | P/L @ +20% | P/L @ +35% | P/L @ +50% |
+|---|---|---|---|---|---|
+| Candidate A | | | | | |
+| Candidate B | | | | | |
+| Candidate C | | | | | |
+
+Pick the structure with the **best P/L in your highest-conviction scenario column**. If two structures tie on bull-case, prefer the one with lower max loss in the bear column.
+
+Reference case: SNOW 2026-05 — Jade Lizard returned ~−$50/contract at the +35% scenario, while long $185C would have returned +$4,500/contract. A 30-second counterfactual matrix would have made this visible.
 
 ---
 

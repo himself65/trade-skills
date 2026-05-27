@@ -1,6 +1,6 @@
 # Trading Pitfalls
 
-23 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant.
+24 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant.
 
 ## Index
 
@@ -29,24 +29,27 @@
 | 21 | HIGH | Elevated IV without a near-term event = demand-driven, not event-driven — check catalyst clock + flow first | `21-event-iv-vs-demand-iv.md` |
 | 22 | HIGH | Bond yields don't "cause" equity moves — both are downstream of the same macro drivers | `22-yields-not-causal.md` |
 | 23 | HIGH | Discounting is a hazard rate, not just time-value — the optimal exit threshold falls as blow-up/termination risk rises | `23-hazard-rate-discounting.md` |
+| 24 | HIGH | Capped-upside structures (Jade Lizard, Iron Condor, Calendar) are forbidden in high-conviction bull setups — asymmetry is a third axis beyond direction and vega | `24-capped-upside-vs-bull-conviction.md` |
 
 ## Quick Lookup by Trade Type
 
-- **Earnings**: 5, 7, 9, 10, 11, **20**
-- **Directional / fundamental**: 1, 2, 3, 4, 19
+- **Earnings**: 5, 7, 9, 10, 11, **20**, **24**
+- **Directional / fundamental**: 1, 2, 3, 4, 19, **24**
 - **Volatile / manipulator tapes**: 12, 13, 15, **23**
 - **Exit / take-profit / optimal-stopping**: 13, **23** (hazard rate sets the exit threshold)
-- **Channel-check / fundamental research**: 14
-- **Structure / vol regime**: 6, 7, 8, 18, 19, **21**
+- **Channel-check / fundamental research**: 14, **24** (confluence ≥ 3 aligned sources overrides single-source discount)
+- **Structure / vol regime**: 6, 7, 8, 18, 19, **21**, **24**
+- **Structure asymmetry / upside profile**: **24** (the third axis beyond direction + vega)
 - **Sentiment / sector mood**: 9, 10, **20**
 - **LEAPS / stock replacement**: 11, 16, 18, **21**, **23** (long horizons compound the termination hazard)
 - **Options market structure / dealer flow**: 17, **21** (also see `../gamma-framework.md`)
 - **Vol-thesis reasoning**: 16, 19, **21**
-- **Credit vs debit at low/high IV**: 7, 19, **21**
+- **Credit vs debit at low/high IV**: 7, 19, **21**, **24**
 - **Post-earnings drift / continuation**: 9, 10, **20**
-- **Multi-week thematic re-rate / sector co-move**: **20**, **21**
+- **Multi-week thematic re-rate / sector co-move**: **20**, **21**, **24**
 - **Pattern recognition vs flow data check**: **20**, **21** (always pull data before applying pattern)
 - **Macro framing / yield narratives**: **22** (yield moves are a symptom, not a cause)
+- **High-conviction bull (channel confluence + thematic re-rate)**: **24** — banned: Jade Lizard, IC, Calendar; required: bull put spread, naked short put, risk reversal, long call
 
 ## Adding a New Pitfall
 
