@@ -75,5 +75,5 @@ When a skill is invoked as a plugin, it is namespaced as `<plugin-name>:<skill-n
 
 ## Important constraints
 
-- **No trade execution.** All advice in this skill is read-only analysis. Never generate code that places trades.
+- **No live trade execution.** Analysis is read-only. Staging draft orders via the IBKR MCP `create_order_instruction` (which only creates an instruction the user must review and transmit in IBKR) is permitted; never transmit a live order or claim one was filled. Equity/ETF only — multi-leg options cannot be staged and stay manual. Never generate code that places trades.
 - **Market data priority:** For options chains and stock quotes, use the TradingView desktop reader (`finance-data-providers:tradingview-reader` skill) FIRST. Fall back to the Funda AI API (`finance-data-providers:funda-data` skill) for data TradingView cannot provide (fundamentals, filings, transcripts, analyst estimates, options flow/GEX, supply chain, sentiment, Polymarket, congressional trades, economics, etc.). Do not substitute yfinance, web search, or guesses.
