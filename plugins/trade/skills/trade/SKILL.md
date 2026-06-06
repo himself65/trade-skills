@@ -3,20 +3,18 @@ name: trade
 description: >
   Personal US-equity options trading knowledge base. Use for trade analysis,
   strategy recommendations, earnings plays, post-mortems, or ticker mentions
-  in a trading context (e.g., "analyze APP", "sell put on TSLA", "structure
-  for NVDA earnings"). Triggers on multi-leg options (Jade Lizard, bull put
-  spread, iron condor, diagonal, calendar), IV / IV crush, channel checks,
-  earnings positioning, AH action, LEAPS / stock replacement, dealer GEX /
-  gamma exposure / max pain / options chain analysis, or any single-stock
-  options play. Also VIX / volatility hedging, VIX call / call-spread,
-  "short the market" / tail / crash hedge, term-structure / contango.
-  Concrete strikes, IV-aware structures, probability-weighted
-  scenarios from 25 pitfalls, a gamma framework, and case studies (INTC,
-  Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX). Market data via TradingView + Funda
-  AI. Chinese response, English technical terms. **Check 3 axes before any
-  structure**: vega sign matches IVR (pitfall 19); delta matches thesis;
-  asymmetry — bull-conviction ≥ 4 (pitfall 24) forbids Jade Lizard / IC /
-  Calendar regardless of IV. Pitfall 7 fixes vega sign, not structure.
+  in a trading context (e.g., "analyze APP"). Triggers on multi-leg options
+  (Jade Lizard, bull put spread, iron condor, diagonal, calendar), IV / IV
+  crush, channel checks, earnings positioning, AH action, LEAPS / stock
+  replacement, dealer GEX / gamma / max pain / options chain analysis,
+  single-stock options plays, or VIX / volatility hedging (VIX call-spread,
+  "short the market", tail / crash hedge, contango). Concrete strikes,
+  IV-aware structures, probability-weighted scenarios from 25 pitfalls, a
+  gamma framework, and case studies (INTC, APP, NOK, TSEM, SNOW, MDB, VIX).
+  Market data via TradingView + Funda AI. Chinese response, English technical
+  terms. **Check 3 axes before any structure**: vega sign matches IVR
+  (pitfall 19); delta matches thesis; asymmetry — bull-conviction ≥ 4
+  (pitfall 24) forbids Jade Lizard / IC / Calendar.
 ---
 
 # Trade — Options Trading Assistant
