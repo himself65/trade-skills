@@ -14,6 +14,7 @@ One file per closed trade arc. Designed for lazy loading — the index lists tic
 | CBRS | IPO debut (Nasdaq) | 2026-05-14 | loss on Day-1 long stock (cut ~$290 vs ~$300-311 entry); options plan open | Right thesis, wrong trade: went long Day-1 against the file's own anti-rules, took a small loss; only the cut salvaged it. Plus hot-AI-IPO modeling (no roadshow-range anchoring; fully-diluted incl. warrants; edge is pre-IPO + greenshoe + lock-up, not Day-1) | `cbrs-2026-05.md` |
 | SNOW | Q1 FY26 earnings (Cortex Code GA) | 2026-05-27 | loss (small, $50/contract if taken — vs counterfactual long calls +$4,500) | **Canonical**: Jade Lizard recommended into a 6/8 bull-conviction setup; AH +35.75% (3.2 SD) made the capped-upside structure forbidden. Asymmetry is a third axis beyond direction + vega. Confluence ≥ 3 independent channel checks overrides single-source discount rule. | `snow-2026-05.md` |
 | MDB | Q1 FY27 earnings (AI-database re-rate) | 2026-05-28 | profit (bull put spread ~99% of max; small long-call tail marginal) | **SNOW lesson applied correctly the next day**: same AI-database theme, but mechanical ~4/8 count had 3 *inversions* (chasing-not-de-risked, put-heavy flow, −22% crash from the same $325 level last quarter) → reclassified **mixed-conviction**, not high-conviction bull. Bull put spread workhorse won across the whole up-range; refused IC/JL (don't sell a freshly-demonstrated tail). **Conviction count needs a quality/inversion overlay, not just a tally.** | `mdb-2026-05.md` |
+| VIX | Market selloff (SPX −2.6% / spot VIX +40%) | 2026-06-05 | illustrative (~+3–8% marked on the spreads) | **VIX call spreads track the FUTURE, not spot.** Spot VIX +40% marked only ~+3–8% on a Jul 20/32 and Aug 20/30 spread. Three reasons: futures beta < 1 (further-dated Aug +3% < nearer Jul +8%); debit-spread **skew bite** (short far-OTM leg's IV ballooned, captured 63% of the long leg's move); a −2.6% day is *noise* to a structure built for −8%+ crash convexity. Don't chase the spike (adding into a ripping VIX pays escalating vol-of-vol). | `vix-2026-06.md` |
 
 ## Quick Lookup by Pattern
 
@@ -37,6 +38,11 @@ One file per closed trade arc. Designed for lazy loading — the index lists tic
 - **Stock ripping INTO the print (chasing) + priced-in / fade-risk after run-up**: `mdb-2026-05.md`
 - **"Don't sell a freshly-demonstrated fat tail" (refuse IC/JL even when ex-post it would've worked)**: `mdb-2026-05.md`
 - **Asymmetry rule applied CORRECTLY (win) vs the SNOW failure (loss) — A/B one day apart**: `mdb-2026-05.md` + `snow-2026-05.md`
+- **VIX call spread / "short the market with VIX" / tail hedge**: `vix-2026-06.md` (futures-anchored, contango bleed, beta<1, debit-spread skew bite)
+- **Why "VIX +40%" ≠ "my position +40%" (futures beta < 1, further-dated moves less)**: `vix-2026-06.md`
+- **Debit call-spread short-leg skew bite on a vol spike**: `vix-2026-06.md`
+- **Don't chase the spike / adding into a ripping VIX pays escalating vol-of-vol**: `vix-2026-06.md`
+- **2:1 long ratio (buy 2 / sell 1) to stay net-long the right tail vs the 1:1 spread's skew bite**: `vix-2026-06.md`, `../pitfalls/25-vix-options-futures-mechanics.md`
 
 ## Adding a New Case Study
 

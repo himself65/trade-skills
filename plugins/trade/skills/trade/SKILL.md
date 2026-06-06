@@ -8,9 +8,11 @@ description: >
   spread, iron condor, diagonal, calendar), IV / IV crush, channel checks,
   earnings positioning, AH action, LEAPS / stock replacement, dealer GEX /
   gamma exposure / max pain / options chain analysis, or any single-stock
-  options play. Concrete strikes, IV-aware structures, probability-weighted
-  scenarios from 24 pitfalls, a gamma framework, and case studies (INTC,
-  Mag-7, APP, NOK, TSEM, CBRS, SNOW). Market data via TradingView + Funda
+  options play. Also VIX / volatility hedging, VIX call / call-spread,
+  "short the market" / tail / crash hedge, term-structure / contango.
+  Concrete strikes, IV-aware structures, probability-weighted
+  scenarios from 25 pitfalls, a gamma framework, and case studies (INTC,
+  Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX). Market data via TradingView + Funda
   AI. Chinese response, English technical terms. **Check 3 axes before any
   structure**: vega sign matches IVR (pitfall 19); delta matches thesis;
   asymmetry — bull-conviction ≥ 4 (pitfall 24) forbids Jade Lizard / IC /
@@ -85,7 +87,7 @@ This skill uses lazy loading — read individual reference files only when relev
 | `references/strategies.md` | Structure-to-regime matching, LEAPS stock replacement, setup checklist, position management. Always relevant; load when planning a new trade. |
 | `references/gamma-framework.md` | Dealer GEX + options chain + IV term + flow → multi-factor probability map. Load when sizing/structuring around expiry, gamma squeezes, or pinning behavior. |
 | `references/price-action-framework.md` | Orderbook microstructure mental model — buy/sell imbalance, target-price divergence, vacuum zones, consensus shifts, float composition. Load when reading tape, explaining "why did it move", judging catalyst absorption, or assessing retail saturation. |
-| `references/pitfalls/README.md` | Index of 24 trading pitfalls with quick lookup by trade type. |
+| `references/pitfalls/README.md` | Index of 25 trading pitfalls with quick lookup by trade type. |
 | `references/pitfalls/NN-*.md` | Individual pitfall rules — load only when a relevant trade situation arises. |
 | `references/ticker/README.md` | Index of trade case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW). |
 | `references/ticker/<name>.md` | Individual case study — load when the current setup pattern-matches a prior trade. |
@@ -116,6 +118,7 @@ This skill uses lazy loading — read individual reference files only when relev
 | **About to recommend Jade Lizard / Iron Condor / Calendar / Diagonal** | **MANDATORY**: `references/pitfalls/24`; `references/ticker/snow-2026-05.md`; `references/ticker/tsem-2026-05.md` — run the bull-conviction count + counterfactual P/L matrix FIRST. If count ≥ 4, these structures are forbidden. |
 | **High-conviction bull setup (channel confluence + thematic re-rate + de-risked stock)** | `references/pitfalls/24`; `references/ticker/snow-2026-05.md`; `references/strategies.md` (asymmetry-rule section) — use naked short put / bull put spread / risk reversal / long call, NOT Jade Lizard or IC |
 | **Structure choice for directional conviction (high or low gap to consensus)** | `references/ticker/tsem-2026-05.md`, `references/ticker/snow-2026-05.md`; `references/pitfalls/24`, `19`, `6` |
+| **VIX / volatility hedge / "short the market" via VIX / tail-crash hedge** | **MANDATORY**: `references/pitfalls/25` (anchor to the future not spot; contango bleed; beta<1; debit-spread skew bite); `references/strategies.md` (VIX section); `references/ticker/vix-2026-06.md` — pull the VIX term structure (VIX9D/VIX/VIX3M/VIX6M) and model P/L off the future, never spot |
 
 ## Adding to the Knowledge Base
 

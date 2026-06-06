@@ -124,6 +124,48 @@ Replacing 100 shares with deep ITM LEAPS + cash. **Capital efficiency play, not 
 
 ---
 
+## VIX / Volatility-Hedge Structure Selection
+
+For "short the market" or portfolio-hedge expressions via VIX. **Read `../pitfalls/25-vix-options-futures-mechanics.md` first** — VIX options settle against the VIX *future* of their expiry, not spot VIX. Case study: `../ticker/vix-2026-06.md`.
+
+### First decide the job — these are NOT interchangeable
+
+| Goal | Right vehicle | Why |
+|---|---|---|
+| **Pure directional short** (expect SPX to grind −5/−10%) | **SPY / SPX put debit spread** | Linear, transparent, **no contango, no futures-beta drag** |
+| **Convex crash / tail hedge** (want a position that *multiplies* in a vol explosion) | **VIX call debit spread** (or outright VIX call for uncapped) | Convexity in the left tail; cheap absolute premium at low VIX |
+| **No directional edge, harvest range** | (not a short) iron condor / put credit spread on SPX | — |
+
+### VIX call-spread mechanics (the four traps)
+
+1. **Anchor strikes to the future, not spot.** Steep contango → a "20 call" is ~ATM when the 2-month future is ~18. Pull VIX9D/VIX/VIX3M/VIX6M for the curve.
+2. **Contango bleed** — calls decay as the future converges to spot in calm tapes. Use spreads, shorter-dated, small size; never naked-hold indefinitely.
+3. **Futures beta < 1, falling further out** — a spot-VIX spike moves the future a *fraction* (≈0.5–0.65 for 1–3M; less beyond). Nearer-dated has higher beta to a spike. **Build every P/L table off the future, never "VIX +40% → position +40%."**
+4. **Debit-spread skew bite** — on a spike, far-OTM call IV explodes most; your short upper leg gains and eats the spread's widening. Wider short strike = cheaper carry but bigger first-day skew bite.
+
+### Selection rules
+
+- **DTE 45–75 days**: enough time to catch a move, carry not yet brutal.
+- **Size as insurance**: ~0.5–2% of book; expect to lose premium in calm tapes.
+- **Set full size at a calm entry — don't chase the spike** (adding into a ripping VIX pays escalating vol-of-vol on the later lots).
+- **The crash column holds the multiples**: a −2/−3% day should be only mildly green even at VIX +40% — that's correct, not failure.
+- **Take profit fast**: in backwardation book 60–70% of max value; VIX mean-reverts in days. Don't wait for the cap (pitfall 13 / 23).
+- **Roll sparingly** (pitfall 18) — each roll re-pays carry.
+
+### Structure spectrum (carry vs convexity) — match the ratio to conviction
+
+| Structure | Upside | Carry / calm-tape bleed | Right-tail IV | When |
+|---|---|---|---|---|
+| **1:1 debit spread** (buy 1 / sell 1) | **capped** at short strike | cheapest | net-short the ballooning leg (**skew bite**) | just hedging a tail you don't expect |
+| **2:1 long ratio** (buy 2 / sell 1) = spread + 1 extra long call | **uncapped** above short strike | ~2–2.5× the 1:1 | **net-long** the right tail | you have a real crash view and want convexity at moderate carry |
+| **Outright calls / wide ladder** | uncapped, steepest | highest | most net-long | strong crash conviction; willing to pay full carry |
+
+- **2:1 = buy LOW / sell HIGH** (e.g. buy 2× 20C, sell 1× 32C): profitable across the whole spike range and uncapped in the deep tail. This is the *opposite* of a textbook call backspread (sell low / buy high), which loses money in the most-likely mid-spike (VIX 25–40) zone — don't build that for a VIX hedge.
+- **⚠️ Never invert the ratio**: sell-2 / buy-1 (front-ratio) is **naked-short vol** and lethal in a crash — the exact opposite of what you want here.
+- Rule of thumb: **stronger crash conviction → sell fewer / none**; pure tail insurance → stay at 1:1.
+
+---
+
 ## Trade Setup Checklist (Before Entering)
 
 1. **Tape check**: What have the last 3 daily closes done? Volume profile? Where's support/resistance?

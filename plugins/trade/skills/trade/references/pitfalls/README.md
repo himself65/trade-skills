@@ -1,6 +1,6 @@
 # Trading Pitfalls
 
-24 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant.
+25 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant.
 
 ## Index
 
@@ -30,6 +30,7 @@
 | 22 | HIGH | Bond yields don't "cause" equity moves — both are downstream of the same macro drivers | `22-yields-not-causal.md` |
 | 23 | HIGH | Discounting is a hazard rate, not just time-value — the optimal exit threshold falls as blow-up/termination risk rises | `23-hazard-rate-discounting.md` |
 | 24 | HIGH | Capped-upside structures (Jade Lizard, Iron Condor, Calendar) are forbidden in high-conviction bull setups — asymmetry is a third axis beyond direction and vega | `24-capped-upside-vs-bull-conviction.md` |
+| 25 | HIGH | VIX options price off VIX futures, not spot — contango bleed, sub-1 futures beta, and the debit-spread skew bite | `25-vix-options-futures-mechanics.md` |
 
 ## Quick Lookup by Trade Type
 
@@ -49,6 +50,7 @@
 - **Multi-week thematic re-rate / sector co-move**: **20**, **21**, **24**
 - **Pattern recognition vs flow data check**: **20**, **21** (always pull data before applying pattern)
 - **Macro framing / yield narratives**: **22** (yield moves are a symptom, not a cause)
+- **VIX / volatility hedge / "short the market" via VIX**: **25** (anchor to the future not spot; contango bleed; beta<1; debit-spread skew bite) — also see `../strategies.md` VIX section + `../ticker/vix-2026-06.md`
 - **High-conviction bull (channel confluence + thematic re-rate)**: **24** — banned: Jade Lizard, IC, Calendar; required: bull put spread, naked short put, risk reversal, long call
 
 ## Adding a New Pitfall
