@@ -105,6 +105,17 @@ After scaffolding, explain the two ingestion paths:
 1. Copy `writedowns/_template.md` → `writedowns/YYYY-MM-DD-<topic>.md`
 2. Edit directly. No parsing needed.
 
+### 6. If the knowledge dir is outside the current repo, record its path
+
+`analysis` discovers the knowledge dir by, in order: `$TRADE_KNOWLEDGE_DIR` → a `knowledge_path:` line in the nearest `CLAUDE.md` → `./knowledge/`. The default `./knowledge/` only works when you run from the repo that holds it.
+
+So **if the user chose a path outside the current working directory** (e.g. a separate private notes repo like `~/code/notes/knowledge`), tell them to make it discoverable from anywhere by **either**:
+
+- adding `knowledge_path: <absolute-or-~-path>` to their `~/.claude/CLAUDE.md` (global) or a project `CLAUDE.md`, **or**
+- exporting `TRADE_KNOWLEDGE_DIR=<path>` in their shell profile.
+
+Offer to write the `~/.claude/CLAUDE.md` line for them (append-only, deduped). If the chosen path is the default `./knowledge/` inside the current repo, skip this step.
+
 ## Constraints
 
 - **Always ask for the directory first.** Never assume a target path.

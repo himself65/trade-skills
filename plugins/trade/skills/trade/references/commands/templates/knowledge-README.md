@@ -47,9 +47,10 @@ Slugs are kebab-case, lowercase, ASCII only. If a document is ticker-specific, i
 
 When you ask a trade question, the model:
 
-1. Reads this `README.md` (the index) if it exists.
-2. Skims subdirectory filenames for matches against the current ticker / theme.
-3. Loads matched files — YAML for parsed external content, markdown for writedowns.
+1. Locates this directory by resolving, in order: `$TRADE_KNOWLEDGE_DIR` → a `knowledge_path:` line in the nearest `CLAUDE.md` → `./knowledge/` in the current repo. (The first two let this dir live in a **different** repo and still be found from anywhere — see `/trade setup` step 6.)
+2. Reads this `README.md` (the index) if it exists.
+3. Skims **every** subdir's filenames (substack, twitter, writedowns, and any curated module dir) for matches against the current ticker / theme, ignoring `*/raw/`.
+4. Loads matched files — YAML for parsed external content, markdown for writedowns / module docs.
 
 User documents **augment** the curated library, they don't replace it. Pitfalls remain authoritative for framework rules; your knowledge adds primary sources and personal context.
 
