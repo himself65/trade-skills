@@ -8,7 +8,11 @@ description: >
   crush, channel checks, earnings positioning, AH action, LEAPS / stock
   replacement, dealer GEX / gamma / max pain / options chain analysis,
   single-stock options plays, or VIX / volatility hedging (VIX call-spread,
-  "short the market", tail / crash hedge, contango). Concrete strikes,
+  "short the market", tail / crash hedge, contango). Also `/trade --frank`,
+  "学习frank", "frank周报/复盘/方法", "frank准不准" — generate Frank-style
+  weekly recap/outlook, explain his support-resistance / HVL-gamma / forced-flow
+  methodology, or report his backtested hit-rate (see references/frank/).
+  Concrete strikes,
   IV-aware structures, probability-weighted scenarios from 25 pitfalls, a
   gamma framework, and case studies (INTC, APP, NOK, TSEM, SNOW, MDB, VIX).
   Market data via TradingView + Funda AI. Chinese response, English technical
@@ -89,6 +93,7 @@ This skill uses lazy loading — read individual reference files only when relev
 | `references/pitfalls/NN-*.md` | Individual pitfall rules — load only when a relevant trade situation arises. |
 | `references/ticker/README.md` | Index of trade case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW). |
 | `references/ticker/<name>.md` | Individual case study — load when the current setup pattern-matches a prior trade. |
+| `references/frank/README.md` | **`/trade --frank` entry point.** Macro trader Frank's methodology (support/resistance as forced-flow trigger levels, HVL gamma, VIX→gamma/vanna switch, forced-flow players, RS stock selection), a weekly recap/outlook generator, and his historical hit-rate backtest. Load on `--frank` / `学习frank` / `frank周报` / `frank复盘` / `frank方法`. |
 
 ## When to Read Which File
 
@@ -116,6 +121,7 @@ This skill uses lazy loading — read individual reference files only when relev
 | **About to recommend Jade Lizard / Iron Condor / Calendar / Diagonal** | **MANDATORY**: `references/pitfalls/24`; `references/ticker/snow-2026-05.md`; `references/ticker/tsem-2026-05.md` — run the bull-conviction count + counterfactual P/L matrix FIRST. If count ≥ 4, these structures are forbidden. |
 | **High-conviction bull setup (channel confluence + thematic re-rate + de-risked stock)** | `references/pitfalls/24`; `references/ticker/snow-2026-05.md`; `references/strategies.md` (asymmetry-rule section) — use naked short put / bull put spread / risk reversal / long call, NOT Jade Lizard or IC |
 | **Structure choice for directional conviction (high or low gap to consensus)** | `references/ticker/tsem-2026-05.md`, `references/ticker/snow-2026-05.md`; `references/pitfalls/24`, `19`, `6` |
+| **`/trade --frank` / `学习frank` / `frank周报` / `frank复盘` / `frank方法` / "frank准不准"** | `references/frank/README.md` first (it routes to method / weekly-recap / backtest mode). Weekly-recap is the default: pull live data per `references/frank/weekly-template.md` and generate the three-section recap+outlook. |
 | **VIX / volatility hedge / "short the market" via VIX / tail-crash hedge** | **MANDATORY**: `references/pitfalls/25` (anchor to the future not spot; contango bleed; beta<1; debit-spread skew bite); `references/strategies.md` (VIX section); `references/ticker/vix-2026-06.md` — pull the VIX term structure (VIX9D/VIX/VIX3M/VIX6M) and model P/L off the future, never spot |
 
 ## Adding to the Knowledge Base
