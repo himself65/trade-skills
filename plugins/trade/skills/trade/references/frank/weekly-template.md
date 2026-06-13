@@ -62,5 +62,5 @@ Total GEX：{gex}  Total DEX：{dex}  GEX 1D：{dgex}  DEX 1D：{ddex}
 
 ## 重要边界
 - **不下单、不声称已成交**。可用 IBKR `create_order_instruction` 仅暂存 Equity/ETF 草单（用户二次确认），
-  多腿期权一律手动。见 SKILL.md 与 `[[feedback_ibkr_order_staging]]`。
+  多腿期权一律手动。见 SKILL.md「Important constraints」。
 - 这是**模仿 Frank 的分析框架**做独立分析，不是冒充 Frank 本人、不是投资建议。结尾可加 DYOR。
