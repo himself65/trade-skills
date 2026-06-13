@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Don't conflate drift with vol; BSM already prices log-normal paths
+description: BSM prices log-normal paths, so "long-dated IV too cheap because stocks compound" is wrong; drift is not vol. Reject before building a LEAPS thesis.
 severity: HIGH
 appliesTo: leaps, iv-thesis, vol-mispricing
-tags: bsm, drift, vol, term-structure
+tags: [bsm, drift, vol, term-structure]
+timestamp: 2026-05-09T03:02:13Z
 ---
 
 ## Don't conflate drift with vol; BSM already prices log-normal paths

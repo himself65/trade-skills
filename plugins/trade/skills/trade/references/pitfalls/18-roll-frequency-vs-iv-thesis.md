@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Roll frequency is independent from IV thesis — over-rolling kills the alpha
+description: Each ITM→ATM LEAPS roll resets vega, halves delta, pays bid-ask twice; rolling is capital management, not IV-alpha capture.
 severity: MEDIUM
 appliesTo: leaps, position-management, stock-replacement
-tags: roll, vega, capital-mgmt, leaps
+tags: [roll, vega, capital-mgmt, leaps]
+timestamp: 2026-05-09T03:02:13Z
 ---
 
 ## Roll frequency is independent from IV thesis — over-rolling kills the alpha

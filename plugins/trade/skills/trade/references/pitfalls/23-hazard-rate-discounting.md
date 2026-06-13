@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Discounting is a hazard rate, not just time-value — your optimal exit threshold falls as blow-up/termination risk rises
+description: Decompose your discount rate into time + hazard; high blow-up/termination risk lowers your optimal exit bar, so book sooner on distressed/manipulated names.
 severity: HIGH
 appliesTo: exit, take-profit, optimal-stopping, directional, leaps, distressed
-tags: discounting, hazard-rate, optimal-stopping, take-profit, delisting, continuation-value, real-options
+tags: [discounting, hazard-rate, optimal-stopping, take-profit, delisting, continuation-value, real-options]
+timestamp: 2026-05-26T05:52:28Z
 ---
 
 ## Discounting is a hazard rate, not just time-value — your optimal exit threshold falls as blow-up/termination risk rises

@@ -1,3 +1,11 @@
+---
+type: Command Reference
+title: /trade setup
+description: Scaffold a personal knowledge OKF bundle (substack, X, writedowns) in a user-chosen directory.
+tags: [command, setup, knowledge-base, scaffolding]
+timestamp: 2026-06-13T01:18:31Z
+---
+
 # /trade setup
 
 Scaffold a personal knowledge directory so the user can drop their own trading-related documents — substack posts, X / twitter threads, personal writedowns, screenshots, PDFs — that the `trade` skill loads alongside the curated pitfalls library and case studies.
@@ -21,7 +29,8 @@ Accept either:
 
 ```
 <target>/
-  README.md                     # Index + usage guide (from template)
+  index.md                      # OKF navigable index + usage guide (from template)
+  README.md                     # One-line stub pointing to index.md (from template)
   substack/
     .gitkeep
     raw/                        # User drops PDFs / screenshots here
@@ -49,6 +58,7 @@ Read each template file from `references/commands/templates/` of this skill and 
 
 | Source (in skill) | Destination (in user's knowledge dir) |
 |---|---|
+| `references/commands/templates/knowledge-index.md` | `index.md` |
 | `references/commands/templates/knowledge-README.md` | `README.md` |
 | `references/commands/templates/substack-template.yaml` | `substack/_template.yaml` |
 | `references/commands/templates/twitter-template.yaml` | `twitter/_template.yaml` |

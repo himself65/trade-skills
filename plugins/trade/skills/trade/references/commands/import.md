@@ -1,3 +1,11 @@
+---
+type: Command Reference
+title: "/trade import <file_path>"
+description: Parse one raw artifact (PDF, image, text) into a structured knowledge file in the user's knowledge bundle.
+tags: [command, import, parsing, knowledge-base]
+timestamp: 2026-06-13T01:18:31Z
+---
+
 # /trade import &lt;file_path&gt;
 
 Import one raw trading-knowledge artifact (PDF, image, screenshot, text) into the user's personal knowledge directory as structured YAML. Detects whether the artifact is a substack post or an X / twitter post / thread, parses the content per the matching template, and writes a new YAML file alongside the parsed-content folder.
@@ -28,7 +36,7 @@ Find the user's knowledge tree by checking, in order:
 
 1. If the source path is inside a recognizable `*/{substack,twitter}/raw/` subtree, walk up to that knowledge root.
 2. Otherwise, check `./knowledge/` in the cwd.
-3. Otherwise, walk up from cwd looking for a directory containing `README.md` with `# Personal Trade Knowledge` as the heading.
+3. Otherwise, walk up from cwd looking for a directory containing `index.md` (or a legacy `README.md`) with `# Personal Trade Knowledge` as the heading.
 4. If none found, stop and tell the user to run `/trade setup` first (or pass `--knowledge-dir=<path>` — accept this as an optional inline flag if the user provides it).
 
 ### 3. Detect content kind

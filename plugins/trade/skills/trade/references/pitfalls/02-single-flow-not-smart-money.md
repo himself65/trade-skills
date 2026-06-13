@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: A single large options trade ≠ "smart money" signal
+description: One big institutional options order is one desk's positioning, not consensus; require multi-institution + price-action confluence before trading it.
 severity: HIGH
 appliesTo: directional, flow-reading
-tags: options-flow, institutional, confluence
+tags: [options-flow, institutional, confluence]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## A single large options trade ≠ "smart money" signal

@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Single channel-check is a sample, not a population
+description: One channel-check call is n=1 and self-selects aggressive spenders; discount 30-40% and require 2-3 independent sources before lifting a base case.
 severity: HIGH
 appliesTo: channel-check, fundamental
-tags: sample-bias, confluence
+tags: [sample-bias, confluence]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## Single channel-check is a sample, not a population

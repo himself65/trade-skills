@@ -16,6 +16,9 @@ description: >
   MDB, VIX). TradingView + Funda for data; replies in Chinese. Check 3
   axes: vega vs IVR (pitfall 19), delta vs thesis, asymmetry —
   bull-conviction >= 4 forbids Jade Lizard / IC / Calendar (pitfall 24).
+metadata:
+  okf_version: "0.1"
+  okf_conformance: references/OKF.md
 ---
 
 # Trade — Options Trading Assistant
@@ -95,16 +98,16 @@ The always-on content above (Hard Rule, User Profile, Data Access, Response Rule
 
 ## Always-relevant frameworks
 
-These reference files are domain-wide and may be loaded by any command when relevant:
+This knowledge base is an **[Open Knowledge Format (OKF) v0.1](references/OKF.md)** bundle — markdown concepts with YAML frontmatter, cross-linked into a graph and navigable from [references/index.md](references/index.md). These reference files are domain-wide and may be loaded by any command when relevant:
 
 | File | When to load |
 |---|---|
 | [references/strategies.md](references/strategies.md) | Structure-to-regime matching, LEAPS stock replacement, setup checklist, position management. Loaded by default in `analysis`. |
 | [references/gamma-framework.md](references/gamma-framework.md) | Dealer GEX + options chain + IV term + flow → multi-factor probability map. Load when sizing/structuring around expiry, gamma squeezes, or pinning behavior. |
 | [references/price-action-framework.md](references/price-action-framework.md) | Orderbook microstructure mental model. Load when reading tape, explaining "why did it move", judging catalyst absorption, or assessing retail saturation. |
-| [references/pitfalls/README.md](references/pitfalls/README.md) | Index of 25 trading pitfalls — lookup by trade type. |
+| [references/pitfalls/index.md](references/pitfalls/index.md) | Index of 25 trading pitfalls — lookup by trade type. |
 | [references/pitfalls/NN-*.md](references/pitfalls/) | Individual pitfall rules — load when a relevant trade situation arises. The `analysis` reference has a full situation → pitfall map. |
-| [references/ticker/README.md](references/ticker/README.md) | Index of trade case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX). |
+| [references/ticker/index.md](references/ticker/index.md) | Index of trade case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX). |
 | [references/ticker/&lt;name&gt;.md](references/ticker/) | Individual case study — load when the current setup pattern-matches a prior trade. |
 | `<knowledge>/` (user-chosen path, scaffolded by `/trade setup`) | User-owned documents. `substack/*.yaml` and `twitter/*.yaml` are parsed external content; `writedowns/*.md` are user-authored notes; any other subdir (e.g. a curated module) is loaded too. `*/raw/` holds source PDFs / screenshots and is normally not loaded. Checked at the start of every `analysis` — see `references/commands/analysis.md` for the full situation → reference map. |
 
@@ -112,8 +115,8 @@ These reference files are domain-wide and may be loaded by any command when rele
 
 ### Curated library (this skill — shared)
 
-- **New pitfall**: copy `references/pitfalls/_template.md` → `references/pitfalls/NN-slug.md`, add row to `references/pitfalls/README.md` table
-- **New case study**: copy `references/ticker/_template.md` → `references/ticker/<ticker>-YYYY-MM.md`, add row to `references/ticker/README.md` table
+- **New pitfall**: copy `references/pitfalls/_template.md` → `references/pitfalls/NN-slug.md` (fill the OKF frontmatter per [references/OKF.md](references/OKF.md)), add a row to `references/pitfalls/index.md` and a dated entry to `references/log.md`
+- **New case study**: copy `references/ticker/_template.md` → `references/ticker/<ticker>-YYYY-MM.md` (fill the OKF frontmatter), add a row to `references/ticker/index.md` and a dated entry to `references/log.md`
 - **Strategy update**: edit `references/strategies.md` directly — it stays flat because it's always-relevant framework
 
 ### Personal knowledge (user's cwd — private)

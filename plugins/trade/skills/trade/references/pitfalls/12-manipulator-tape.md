@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Recognize "manipulator-tape" names — sell premium, don't buy direction
+description: High-IV pump-dump names (APP, MSTR, COIN, PLTR) oscillate faster than conviction; sell premium and scalp proxies instead of buying calls.
 severity: HIGH
 appliesTo: high-vol, single-name
-tags: manipulator, premium-selling, scalping
+tags: [manipulator, premium-selling, scalping]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## Recognize "manipulator-tape" names — sell premium, don't buy direction

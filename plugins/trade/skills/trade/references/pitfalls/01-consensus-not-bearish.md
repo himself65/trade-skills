@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Don't treat "price at analyst consensus" as a bearish signal
+description: Consensus is a trailing indicator; price hitting the target usually means estimates are being revised up, not capped — check revision velocity.
 severity: HIGH
 appliesTo: directional, earnings
-tags: consensus, momentum, anchoring
+tags: [consensus, momentum, anchoring]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## Don't treat "price at analyst consensus" as a bearish signal

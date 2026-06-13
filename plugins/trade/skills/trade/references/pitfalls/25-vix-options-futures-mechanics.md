@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: VIX options are priced off VIX futures, not spot — contango bleed, sub-1 beta, and the debit-spread skew bite
+description: Strike, size, and P/L VIX hedges off the relevant future (beta <1) not spot; contango bleeds longs, skew bites debit spreads.
 severity: HIGH
 appliesTo: volatility-hedge, tail-hedge, macro-short, directional-short, vix
-tags: vix, vega, contango, term-structure, futures-beta, debit-spread, skew, tail-hedge
+tags: [vix, vega, contango, term-structure, futures-beta, debit-spread, skew, tail-hedge]
+timestamp: 2026-06-06T01:20:03Z
 ---
 
 ## VIX options are priced off VIX futures, not spot — contango bleed, sub-1 beta, and the debit-spread skew bite

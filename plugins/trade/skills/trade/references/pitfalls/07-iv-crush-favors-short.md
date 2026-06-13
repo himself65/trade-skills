@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: IV crush benefits SHORT premium structures, not long ones
+description: High IV Rank (>70) favors selling premium; long premium can lose even when direction is right because IV crush kills vega.
 severity: HIGH
 appliesTo: earnings, high-iv
-tags: iv-crush, vega, structure-selection
+tags: [iv-crush, vega, structure-selection]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## IV crush benefits SHORT premium structures, not long ones

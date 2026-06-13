@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Post-earnings momentum continuation overrides intraday fade pattern when fundamentals + sector + flow align
+description: Don't call a multi-day fade on an intraday gap-up fade when fundamentals beat, sector co-rallies, and options flow is bullish — drift continues.
 severity: HIGH
 appliesTo: earnings, post-earnings, momentum, t+1
-tags: t+1, fade, momentum-continuation, sector-co-move, gap-up
+tags: [t+1, fade, momentum-continuation, sector-co-move, gap-up]
+timestamp: 2026-05-11T18:05:43Z
 ---
 
 ## Post-earnings momentum continuation overrides intraday fade pattern when fundamentals + sector + flow align

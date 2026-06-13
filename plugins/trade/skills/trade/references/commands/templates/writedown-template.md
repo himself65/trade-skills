@@ -1,10 +1,14 @@
 ---
+type: Writedown
+title: "{YYYY-MM-DD} — {Topic}"
+description: One-line conclusion — what an agent reads to decide whether to load this note.
 source: writedown
 date: YYYY-MM-DD
 tickers: <comma-separated-lowercase-tickers>
-tags: <comma-separated-tags>
+tags: [comma, separated, tags]
 kind: thesis | journal | post-mortem | channel-check | research
 status: open | closed | watching
+timestamp: YYYY-MM-DDTHH:MM:SSZ
 ---
 
 # {YYYY-MM-DD} — {Topic}

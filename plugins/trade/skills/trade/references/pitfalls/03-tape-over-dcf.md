@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Tape > opinion > DCF for short-term trades
+description: For sub-30-day trades, lead with price action then sentiment then valuation; starting from DCF fights trends and gets you run over.
 severity: HIGH
 appliesTo: short-term, directional
-tags: tape, valuation, ordering
+tags: [tape, valuation, ordering]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## Tape > opinion > DCF for short-term trades

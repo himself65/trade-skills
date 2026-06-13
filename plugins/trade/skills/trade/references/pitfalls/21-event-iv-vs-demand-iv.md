@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Elevated IV without a near-term event = demand-driven (sustains), not event-driven (crushes) — check the catalyst clock + flow first
+description: Before calling IV crush on high IVR, check catalyst clock and net options flow — demand-driven IV sustains for weeks while event-IV mean-reverts.
 severity: HIGH
 appliesTo: iv-elevation, structure-selection, vega, flow-analysis
-tags: iv-crush, flow-check, demand-iv, event-iv, catalyst-clock
+tags: [iv-crush, flow-check, demand-iv, event-iv, catalyst-clock]
+timestamp: 2026-05-11T18:05:43Z
 ---
 
 ## Elevated IV without a near-term event = demand-driven, not event-driven — check catalyst clock + flow first

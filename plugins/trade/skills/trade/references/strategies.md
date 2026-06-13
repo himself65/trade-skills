@@ -1,3 +1,11 @@
+---
+type: Framework
+title: Options Strategy Selection Framework
+description: Match options structures to IV regime, direction, and asymmetry; covers bull-conviction count, LEAPS replacement, VIX hedges, position management.
+tags: [strategy-selection, iv-regime, vega, asymmetry, vix-hedge, leaps]
+timestamp: 2026-06-06T01:20:03Z
+---
+
 # Options Strategy Selection Framework
 
 Decision framework for matching options structures to market state.

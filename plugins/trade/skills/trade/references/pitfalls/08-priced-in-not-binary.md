@@ -1,8 +1,11 @@
 ---
-title: "Priced in" is not binary — estimate the percentage
+type: Trading Pitfall
+title: '"Priced in" is not binary — estimate the percentage'
+description: Quantify the % of a news event already priced (reaction vs NPV) and size to the residual uncertainty, not nominal magnitude.
 severity: MEDIUM
 appliesTo: event, news-driven
-tags: priced-in, sizing
+tags: [priced-in, sizing]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## "Priced in" is not binary — estimate the percentage

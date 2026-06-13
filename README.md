@@ -3,7 +3,7 @@
 > [!WARNING]
 > This project is for educational and informational purposes only. Nothing here constitutes financial advice. Always do your own research and consult a qualified financial advisor before making investment decisions.
 
-A personal Claude Code plugin marketplace housing one options-trading skill — backed by a curated library of 15 pitfalls and prior case studies (INTC, Mag-7, APP). Layout follows the [`himself65/finance-skills`](https://github.com/himself65/finance-skills) convention.
+A personal Claude Code plugin marketplace housing one options-trading skill — backed by a curated [Open Knowledge Format (OKF)](plugins/trade/skills/trade/references/OKF.md) library of 25 pitfalls and case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX). Layout follows the [`himself65/finance-skills`](https://github.com/himself65/finance-skills) convention.
 
 ## Quick Start
 
@@ -40,7 +40,17 @@ Multi-leg options trading assistant with concrete strikes, IV-aware structures, 
 
 | Skill | Description |
 |---|---|
-| [trade](plugins/trade/skills/trade/) | Options trading knowledge base — 15 pitfalls + INTC / Mag-7 / APP case studies + structure-to-regime framework. Lazy-loaded. |
+| [trade](plugins/trade/skills/trade/) | Options trading knowledge base — 25 pitfalls + case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX) + structure-to-regime framework. Lazy-loaded, OKF-conformant. |
+
+## Open Knowledge Format
+
+The skill's knowledge base is an **[Open Knowledge Format (OKF) v0.1](plugins/trade/skills/trade/references/OKF.md)** bundle — a portable, vendor-neutral graph of markdown concept files with YAML frontmatter, navigable via `index.md` and version-controlled alongside the code. Each pitfall, case study, and framework is a typed concept.
+
+- [`references/OKF.md`](plugins/trade/skills/trade/references/OKF.md) — type vocabulary, frontmatter schema, and conformance contract
+- [`references/index.md`](plugins/trade/skills/trade/references/index.md) — the bundle root / graph entry point
+- [`references/log.md`](plugins/trade/skills/trade/references/log.md) — chronological change history
+
+Learn more about OKF: [Google Cloud announcement](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing/) · [spec & tooling](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf).
 
 ## License
 

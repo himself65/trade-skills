@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: LEAPS through earnings = unhedged vega tax
+description: Holding a LEAPS through earnings is an implicit short-vol bet; IV crush is guaranteed directionless bleed unless explicitly hedged.
 severity: HIGH
 appliesTo: leaps, earnings
-tags: vega, iv-crush, hedge
+tags: [vega, iv-crush, hedge]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## LEAPS through earnings = unhedged vega tax

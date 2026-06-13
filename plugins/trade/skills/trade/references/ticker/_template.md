@@ -1,11 +1,15 @@
 ---
+type: Trade Case Study
+title: "TICKER — <short event> — <concise key-lesson hook>"
+description: One-line key lesson — what an agent reads to decide whether to load this file.
 ticker: TICKER
 event: e.g., Q1 2026 earnings, Investor Day, FDA decision
 date: YYYY-MM-DD
 status: open | closed
 result: profit | loss | breakeven
 structures: comma-separated structure names (e.g., bull-put-spread, jade-lizard)
-tags: comma-separated trade tags
+tags: [comma, separated, trade, tags]
+timestamp: YYYY-MM-DDTHH:MM:SSZ
 ---
 
 # {Ticker} {Event} Trade Case Study ({Month YYYY})

@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Direction and vega are independent axes — match BOTH to regime
+description: Match both delta and vega to IV regime; a bullish view can be expressed long- or short-vega, so wrong vega loses even when direction is right.
 severity: HIGH
 appliesTo: directional, structure-selection, low-iv, high-iv
-tags: vega, structure-selection, credit-vs-debit, iv-regime
+tags: [vega, structure-selection, credit-vs-debit, iv-regime]
+timestamp: 2026-05-11T05:31:54Z
 ---
 
 ## Direction and vega are independent axes — match BOTH to regime

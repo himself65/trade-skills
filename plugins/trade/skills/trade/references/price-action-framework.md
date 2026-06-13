@@ -1,3 +1,11 @@
+---
+type: Framework
+title: Price Action Microstructure Framework
+description: Orderbook-level mental model (flow imbalance, target divergence, vacuum zones, consensus shifts) to read tape and map microstructure signals to trade structures.
+tags: [price-action, microstructure, orderbook, vacuum-zones, consensus, tape-reading]
+timestamp: 2026-05-13T22:46:37Z
+---
+
 # Price Action Microstructure Framework
 
 How price moves at the orderbook level — a mental model built on four primitives: buy/sell imbalance, target-price divergence, vacuum zones, and consensus shifts. Used to read tape and explain *why* the same news produces opposite reactions in different orderbook structures.

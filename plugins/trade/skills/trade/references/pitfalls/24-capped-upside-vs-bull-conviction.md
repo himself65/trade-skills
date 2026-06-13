@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Capped-upside structures (Jade Lizard, Iron Condor, Calendar) are forbidden in high-conviction bull setups — asymmetry is a third axis beyond direction and vega
+description: Asymmetry is a third axis past direction and vega; when bull-conviction count >=4, capped-upside structures (Jade Lizard, IC, Calendar) are banned.
 severity: HIGH
 appliesTo: structure-selection, earnings, directional, high-conviction
-tags: jade-lizard, iron-condor, calendar, asymmetry, upside-cap, bull-conviction, tail-event, structure-selection
+tags: [jade-lizard, iron-condor, calendar, asymmetry, upside-cap, bull-conviction, tail-event, structure-selection]
+timestamp: 2026-05-27T23:20:29Z
 ---
 
 ## Capped-upside structures are forbidden in high-conviction bull setups — asymmetry is a third axis beyond direction and vega

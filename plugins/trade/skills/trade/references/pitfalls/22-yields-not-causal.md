@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Bond yields don't "cause" equity moves — both are downstream of the same macro drivers
+description: Treating yields as the cause of equity moves is fallacy; correlation flips by regime. Identify the upstream driver and use real yield/term premium.
 severity: HIGH
 appliesTo: macro-framing, directional, regime-identification
-tags: bond-yields, macro, causality, real-yield, term-premium, japan
+tags: [bond-yields, macro, causality, real-yield, term-premium, japan]
+timestamp: 2026-05-19T20:58:50Z
 ---
 
 ## Bond yields don't "cause" equity moves — both are downstream of the same macro drivers

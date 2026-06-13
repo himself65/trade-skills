@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Don't overreact to a single news event — check if it's priced in
+description: Gauge how much of a news event is already priced in by comparing the actual price reaction to the event's NPV before acting.
 severity: MEDIUM
 appliesTo: news-driven, event
-tags: priced-in, reaction-size
+tags: [priced-in, reaction-size]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## Don't overreact to a single news event — check if it's priced in

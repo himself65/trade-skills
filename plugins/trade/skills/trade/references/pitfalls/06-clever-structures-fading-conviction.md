@@ -1,8 +1,11 @@
 ---
-title: "Finding clever structures" signals fading conviction
+type: Trading Pitfall
+title: '"Finding clever structures" signals fading conviction'
+description: Reaching for ratio spreads, butterflies, or diagonals often masks dropping conviction; prefer closing or sizing down over clever restructuring.
 severity: MEDIUM
 appliesTo: structuring
-tags: psychology, simplicity, exit
+tags: [psychology, simplicity, exit]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## "Finding clever structures" signals fading conviction

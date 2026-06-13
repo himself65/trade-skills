@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: When thesis premise is invalidated, FLIP — don't hold
+description: When a thesis precondition breaks, exit or reverse instead of holding through invalidation; flipping early beats sunk-cost stubbornness.
 severity: HIGH
 appliesTo: all
-tags: discipline, sunk-cost, reversal
+tags: [discipline, sunk-cost, reversal]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## When thesis premise is invalidated, FLIP — don't hold

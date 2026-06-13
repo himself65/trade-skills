@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Dealer flow + 0DTE drive options-related price moves, not retail psychology
+description: Retail-psychology stories (CC buyback, tax avoidance) don't move large-caps; check dealer gamma sign + 0DTE first for expiry-day moves.
 severity: HIGH
 appliesTo: options-flow, expiry, dealer-gamma
-tags: dealers, flow, retail-fallacy, gamma
+tags: [dealers, flow, retail-fallacy, gamma]
+timestamp: 2026-05-09T03:02:13Z
 ---
 
 ## Dealer flow + 0DTE drive options-related price moves, not retail psychology

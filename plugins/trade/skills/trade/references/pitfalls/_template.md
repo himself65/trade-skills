@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Rule Title Here
+description: One-line relevance summary — what an agent reads to decide whether to load this file.
 severity: HIGH | MEDIUM | LOW
 appliesTo: comma-separated trade types (e.g., earnings, directional, channel-check)
-tags: comma-separated short tags
+tags: [comma, separated, short, tags]
+timestamp: YYYY-MM-DDTHH:MM:SSZ
 ---
 
 ## Rule Title Here

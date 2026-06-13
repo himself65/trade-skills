@@ -1,3 +1,11 @@
+---
+type: Framework
+title: Gamma + Options Structure Framework
+description: Multi-factor confluence stack (dealer GEX, walls, IV term, flow, tape) that outputs price probability + levels to size/structure trades, not call direction.
+tags: [dealer-gamma, gex, options-structure, iv-term-structure, options-flow, confluence]
+timestamp: 2026-05-09T03:02:13Z
+---
+
 # Gamma + Options Structure Framework
 
 Multi-factor confluence framework using dealer gamma, options chain structure, IV term changes, and flow to build short-term price probability maps.

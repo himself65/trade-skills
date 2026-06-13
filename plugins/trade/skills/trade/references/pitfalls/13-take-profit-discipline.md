@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Take-profit discipline beats target-price obsession (in volatile tapes)
+description: In manipulator/high-vol names, book 60-70% of expected move and close short legs at +50% credit instead of holding for full target.
 severity: MEDIUM
 appliesTo: volatile-tape, exit
-tags: take-profit, discipline, mechanical-exit
+tags: [take-profit, discipline, mechanical-exit]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## Take-profit discipline beats target-price obsession

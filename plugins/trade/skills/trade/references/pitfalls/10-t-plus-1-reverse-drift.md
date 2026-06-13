@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: T+1 reverse drift — AH price doesn't predict next-day open
+description: Initial after-hours earnings reaction often reverses by next-day open; default exit/reload to T+1 morning, not T+0 AH.
 severity: HIGH
 appliesTo: earnings, after-hours
-tags: ah, t+1, exit-timing
+tags: [ah, t+1, exit-timing]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## T+1 reverse drift — AH price doesn't predict next-day open

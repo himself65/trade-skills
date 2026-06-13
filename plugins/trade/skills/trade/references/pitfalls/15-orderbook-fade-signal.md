@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: AH order-book lopsidedness is a fade signal at extremes
+description: When AH bid/ask size ratio exceeds 5:1 at a price extreme, thin liquidity is driving the move and it likely reverts within 30-60 min.
 severity: MEDIUM
 appliesTo: after-hours, scalping
-tags: order-book, fade, ah, mean-reversion
+tags: [order-book, fade, ah, mean-reversion]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## AH order-book lopsidedness is a fade signal at extremes

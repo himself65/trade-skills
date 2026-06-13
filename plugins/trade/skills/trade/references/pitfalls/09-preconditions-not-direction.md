@@ -1,8 +1,11 @@
 ---
+type: Trading Pitfall
 title: Preconditions met ≠ stock direction
+description: Fundamental preconditions can all be met yet the stock falls — sentiment, forward guidance, and sector mood override fundamentals short-term.
 severity: HIGH
 appliesTo: earnings, fundamental
-tags: sentiment, sector-mood, preconditions
+tags: [sentiment, sector-mood, preconditions]
+timestamp: 2026-05-09T02:45:35Z
 ---
 
 ## Preconditions met ≠ stock direction

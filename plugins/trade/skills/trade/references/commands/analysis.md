@@ -1,3 +1,11 @@
+---
+type: Command Reference
+title: "/trade analysis [ticker | situation]"
+description: Default analysis flow — preflight (knowledge dir, vega sanity, market data) then a situation → reference map.
+tags: [command, analysis, preflight, routing]
+timestamp: 2026-06-13T01:18:31Z
+---
+
 # /trade analysis [ticker | situation]
 
 The default flow. Runs whenever the user invokes `/trade analysis ...` **or** when the first argument doesn't match a known subcommand (e.g., "analyze NVDA", "structure for TSLA earnings", "sell put on APP", a ticker in a trading context).
@@ -10,7 +18,7 @@ The default flow. Runs whenever the user invokes `/trade analysis ...` **or** wh
    3. `./knowledge/` relative to the current working directory.
 
    If none resolves to an existing directory, skip this step. Once located:
-   - If `<knowledge>/README.md` exists, read it as the user's personal index.
+   - If `<knowledge>/index.md` (or a legacy `README.md`) exists, read it as the user's personal index.
    - Skim **every** subdir of `<knowledge>/` (e.g. `substack/`, `twitter/`, `writedowns/`, and any curated module dir such as `frank/`) for filenames matching the current ticker / handle / topic, and load matches — parse `.yaml`, read `.md`. **Always ignore `*/raw/`.**
 
 2. **Always load** [`../strategies.md`](../strategies.md) — structure-to-regime matching and setup checklist.
