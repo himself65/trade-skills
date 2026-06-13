@@ -55,13 +55,12 @@ The pattern is modeled on [`pbakaus/impeccable`](https://github.com/pbakaus/impe
 
 ### SKILL.md frontmatter
 
-Required fields:
+`skill-lint` allows only these fields: `name`, `description`, `license`, `allowed-tools`, `metadata`, `compatibility` — any other key (e.g. `version`, `user-invocable`, `argument-hint`) fails the lint. So keep the frontmatter to:
 
-- `name` — must match the plugin name for `/trade <subcommand>` to work cleanly
-- `description` — the trigger definition (comprehensive list of phrases, not a summary)
-- `version`
-- `user-invocable: true` — allows direct slash-command invocation
-- `argument-hint` — shown in the slash-command UI to suggest valid first words
+- `name` — must match the skill directory name; lowercase letters / digits / hyphens, ≤ 64 chars.
+- `description` — the trigger definition (comprehensive list of phrases, not a summary). **Hard cap: 1024 characters** — `skill-lint` fails the build past it, so keep it tight.
+
+Version lives in `plugins/trade/plugin.json`, not in SKILL.md frontmatter.
 
 ## Adding to the knowledge base
 
