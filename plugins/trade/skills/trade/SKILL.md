@@ -94,6 +94,8 @@ Active US-equity options trader's personal knowledge base. Concrete strikes, pro
 2. **First word matches `setup`, `import`, or `analysis`** → load the matching reference file and follow its instructions. Everything after the command name is the argument (file path, ticker, situation, etc.).
 3. **First word doesn't match** → default to `analysis`. Load [references/commands/analysis.md](references/commands/analysis.md) and treat the full input as the analysis target. This is the common case for natural language ("analyze NVDA", "structure for TSLA earnings", "sell put on APP", a single ticker, etc.).
 
+> **Ingestion exception (don't mis-route to `analysis`):** if the input is an external **link / article / pasted research** the user wants you to read, digest, "学习," or "写到 knowledge base" (rather than analyze a live trade), treat it as an **ingestion** request — follow [references/commands/import.md](references/commands/import.md) and write the result to the **user's personal knowledge dir** (a writedown, or YAML for a raw artifact), **never** `references/`. See the destination rule under "Adding to the Knowledge Base."
+
 The always-on content above (Hard Rule, User Profile, Data Access, Response Rules, Core Principles, Structure-to-Regime) applies to every command. Subcommand references add their specific workflow on top.
 
 ## Always-relevant frameworks
@@ -113,18 +115,25 @@ This knowledge base is an **[Open Knowledge Format (OKF) v0.1](references/OKF.md
 
 ## Adding to the Knowledge Base
 
-### Curated library (this skill — shared)
+> **Destination rule — decide this FIRST: *whose* knowledge is it?**
+> - **First-party, reusable trading knowledge** meant to ship to *every* installer — a pitfall, a decision framework, or a case study of the **user's own trade** → the curated **`references/`** library (this repo, public).
+> - **Anything the user collected or shared from the outside world** — a substack / X post, a **macro or brokerage research report**, a KOL thread, **any third-party article or link they hand you to read / "学习" / digest / "写到 knowledge base"** → the **user's personal knowledge directory** (below). **Never** put a third-party article digest in `references/`; that library is first-party and ships publicly.
+>
+> "我们的 / our knowledge base," said while you happen to be working inside this repo, still means the **user's** knowledge — default external research to the **personal dir** (which is usually a *separate* repo found via `knowledge_path`). Choose `references/` only for a de-identified, reusable rule/framework for all installers. **If unsure, ask** before writing.
+
+### Curated library (this skill — shared, ships to all installers)
 
 - **New pitfall**: copy `references/pitfalls/_template.md` → `references/pitfalls/NN-slug.md` (fill the OKF frontmatter per [references/OKF.md](references/OKF.md)), add a row to `references/pitfalls/index.md` and a dated entry to `references/log.md`
-- **New case study**: copy `references/ticker/_template.md` → `references/ticker/<ticker>-YYYY-MM.md` (fill the OKF frontmatter), add a row to `references/ticker/index.md` and a dated entry to `references/log.md`
+- **New case study** (the user's *own* trade): copy `references/ticker/_template.md` → `references/ticker/<ticker>-YYYY-MM.md` (fill the OKF frontmatter), add a row to `references/ticker/index.md` and a dated entry to `references/log.md`
 - **Strategy update**: edit `references/strategies.md` directly — it stays flat because it's always-relevant framework
 
-### Personal knowledge (user's cwd — private)
+### Personal knowledge (user's chosen dir — private; default `./knowledge/`, often a *separate* repo found via `knowledge_path`)
 
-For documents the user collects themselves (substack posts, X / twitter threads, their own writedowns):
+For anything the user collects or shares from outside (substack posts, X threads, **macro / brokerage research, articles, links**) plus their own notes:
 
 - Run `/trade setup` once to scaffold the knowledge directory (user chooses the path; default `./knowledge/`).
-- Run `/trade import <file_path>` to parse each new raw artifact (PDF, screenshot, text) into structured YAML.
-- Author writedowns directly as markdown in `<knowledge>/writedowns/`.
+- **Raw artifact** (PDF / screenshot / text file) → run `/trade import <file_path>` to parse it into structured YAML in `substack/` or `twitter/`.
+- **A shared link / article you read and *synthesize*** (a macro thesis, a research report — anything that isn't a clean platform post) → write a **writedown** markdown digest at `<knowledge>/writedowns/YYYY-MM-DD-<topic>.md`, in the user's language, with source attribution, a "not independently verified" caveat, and a bear case. See [references/commands/import.md](references/commands/import.md).
+- Author the user's own writedowns directly as markdown in `<knowledge>/writedowns/`.
 
 The `analysis` command auto-loads matching files from the knowledge dir on every invocation — see [references/commands/analysis.md](references/commands/analysis.md).
