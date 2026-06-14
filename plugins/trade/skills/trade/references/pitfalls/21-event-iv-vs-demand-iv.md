@@ -14,7 +14,7 @@ IV crush is reflexively expected at any IV Rank >65. But IV elevation has **two 
 
 **Why it matters**: A stock can sit at IV Rank 65-75 for 4-8 weeks during a thematic re-rate while net options flow stays heavily call-side positive. Assuming "IV is too high, must crush" leads to (a) selling premium into a sustained bid (vega + delta both wrong), or (b) rolling out of long-vol positions just as IV continues to expand. The standing pitfall 7 ("high IV favors short premium") is correct *for event-driven IV*; it under-specifies the demand-driven case.
 
-Concrete failure (NOK 2026-05-11): NOK at IV Rank 66, IV 74%. I recommended "roll Jan-27 $14C to Jan-28 $15C because IV crush is coming." User pushed back: "钱才刚刚进入" (money is just flowing in). Net options premium check showed:
+Concrete failure (NOK 2026-05-11): NOK at IV Rank 66, IV 74%. I recommended "roll Jan-27 $14C to Jan-28 $15C because IV crush is coming." User pushed back: "money is just flowing in." Net options premium check showed:
 - Net CALL premium: **+$14.23M** (massive buy)
 - Net PUT premium: -$0.87M (puts being sold)
 - Net Directional: **+$15.10M** (vs -$2.06M same metric 3 weeks earlier pre-earnings)

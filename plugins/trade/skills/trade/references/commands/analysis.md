@@ -10,7 +10,7 @@ timestamp: 2026-06-13T01:18:31Z
 
 The default flow. Runs whenever the user invokes `/trade analysis ...` **or** when the first argument doesn't match a known subcommand (e.g., "analyze NVDA", "structure for TSLA earnings", "sell put on APP", a ticker in a trading context).
 
-> **First, check this isn't an ingestion request.** A pasted **link / article / research the user wants you to read, digest, "学习," or "写到 knowledge base"** is *not* a trade-analysis target even though it lands here by default (its first word doesn't match a subcommand). Route it to [`import.md`](import.md) and write the result to the **user's personal knowledge dir** (a writedown), **never** the curated `references/` library. Only proceed with the analysis flow below when the user actually wants a trade analyzed.
+> **First, check this isn't an ingestion request.** A pasted **link / article / research the user wants you to read, study, digest, or save to the knowledge base** is *not* a trade-analysis target even though it lands here by default (its first word doesn't match a subcommand). Route it to [`import.md`](import.md) and write the result to the **user's personal knowledge dir** (a writedown), **never** the curated `references/` library. Only proceed with the analysis flow below when the user actually wants a trade analyzed.
 
 ## Preflight (always run, in order)
 

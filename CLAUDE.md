@@ -71,7 +71,7 @@ Version lives in `plugins/trade/plugin.json`, not in SKILL.md frontmatter.
 
 ## Adding to the knowledge base
 
-> **Destination rule — decide first: *whose* knowledge is it?** First-party, reusable trading knowledge for *every* installer (a pitfall, a framework, a case study of the user's *own* trade) → the curated **`references/`** library (this repo, public). **Anything the user collected or shared from outside** (a substack/X post, a **macro/brokerage research report**, a KOL thread, **any third-party article or link they ask you to read / digest / "写到 knowledge base"**) → the **user's personal knowledge dir**, never `references/` — even when they say "our / 我们的 knowledge base." When unsure, ask.
+> **Destination rule — decide first: *whose* knowledge is it?** First-party, reusable trading knowledge for *every* installer (a pitfall, a framework, a case study of the user's *own* trade) → the curated **`references/`** library (this repo, public). **Anything the user collected or shared from outside** (a substack/X post, a **macro/brokerage research report**, a KOL thread, **any third-party article or link they ask you to read / digest / save to the knowledge base**) → the **user's personal knowledge dir**, never `references/` — even when they say "our knowledge base." When unsure, ask.
 
 ### Curated, shared library (lives in this repo, ships to all installers)
 
@@ -85,7 +85,7 @@ Version lives in `plugins/trade/plugin.json`, not in SKILL.md frontmatter.
 
 - Set up by running `/trade setup` — asks for the target path, then scaffolds `<knowledge>/{substack,twitter,writedowns}/` with templates plus an `index.md` (OKF index, with a `README.md` stub). The user dir is itself an OKF bundle.
 - `substack/` and `twitter/` each have a `raw/` subdir for source PDFs / screenshots; `/trade import <file_path>` parses raw artifacts into structured YAML.
-- `writedowns/` holds user-authored markdown notes (no parsing needed) **and digests of shared external research** — when the user hands over a macro/brokerage report, article, or link to "学习 / 写到 knowledge base," `/trade import <file_path | url>` reads & synthesizes it into a `writedowns/YYYY-MM-DD-<topic>.md` digest (source attribution + not-verified caveat + bear case), in the user's language. See `references/commands/import.md`.
+- `writedowns/` holds user-authored markdown notes (no parsing needed) **and digests of shared external research** — when the user hands over a macro/brokerage report, article, or link to study or save to the knowledge base, `/trade import <file_path | url>` reads & synthesizes it into a `writedowns/YYYY-MM-DD-<topic>.md` digest (source attribution + not-verified caveat + bear case), in the user's language. See `references/commands/import.md`.
 - The `analysis` flow auto-loads matching `.yaml` / `.md` files when relevant to the current trade question (it ignores `*/raw/` unless asked to ingest).
 - Templates copied into the user's knowledge dir live under `plugins/trade/skills/trade/references/commands/templates/`.
 

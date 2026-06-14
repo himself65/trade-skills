@@ -13,7 +13,7 @@ Ingest one external trading-knowledge item into the **user's personal knowledge 
 - **A clean platform post** (a substack post, or an X / twitter post / thread), as a raw artifact *or* a link → parse per the matching template into **structured YAML** in `substack/` or `twitter/`.
 - **Other external research** (a macro / brokerage report, a blog or WeChat article, a pasted thesis — anything you must *read and synthesize* rather than mechanically extract) → write a **writedown** markdown digest in `writedowns/`.
 
-> **Destination — read first.** Output **always** lands in the user's personal knowledge dir (resolved the way `analysis` does: `$TRADE_KNOWLEDGE_DIR` → a `knowledge_path:` line in `CLAUDE.md` → `./knowledge/`). A third-party article digest is the *user's* collected research — it does **NOT** go in this repo's curated `references/` library, **even if the user says "our / 我们的 knowledge base."** `references/` is first-party content that ships to every installer; see the destination rule in `SKILL.md` → "Adding to the Knowledge Base." If you genuinely can't tell which is meant, ask before writing.
+> **Destination — read first.** Output **always** lands in the user's personal knowledge dir (resolved the way `analysis` does: `$TRADE_KNOWLEDGE_DIR` → a `knowledge_path:` line in `CLAUDE.md` → `./knowledge/`). A third-party article digest is the *user's* collected research — it does **NOT** go in this repo's curated `references/` library, **even if the user says "our knowledge base."** `references/` is first-party content that ships to every installer; see the destination rule in `SKILL.md` → "Adding to the Knowledge Base." If you genuinely can't tell which is meant, ask before writing.
 
 ## Workflow
 
@@ -126,7 +126,7 @@ Do **not** commit — the personal knowledge repo is version-tracked on purpose;
 ## Constraints
 
 - **One file per invocation.** Batch imports happen via multiple invocations — don't walk a directory.
-- **Output to the personal knowledge dir ONLY — never the curated `references/`.** A third-party article/digest is the user's collected research, regardless of "our / 我们的 knowledge base" phrasing. See the destination callout at the top.
+- **Output to the personal knowledge dir ONLY — never the curated `references/`.** A third-party article/digest is the user's collected research, regardless of "our knowledge base" phrasing. See the destination callout at the top.
 - **Never modify the source file.** Read-only.
 - **Never overwrite an existing file.** Suffix, skip, or ask.
 - **Never invent data.** `null` for missing YAML fields; for digests, attribute figures to the source and flag them not-independently-verified. Note unfilled required fields in the summary.
