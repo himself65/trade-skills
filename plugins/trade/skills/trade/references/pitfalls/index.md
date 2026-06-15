@@ -1,14 +1,14 @@
 ---
 type: Index
 title: Trading Pitfalls — Index
-description: Lookup index for 25 analytical biases to avoid in directional/options trades; load individual files by trade type.
+description: Lookup index for 26 analytical biases to avoid in directional/options trades; load individual files by trade type.
 tags: [index, pitfalls, biases]
 timestamp: 2026-06-13T00:00:00Z
 ---
 
 # Trading Pitfalls
 
-25 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
+26 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
 
 ## Index
 
@@ -39,6 +39,7 @@ timestamp: 2026-06-13T00:00:00Z
 | 23 | HIGH | Discounting is a hazard rate, not just time-value — the optimal exit threshold falls as blow-up/termination risk rises | `23-hazard-rate-discounting.md` |
 | 24 | HIGH | Capped-upside structures (Jade Lizard, Iron Condor, Calendar) are forbidden in high-conviction bull setups — asymmetry is a third axis beyond direction and vega | `24-capped-upside-vs-bull-conviction.md` |
 | 25 | HIGH | VIX options price off VIX futures, not spot — contango bleed, sub-1 futures beta, and the debit-spread skew bite | `25-vix-options-futures-mechanics.md` |
+| 26 | HIGH | Stock-based deal consideration — verify share-anchored vs dollar-anchored (and the split basis) before pricing flow-through | `26-stock-consideration-share-vs-dollar-anchored.md` |
 
 ## Quick Lookup by Trade Type
 
@@ -60,6 +61,9 @@ timestamp: 2026-06-13T00:00:00Z
 - **Macro framing / yield narratives**: **22** (yield moves are a symptom, not a cause)
 - **VIX / volatility hedge / "short the market" via VIX**: **25** (anchor to the future not spot; contango bleed; beta<1; debit-spread skew bite) — also see [`../strategies.md`](../strategies.md) VIX section + [`../ticker/vix-2026-06.md`](../ticker/vix-2026-06.md)
 - **High-conviction bull (channel confluence + thematic re-rate)**: **24** — banned: Jade Lizard, IC, Calendar; required: bull put spread, naked short put, risk reversal, long call
+- **M&A / merger-arb / sum-of-parts / stock-consideration / holdco-stub valuation**: **26** (share-anchored vs dollar-anchored — fixed reference price = fixed share count = marks to market; normalize the split basis; cross-check the tape) — also see [`../ticker/sats-2026-06.md`](../ticker/sats-2026-06.md)
+- **Stock split / pre- vs post-split share-count or price basis error**: **26**
+- **"Is this a discounted proxy for a private / to-be-listed company?"**: **26** + **23** (the lock/timing/going-concern discount is the risk premium)
 
 ## Adding a New Pitfall (OKF-conformant)
 

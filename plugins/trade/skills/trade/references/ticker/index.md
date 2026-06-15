@@ -1,7 +1,7 @@
 ---
 type: Index
 title: Ticker Case Studies — Index
-description: Lookup index of closed/in-progress trade post-mortems (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX); load full files by pattern.
+description: Lookup index of closed/in-progress trade post-mortems (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS); load full files by pattern.
 tags: [index, case-studies, post-mortems]
 timestamp: 2026-06-13T00:00:00Z
 ---
@@ -23,6 +23,7 @@ One file per closed trade arc. Designed for lazy loading — the index lists tic
 | SNOW | Q1 FY26 earnings (Cortex Code GA) | 2026-05-27 | loss (small, $50/contract if taken — vs counterfactual long calls +$4,500) | **Canonical**: Jade Lizard recommended into a 6/8 bull-conviction setup; AH +35.75% (3.2 SD) made the capped-upside structure forbidden. Asymmetry is a third axis beyond direction + vega. Confluence ≥ 3 independent channel checks overrides single-source discount rule. | `snow-2026-05.md` |
 | MDB | Q1 FY27 earnings (AI-database re-rate) | 2026-05-28 | profit (bull put spread ~99% of max; small long-call tail marginal) | **SNOW lesson applied correctly the next day**: same AI-database theme, but mechanical ~4/8 count had 3 *inversions* (chasing-not-de-risked, put-heavy flow, −22% crash from the same $325 level last quarter) → reclassified **mixed-conviction**, not high-conviction bull. Bull put spread workhorse won across the whole up-range; refused IC/JL (don't sell a freshly-demonstrated tail). **Conviction count needs a quality/inversion overlay, not just a tally.** | `mdb-2026-05.md` |
 | VIX | Market selloff (SPX −2.6% / spot VIX +40%) | 2026-06-05 | illustrative (~+3–8% marked on the spreads) | **VIX call spreads track the FUTURE, not spot.** Spot VIX +40% marked only ~+3–8% on a Jul 20/32 and Aug 20/30 spread. Three reasons: futures beta < 1 (further-dated Aug +3% < nearer Jul +8%); debit-spread **skew bite** (short far-OTM leg's IV ballooned, captured 63% of the long leg's move); a −2.6% day is *noise* to a structure built for −8%+ crash convexity. Don't chase the spike (adding into a ripping VIX pays escalating vol-of-vol). | `vix-2026-06.md` |
+| SATS | SpaceX + AT&T spectrum sales / SOTP analysis | 2026-06-15 | no trade (analyst-error post-mortem) | **Verify deal consideration is share-anchored vs dollar-anchored — and normalize the split basis — BEFORE pricing flow-through.** Mis-read EchoStar's SpaceX consideration as "dollar-fixed, no flow-through"; it is **share-anchored** (fixed share count at $212/sh ≈ ~2% of SpaceX, marks to market ~$50B), so SPCX flows through ~1:1. Fixed reference price = fixed share count. The tape (SATS tracking SPCX pre-IPO) was the tell; going-concern + Nov-2027 lock = why it still trades at a discount. | `sats-2026-06.md` |
 
 ## Quick Lookup by Pattern
 
@@ -51,6 +52,11 @@ One file per closed trade arc. Designed for lazy loading — the index lists tic
 - **Debit call-spread short-leg skew bite on a vol spike**: `vix-2026-06.md`
 - **Don't chase the spike / adding into a ripping VIX pays escalating vol-of-vol**: `vix-2026-06.md`
 - **2:1 long ratio (buy 2 / sell 1) to stay net-long the right tail vs the 1:1 spread's skew bite**: `vix-2026-06.md`, [`../pitfalls/25-vix-options-futures-mechanics.md`](../pitfalls/25-vix-options-futures-mechanics.md)
+- **M&A / spin / stock-consideration / "discounted proxy for a private or to-be-listed co" valuation**: `sats-2026-06.md`
+- **Sum-of-parts / NAV / holdco-stub discount; is the target's stock flowing through?**: `sats-2026-06.md`
+- **Share-anchored vs dollar-anchored consideration (fixed reference price = fixed share count, marks to market)**: `sats-2026-06.md`
+- **Stock-split basis error (post-split share count × pre-split price)**: `sats-2026-06.md`
+- **Analyst-error post-mortem / wrong call corrected mid-thread by the tape + primary filings**: `sats-2026-06.md`
 
 ## Adding a New Case Study (OKF-conformant)
 

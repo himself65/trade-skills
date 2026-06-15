@@ -10,6 +10,12 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-06-15 — Pitfall 26 + SATS case study
+
+- Added [`pitfalls/26-stock-consideration-share-vs-dollar-anchored.md`](pitfalls/26-stock-consideration-share-vs-dollar-anchored.md) — for stock-based deal consideration, verify **share-anchored vs dollar-anchored** (and normalize the **split basis**) from the primary agreement before pricing flow-through; a fixed reference price means a fixed share count that marks to market.
+- Added [`ticker/sats-2026-06.md`](ticker/sats-2026-06.md) — EchoStar (SATS) SpaceX/AT&T spectrum-sale SOTP; an analyst-side error (share-anchored consideration mis-read as dollar-fixed → ~5x NAV error) caught by the tape and corrected from primary filings.
+- Cross-linked pitfall 26 into [`commands/analysis.md`](commands/analysis.md) via a new M&A / SOTP / stock-consideration situation row.
+
 ## 2026-06-13 — OKF v0.1 alignment
 
 - Adopted [Open Knowledge Format v0.1](OKF.md): added OKF-standard frontmatter (`type`, `title`, `description`, `tags`, `timestamp`) to every pitfall, case study, and framework, preserving existing domain extension fields.

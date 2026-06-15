@@ -29,8 +29,8 @@ plugins/
           strategies.md         # Always-relevant framework
           gamma-framework.md
           price-action-framework.md
-          pitfalls/             # 25 trading pitfalls + index.md (one file per rule)
-          ticker/               # Case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX) + index.md
+          pitfalls/             # 26 trading pitfalls + index.md (one file per rule)
+          ticker/               # Case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS) + index.md
           commands/             # Subcommand reference files (impeccable pattern)
             setup.md            # /trade setup workflow
             import.md           # /trade import workflow
