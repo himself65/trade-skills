@@ -196,7 +196,7 @@ If a new catalyst hits but price *does not break out* (upside quotes in the orde
 - **Pitfall 20** — post-earnings momentum continuation (the canonical case of information-driven re-rating)
 - **Pitfall 21** — event-IV vs demand-IV (sustained buy flow = sustained IV bid)
 - **Pitfall 04** — flip on invalidation (don't get attached when consensus shifts)
-- **Pitfall 27** — retest entry-timing: buy the volume-confirmed *hold*, not the touch (the execution layer of P4 / P5 / P8; quantify extension before invoking "回踩均线")
+- **Pitfall 27** — retest entry-timing: buy the volume-confirmed *hold*, not the touch (the execution layer of P4 / P5 / P8; quantify extension before waiting for a pullback to the MA)
 - **`gamma-framework.md`** — dealer-flow microstructure (the sibling framework to this one)
 - **`strategies.md`** — structure-to-regime matching (the execution layer)
 - **`ticker/nok-2026-04.md`** — live example of KOL cascade, retail saturation, and demand-IV in action
