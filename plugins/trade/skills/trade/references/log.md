@@ -10,6 +10,12 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-06-18 — Pitfall 27 + 6981 case study (retest entry-timing)
+
+- Added [`pitfalls/27-retest-entry-confirmation.md`](pitfalls/27-retest-entry-confirmation.md) — a pullback ("回踩") entry is the **volume-confirmed hold, not the touch**; 回踩 is a Schelling-point retest (key MA / prior high / gap), not an indicator; on extended/parabolic names the nearest real support can be −15 to −25%, so quantify extension first; a blow-off long-upper-wick at a new high is exhaustion, not an entry. The execution layer of the price-action framework (P4 / P5 / P6 / P8).
+- Added [`ticker/6981-2026-06.md`](ticker/6981-2026-06.md) — Murata's 2026-06-18 new-ATH blow-off (+187% over its 200-day; ~1-ATR upper wick on 174% volume); worked example of the 3-zone retest ladder, with the honest data caveat that OSE flow / IV were not pullable via TradingView / Funda.
+- Cross-linked pitfall 27 into [`commands/analysis.md`](commands/analysis.md) (a new entry-timing / pullback / chasing-extension row) and [`price-action-framework.md`](price-action-framework.md) (cross-references).
+
 ## 2026-06-15 — Pitfall 26 + SATS case study
 
 - Added [`pitfalls/26-stock-consideration-share-vs-dollar-anchored.md`](pitfalls/26-stock-consideration-share-vs-dollar-anchored.md) — for stock-based deal consideration, verify **share-anchored vs dollar-anchored** (and normalize the **split basis**) from the primary agreement before pricing flow-through; a fixed reference price means a fixed share count that marks to market.

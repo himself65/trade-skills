@@ -1,14 +1,14 @@
 ---
 type: Index
 title: Trading Pitfalls — Index
-description: Lookup index for 26 analytical biases to avoid in directional/options trades; load individual files by trade type.
+description: Lookup index for 27 analytical biases to avoid in directional/options trades; load individual files by trade type.
 tags: [index, pitfalls, biases]
 timestamp: 2026-06-13T00:00:00Z
 ---
 
 # Trading Pitfalls
 
-26 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
+27 analytical biases to avoid when evaluating directional/options trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
 
 ## Index
 
@@ -40,6 +40,7 @@ timestamp: 2026-06-13T00:00:00Z
 | 24 | HIGH | Capped-upside structures (Jade Lizard, Iron Condor, Calendar) are forbidden in high-conviction bull setups — asymmetry is a third axis beyond direction and vega | `24-capped-upside-vs-bull-conviction.md` |
 | 25 | HIGH | VIX options price off VIX futures, not spot — contango bleed, sub-1 futures beta, and the debit-spread skew bite | `25-vix-options-futures-mechanics.md` |
 | 26 | HIGH | Stock-based deal consideration — verify share-anchored vs dollar-anchored (and the split basis) before pricing flow-through | `26-stock-consideration-share-vs-dollar-anchored.md` |
+| 27 | HIGH | A pullback ("回踩") entry is the confirmed HOLD, not the touch — a retest probes who holds the level; quantify extension first; don't chase a blow-off wick | `27-retest-entry-confirmation.md` |
 
 ## Quick Lookup by Trade Type
 
@@ -51,6 +52,8 @@ timestamp: 2026-06-13T00:00:00Z
 - **Structure / vol regime**: 6, 7, 8, 18, 19, **21**, **24**
 - **Structure asymmetry / upside profile**: **24** (the third axis beyond direction + vega)
 - **Sentiment / sector mood**: 9, 10, **20**
+- **Entry timing / pullback / "wait for 回踩" / dip-buy a runner / retest of a key MA or prior high**: **27** (buy the volume-confirmed hold, not the touch; 回踩 is a Schelling-point retest, not an indicator) — also see [`../price-action-framework.md`](../price-action-framework.md)
+- **Chasing extension / parabolic name / blow-off candle / new-ATH long-upper-wick**: **27** (a wick-and-close-weak new high on volume is exhaustion, not an entry; the nearest real support can be −20% — quantify extension before invoking "回踩均线")
 - **LEAPS / stock replacement**: 11, 16, 18, **21**, **23** (long horizons compound the termination hazard)
 - **Options market structure / dealer flow**: 17, **21** (also see [`../gamma-framework.md`](../gamma-framework.md))
 - **Vol-thesis reasoning**: 16, 19, **21**
