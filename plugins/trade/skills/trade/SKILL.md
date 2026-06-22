@@ -4,18 +4,18 @@ description: >
   Personal US-equity options trading knowledge base with subcommands.
   `/trade setup` scaffolds a knowledge directory (substack, X,
   writedowns); `/trade import [file]` parses one raw file (PDF,
-  screenshot, text) into structured YAML; `/trade analysis` (or any
+  screenshot, text) into structured YAML; `/trade report [tickers]`
+  reads today's capital flow / 资金流向 (retail / 大单 / institutional
+  proxy from options premium-flow); `/trade analysis` (or any
   unrecognized first word) runs the default analysis flow, auto-loading
-  the knowledge directory. Use for trade analysis, options strategy,
-  earnings plays, post-mortems, or ticker mentions (e.g., "analyze APP").
+  the knowledge directory. Use for trade analysis, earnings plays,
+  money-flow / 流入流出 checks, or ticker mentions (e.g., "analyze APP").
   Triggers on multi-leg options (Jade Lizard, bull put spread, iron
-  condor, diagonal, calendar), IV / IV crush, channel checks, earnings
-  positioning, AH action, LEAPS / stock replacement, dealer GEX / gamma /
-  max pain / options chain analysis, or VIX / volatility hedging. 27
-  pitfalls, a gamma framework, case studies (INTC, APP, NOK, TSEM, SNOW,
-  MDB, VIX). TradingView + Funda for data; replies in Chinese. Check 3
-  axes: vega vs IVR (pitfall 19), delta vs thesis, asymmetry —
-  bull-conviction >= 4 forbids Jade Lizard / IC / Calendar (pitfall 24).
+  condor, diagonal, calendar), IV / IV crush, LEAPS / stock
+  replacement, dealer GEX / gamma / options flow, or VIX / vol hedging. 27 pitfalls, a gamma framework, case studies. TradingView
+  + Funda for data; replies in Chinese. Check 3 axes: vega vs IVR (p19),
+  delta vs thesis, asymmetry; bull-conviction >= 4 forbids Jade Lizard /
+  IC / Calendar (p24).
 metadata:
   okf_version: "0.1"
   okf_conformance: references/OKF.md
@@ -86,13 +86,16 @@ Active US-equity options trader's personal knowledge base. Concrete strikes, pro
 |---|---|---|
 | `setup` | Scaffold a personal knowledge directory (`./knowledge/` by default) for substack posts, X / twitter threads, and writedowns | [references/commands/setup.md](references/commands/setup.md) |
 | `import <file_path>` | Parse one raw artifact (PDF, image, text) into structured YAML inside the knowledge directory | [references/commands/import.md](references/commands/import.md) |
+| `report [tickers | basket]` | Today's capital-flow / 资金流向 read (散户 / 大单 / 机构 proxied from Funda options premium-flow) across one or more names, as a comparison table + cross-section synthesis | [references/commands/report.md](references/commands/report.md) |
 | `analysis [ticker | situation]` | Default trade analysis flow — preflight (knowledge dir, vega sanity, market data), then situation-specific loads | [references/commands/analysis.md](references/commands/analysis.md) |
 
 ### Routing rules
 
 1. **No argument** → render the commands table above as the user-facing menu and ask what they'd like to do.
-2. **First word matches `setup`, `import`, or `analysis`** → load the matching reference file and follow its instructions. Everything after the command name is the argument (file path, ticker, situation, etc.).
+2. **First word matches `setup`, `import`, `report`, or `analysis`** → load the matching reference file and follow its instructions. Everything after the command name is the argument (file path, ticker(s), basket, situation, etc.).
 3. **First word doesn't match** → default to `analysis`. Load [references/commands/analysis.md](references/commands/analysis.md) and treat the full input as the analysis target. This is the common case for natural language ("analyze NVDA", "structure for TSLA earnings", "sell put on APP", a single ticker, etc.).
+
+> **Capital-flow exception (route to `report`, not `analysis`):** if the request is for **today's money flow** — 资金流向 / 流入流出 / 净流入·净流出 / 散户·大单·机构 / capital flow / "who's buying or selling" across a name or basket — treat it as a [`report`](references/commands/report.md) request even when the first word isn't `report`. `analysis` is for structuring/deciding a trade; `report` is the standalone daily flow read.
 
 > **Ingestion exception (don't mis-route to `analysis`):** if the input is an external **link / article / pasted research** the user wants you to read, study, digest, or save to the knowledge base (rather than analyze a live trade), treat it as an **ingestion** request — follow [references/commands/import.md](references/commands/import.md) and write the result to the **user's personal knowledge dir** (a writedown, or YAML for a raw artifact), **never** `references/`. See the destination rule under "Adding to the Knowledge Base."
 

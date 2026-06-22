@@ -10,6 +10,11 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-06-22 — `/trade report` subcommand (daily capital-flow read)
+
+- Added [`commands/report.md`](commands/report.md) — a standalone `/trade report [tickers | basket]` flow that builds a daily **资金流向 (散户 / 大单 / 机构)** read from **Funda options premium-flow** (`options-volume` bullish/bearish premium, net call/put premium, ask-vs-bid volume, `flow-alerts`) + `news/sentiment`, because no stock-side three-layer net-flow feed is available here (the moomoo / Futu three-layer flow needs a logged-in FutuOpenD gateway + `futu-api`). Encodes the 口径 caveats, the 聪明钱 classification (🟢 confirmed long / 🔴 价涨期权背离-distribution / 🟡 price-only-unconfirmed / ⚖️ earnings two-sided), the `flow-alerts` 200-row truncation trap, and the quote-endpoint trap (use `stock-price?ticker=` for day change; `quotes?type=realtime/price-change` 400s).
+- Wired into [`../SKILL.md`](../SKILL.md): new Commands-table row, `report` added to routing rule 2, a capital-flow routing exception (资金流向 / 流入流出 → `report`, not `analysis`), and a refreshed frontmatter description/triggers (kept under the 1024-char `skill-lint` cap). Indexed in [`index.md`](index.md). Cross-linked to pitfalls 02 (single flow ≠ smart money) and 17 (dealer flow ≠ retail).
+
 ## 2026-06-18 — Pitfall 27 + 6981 case study (retest entry-timing)
 
 - Added [`pitfalls/27-retest-entry-confirmation.md`](pitfalls/27-retest-entry-confirmation.md) — a pullback entry is the **volume-confirmed hold, not the touch**; a pullback is a Schelling-point retest (key MA / prior high / gap), not an indicator; on extended/parabolic names the nearest real support can be −15 to −25%, so quantify extension first; a blow-off long-upper-wick at a new high is exhaustion, not an entry. The execution layer of the price-action framework (P4 / P5 / P6 / P8).

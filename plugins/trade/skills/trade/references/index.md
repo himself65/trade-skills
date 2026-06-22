@@ -37,6 +37,7 @@ The curated, shared knowledge bundle behind the `trade` skill. It is an **[Open 
 |---|---|---|
 | [`commands/setup.md`](commands/setup.md) | `/trade setup` | Scaffold the user's personal knowledge OKF bundle. |
 | [`commands/import.md`](commands/import.md) | `/trade import` | Parse one raw artifact into a structured knowledge file. |
+| [`commands/report.md`](commands/report.md) | `/trade report` | Daily capital-flow / 资金流向 read (散户 / 大单 / 机构 proxied from options premium-flow). |
 | [`commands/analysis.md`](commands/analysis.md) | `/trade analysis` | Default analysis flow — preflight + situation → reference map. |
 
 ## User-private knowledge bundle
