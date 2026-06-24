@@ -10,6 +10,11 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-06-24 — MU case study (post-print direction read)
+
+- Added [`ticker/mu-2026-06.md`](ticker/mu-2026-06.md) — FY26Q3 blowout beat (rev +16%, EPS +21%, topping even Funda's aggressive preview). Analyst-side error: called "sell-the-news" off an early AH snapshot (+3.6% @ 16:05) plus full-day flow (−$3.4M); corrected when AH accelerated to +9% and **post-event** flow was +$72.5M bullish. Lesson: post-print, sample the AH price **trend** (not a snapshot) and use **post-event** flow (not full-day); reaction-magnitude ≠ direction. Sister case to NOK 2026-04 (pattern published ahead of the current data).
+- Cross-linked into [`commands/analysis.md`](commands/analysis.md) post-earnings rows.
+
 ## 2026-06-22 — `/trade report` subcommand (daily capital-flow read)
 
 - Added [`commands/report.md`](commands/report.md) — a standalone `/trade report [tickers | basket]` flow that builds a daily **资金流向 (散户 / 大单 / 机构)** read from **Funda options premium-flow** (`options-volume` bullish/bearish premium, net call/put premium, ask-vs-bid volume, `flow-alerts`) + `news/sentiment`, because no stock-side three-layer net-flow feed is available here (the moomoo / Futu three-layer flow needs a logged-in FutuOpenD gateway + `futu-api`). Encodes the 口径 caveats, the 聪明钱 classification (🟢 confirmed long / 🔴 价涨期权背离-distribution / 🟡 price-only-unconfirmed / ⚖️ earnings two-sided), the `flow-alerts` 200-row truncation trap, and the quote-endpoint trap (use `stock-price?ticker=` for day change; `quotes?type=realtime/price-change` 400s).
@@ -20,7 +25,6 @@ OKF reserved `log.md` — chronological history of this knowledge bundle, most r
 - Added [`pitfalls/27-retest-entry-confirmation.md`](pitfalls/27-retest-entry-confirmation.md) — a pullback entry is the **volume-confirmed hold, not the touch**; a pullback is a Schelling-point retest (key MA / prior high / gap), not an indicator; on extended/parabolic names the nearest real support can be −15 to −25%, so quantify extension first; a blow-off long-upper-wick at a new high is exhaustion, not an entry. The execution layer of the price-action framework (P4 / P5 / P6 / P8).
 - Added [`ticker/6981-2026-06.md`](ticker/6981-2026-06.md) — Murata's 2026-06-18 new-ATH blow-off (+187% over its 200-day; ~1-ATR upper wick on 174% volume); worked example of the 3-zone retest ladder, with the honest data caveat that OSE flow / IV were not pullable via TradingView / Funda.
 - Cross-linked pitfall 27 into [`commands/analysis.md`](commands/analysis.md) (a new entry-timing / pullback / chasing-extension row) and [`price-action-framework.md`](price-action-framework.md) (cross-references).
-
 ## 2026-06-15 — Pitfall 26 + SATS case study
 
 - Added [`pitfalls/26-stock-consideration-share-vs-dollar-anchored.md`](pitfalls/26-stock-consideration-share-vs-dollar-anchored.md) — for stock-based deal consideration, verify **share-anchored vs dollar-anchored** (and normalize the **split basis**) from the primary agreement before pricing flow-through; a fixed reference price means a fixed share count that marks to market.

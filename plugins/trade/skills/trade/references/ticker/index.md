@@ -1,7 +1,7 @@
 ---
 type: Index
 title: Ticker Case Studies — Index
-description: Lookup index of closed/in-progress trade post-mortems (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981); load full files by pattern.
+description: Lookup index of closed/in-progress trade post-mortems (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU); load full files by pattern.
 tags: [index, case-studies, post-mortems]
 timestamp: 2026-06-13T00:00:00Z
 ---
@@ -25,6 +25,7 @@ One file per closed trade arc. Designed for lazy loading — the index lists tic
 | VIX | Market selloff (SPX −2.6% / spot VIX +40%) | 2026-06-05 | illustrative (~+3–8% marked on the spreads) | **VIX call spreads track the FUTURE, not spot.** Spot VIX +40% marked only ~+3–8% on a Jul 20/32 and Aug 20/30 spread. Three reasons: futures beta < 1 (further-dated Aug +3% < nearer Jul +8%); debit-spread **skew bite** (short far-OTM leg's IV ballooned, captured 63% of the long leg's move); a −2.6% day is *noise* to a structure built for −8%+ crash convexity. Don't chase the spike (adding into a ripping VIX pays escalating vol-of-vol). | `vix-2026-06.md` |
 | SATS | SpaceX + AT&T spectrum sales / SOTP analysis | 2026-06-15 | no trade (analyst-error post-mortem) | **Verify deal consideration is share-anchored vs dollar-anchored — and normalize the split basis — BEFORE pricing flow-through.** Mis-read EchoStar's SpaceX consideration as "dollar-fixed, no flow-through"; it is **share-anchored** (fixed share count at $212/sh ≈ ~2% of SpaceX, marks to market ~$50B), so SPCX flows through ~1:1. Fixed reference price = fixed share count. The tape (SATS tracking SPCX pre-IPO) was the tell; going-concern + Nov-2027 lock = why it still trades at a discount. | `sats-2026-06.md` |
 | 6981 | AI-MLCC parabolic run / new-ATH blow-off | 2026-06-18 | no trade (entry-timing study) | **Entry timing = the volume-confirmed retest-HOLD at a Schelling-point zone, not the touch — and not the blow-off close.** Murata ran ~6x in a year and printed a new-ATH long-upper-wick on 174% volume (close in the bottom 3% of range, +187% over its 200-day). The nearest real support (EMA21) is −23%, so a pullback to the MA is a *correction*, not a shallow dip — quantify extension and ladder ① ¥11,100 / ② ¥10,100 / ③ ¥9,100, each only on a volume-contraction hold. OSE options need IBKR. | `6981-2026-06.md` |
+| MU | FY26Q3 earnings (memory supercycle) | 2026-06-24 (in-progress) | analyst-error corrected mid-thread | **Post-print, called "sell-the-news" off an early AH snapshot (+3.6% @ 16:05 ET) + full-day flow (−$3.4M); AH then accelerated to +9% and post-event flow was +$72.5M bullish → flipped back to bull.** Sample the AH price *trend* not a snapshot; use *post-event* flow not full-day; reaction-magnitude ("muted vs the beat") ≠ direction. Pre-print Stage-1 bull put spread + call tail was correct and validated. Sister to NOK 2026-04. | `mu-2026-06.md` |
 
 ## Quick Lookup by Pattern
 
@@ -61,6 +62,12 @@ One file per closed trade arc. Designed for lazy loading — the index lists tic
 - **Entry timing / pullback / retest-hold before entering a runner**: `6981-2026-06.md` (buy the volume-confirmed hold, not the touch)
 - **Chasing a parabolic name / blow-off candle / new-ATH long-upper-wick / extreme extension above the MAs**: `6981-2026-06.md`
 - **Japan / TSE listing / OSE options (priced in IBKR, not TV/Funda) / Twelve-Data quote gap on a non-US symbol**: `6981-2026-06.md`
+- **Post-print direction misread off an early after-hours snapshot / full-day flow → wrongly called sell-the-news**: `mu-2026-06.md`
+- **AH price evolves (early snapshot expires) — sample the trend, not one point**: `mu-2026-06.md`
+- **Post-event flow vs full-day flow (a catalyst splits the session into two regimes)**: `mu-2026-06.md`
+- **Reaction magnitude ("muted vs the beat") ≠ direction**: `mu-2026-06.md`, `nok-2026-04.md`
+- **Memory / DRAM / HBM supercycle earnings play**: `mu-2026-06.md`
+- **Pre-print analysis right, post-print read wrong (then flipped back) — pattern published ahead of current data**: `mu-2026-06.md`, `nok-2026-04.md`
 
 ## Adding a New Case Study (OKF-conformant)
 
