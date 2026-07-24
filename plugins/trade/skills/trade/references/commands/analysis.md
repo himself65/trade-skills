@@ -27,7 +27,7 @@ The default flow. Runs whenever the user invokes `/trade analysis ...` **or** wh
 
 3. **Always load** [`../pitfalls/19-direction-vega-independent-axes.md`](../pitfalls/19-direction-vega-independent-axes.md) — vega-axis sanity check. Wrong net vega sign (credit spread at low IVR, debit spread at high IVR) is the dominant directional-structure failure mode.
 
-4. **Pull market data** via the `finance-data-providers:tradingview-reader` skill first (quotes, options chain, IV, screener). Fall back to `finance-data-providers:funda-data` for anything TradingView doesn't cover (fundamentals, filings, transcripts, analyst estimates, options flow/GEX, supply chain, sentiment, Polymarket, congressional trades, economics). Do not substitute yfinance, web search, or guesses.
+4. **Pull market data** in three tiers: `finance-data-providers:tradingview-mcp` first (quotes, TA readout, multi-timeframe, screeners, futures/夜盘, extended hours, unusual options activity — headless, no app relaunch); `finance-data-providers:tradingview-reader` when greeks / per-strike IV skew / expiries-with-counts / watchlists / alerts are needed; `finance-data-providers:funda-data` for anything TradingView doesn't cover (fundamentals, filings, transcripts, analyst estimates, options flow/GEX, supply chain, sentiment, Polymarket, congressional trades, economics). Do not substitute yfinance, web search, or guesses.
 
 5. **Before predicting "IV crush" or "T+1 fade"** — pull net options premium flow data and check the catalyst clock. Required by the Hard Rule. See pitfalls 20 and 21.
 

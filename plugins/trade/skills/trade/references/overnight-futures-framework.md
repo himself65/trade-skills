@@ -71,6 +71,7 @@ Base/bull/bear with probabilities summing to 100%, each keyed to: prior settle, 
 
 | Source | Caveat |
 |---|---|
+| TradingView MCP (`finance-data-providers:tradingview-mcp`) | **Preferred first stop for 夜盘 quotes**: `futures_category_snapshot("equity_index")` returns NQ/ES/YM/RTY front-month OHLCV in one call; `futures_top_movers` for the cross-complex scan. No app, no relaunch. Continuous-contract (`1!`) symbology; no bid/ask depth. |
 | TradingView desktop reader | Needs CDP relaunch if the port is down — **relaunch closes the user's charts**; don't do it mid-session without asking. |
 | Funda `/v1/quotes?type=commodity-quotes` (FMP proxy) | NQUSD/ESUSD tick sub-minute (verified 45s apart) but carry **no timestamp field**; `volume` is FMP's own aggregation, not CME; no bid/ask. Near-real-time, not exchange-licensed real-time. `ticker` param is ignored — returns all, filter client-side. |
 | Funda `/v1/charts?type=5min&ticker=NQUSD` | Works, ET timestamps, but bars **lag 5–15 min** behind the quote — the chart's right edge is not "now." `^KS11` intraday is empty; use live index quote + daily history for Asia. |

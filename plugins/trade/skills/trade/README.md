@@ -25,11 +25,11 @@ Full trigger list in the `description` field of `SKILL.md`.
 
 ## Platform
 
-**CLI only** — primary market data via TradingView desktop reader (`finance-data-providers:tradingview-reader`); fallback to Funda AI API (`finance-data-providers:funda-data`) for fundamentals, options flow / GEX, transcripts, sentiment, etc.
+**CLI only** — primary market data via the headless TradingView MCP (`finance-data-providers:tradingview-mcp`, bundled server, no app/login); TradingView desktop reader (`finance-data-providers:tradingview-reader`) for options greeks / IV skew / watchlists / alerts; Funda AI API (`finance-data-providers:funda-data`) for fundamentals, options flow / GEX, transcripts, sentiment, etc.
 
 ## Setup
 
-1. Install the [`finance-skills`](https://github.com/himself65/finance-skills) plugin marketplace and the `finance-data-providers:tradingview-reader` and `finance-data-providers:funda-data` skills.
+1. Install the [`finance-skills`](https://github.com/himself65/finance-skills) plugin marketplace and the `finance-data-providers:tradingview-mcp`, `finance-data-providers:tradingview-reader`, and `finance-data-providers:funda-data` skills (the `finance-data-providers` plugin bundles the [tradingview-mcp](https://github.com/atilaahmettaner/tradingview-mcp) server — requires `uv`).
 2. Set the Funda API key (read from repo-root `.env` so worktrees inherit):
    ```bash
    export FUNDA_API_KEY="your-funda-api-key"

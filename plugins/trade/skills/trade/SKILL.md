@@ -43,7 +43,13 @@ Active US-equity options trader's personal knowledge base. Concrete strikes, pro
 
 ## Data Access
 
-**Use TradingView desktop reader (`finance-data-providers:tradingview-reader`) FIRST** for quotes, options chains, IV, screener, watchlists, gainers / losers. Fall back to **Funda AI API (`finance-data-providers:funda-data`)** for anything TradingView can't provide: fundamentals, filings, transcripts, analyst estimates, options flow / GEX, supply chain, sentiment, Polymarket, congressional trades, economics. Do not substitute yfinance, web search, or guesses.
+Three tiers, in order:
+
+1. **TradingView MCP (`finance-data-providers:tradingview-mcp`) FIRST** for quotes, TA readouts / indicator ratings, multi-timeframe alignment, screeners / scans, gainers / losers, futures (NQ / ES 夜盘 overview + movers), pre/after-market prices, unusual options activity, and quick options-chain looks. Headless — no desktop app, no login, no CDP relaunch that closes the user's charts.
+2. **TradingView desktop reader (`finance-data-providers:tradingview-reader`)** when you need what the MCP can't give: options chain **with greeks** (delta / gamma / theta / vega), per-strike IV skew, expiries with contract counts, watchlists, alerts, TV news, chart screenshots.
+3. **Funda AI API (`finance-data-providers:funda-data`)** for everything fundamental or flow-based: fundamentals, filings, transcripts, analyst estimates, options premium flow / GEX (the `report` command's backbone), supply chain, sentiment, Polymarket, congressional trades, economics.
+
+Do not substitute yfinance, web search, or guesses. The MCP's options-chain IV is Yahoo-sourced — fine for chain shape / OI / volume, not for IV-rank or skew decisions (use tier 2 or 3 for those).
 
 **Credentials live in the root repo `.env`, not the worktree.** When running inside a worktree (path matches `.claude/worktrees/*`), the worktree itself has no `.env` — resolve to the main repo's `.env` by stripping the `.claude/worktrees/<name>` suffix from the current working directory.
 
