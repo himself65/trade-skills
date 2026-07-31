@@ -10,6 +10,11 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-07-30 — Language rule v3: mirror the user's language in chat; git files stay English
+
+- Supersedes the English-only rule set earlier the same day (entry below): in practice the user asked for Chinese replies three times in one session. New rule — **chat replies mirror whatever language the user is writing, message by message**; **anything committed to git stays English** (this repo's `references/` and the personal knowledge dir's writedowns / digests / YAML). Updated [`../SKILL.md`](../SKILL.md) User Profile + `description` (`replies in English` → `user-language replies, English files`), [`commands/import.md`](commands/import.md) step 4, [`commands/report.md`](commands/report.md) output rules, and the [`macro-framework.md`](macro-framework.md) §9 preamble.
+- Trigger-position Chinese (the `SKILL.md` description, `commands/analysis.md` situation rows, §9 mode-trigger column) is unchanged — still input matchers.
+
 ## 2026-07-30 — Response language switched to English (standing preference)
 
 - The user set a standing preference: **all output is English from now on**, even when the request is written in Chinese. Updated [`../SKILL.md`](../SKILL.md) User Profile (was "Writes in Chinese — respond in Chinese") and `description` (`replies in Chinese` → `English`), [`commands/import.md`](commands/import.md) step 4 (digests are written in English; pre-2026-07-30 writedowns stay Chinese — match their structure, don't rewrite them), [`commands/report.md`](commands/report.md) (respond in English; the output table's column headers are now English), and the [`macro-framework.md`](macro-framework.md) §9 preamble.

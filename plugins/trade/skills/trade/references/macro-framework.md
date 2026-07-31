@@ -175,7 +175,7 @@ Before analyzing, ask which **1–2** families the current regime's dominant dri
 
 ## 9. The eight output modes
 
-Each mode has a **fixed output order** — the point is to force framework order instead of writing thoughts in the order they arrive. All are reachable through the normal `analysis` route, including via the Chinese trigger phrases kept in the table below (input matchers only — **output is always English**, see `SKILL.md` User Profile); see [`commands/analysis.md`](commands/analysis.md).
+Each mode has a **fixed output order** — the point is to force framework order instead of writing thoughts in the order they arrive. All are reachable through the normal `analysis` route, including via the Chinese trigger phrases kept in the table below (input matchers only — **chat output mirrors the user's language; git-tracked files stay English**, see `SKILL.md` User Profile); see [`commands/analysis.md`](commands/analysis.md).
 
 | Mode | Trigger | Output order |
 |---|---|---|

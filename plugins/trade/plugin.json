@@ -1,7 +1,7 @@
 {
   "name": "trade",
-  "description": "Options trading knowledge — pitfalls, case studies, structure-to-regime matching.",
-  "version": "2.3.0",
+  "description": "Options trading knowledge \u2014 pitfalls, case studies, structure-to-regime matching.",
+  "version": "2.4.0",
   "author": {
     "name": "himself65"
   },

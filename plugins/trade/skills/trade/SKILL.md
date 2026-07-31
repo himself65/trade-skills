@@ -15,10 +15,10 @@ description: >
   NQ / ES 夜盘 / overnight futures, position sizing / 仓位 / 止损 /
   leverage, or macro regime reads
   (宏观, 晨报 morning note, 收盘复盘 EOD review, CPI / FOMC). 31 pitfalls,
-  frameworks, cases. TradingView + Funda for data; replies in
-  English. Check 3 axes: vega vs IVR (p19),
-  delta vs thesis, asymmetry; bull-conviction >= 4 forbids Jade Lizard /
-  IC / Calendar (p24). Size = risk$ / stop, never the reverse (p30).
+  frameworks, cases. TradingView + Funda for data; user-language
+  replies, English files. 3 axes: vega vs IVR (p19), delta,
+  asymmetry; bull-conviction >= 4 forbids Jade Lizard /
+  IC / Calendar (p24). Size = risk$ / stop, never reversed (p30).
 metadata:
   okf_version: "0.1"
   okf_conformance: references/OKF.md
@@ -40,7 +40,7 @@ Active US-equity options trader's personal knowledge base. Concrete strikes, pro
 
 - Trades multi-leg options on mega-cap US equities (earnings plays, event-driven)
 - Fluent in Greeks, IV term structure, IV crush dynamics
-- **Often writes in Chinese — always respond in English** (standing preference set 2026-07-30). Every deliverable is English: analysis, reports, digests, and writedowns in the personal knowledge dir. Chinese is retained only in **trigger positions** (this file's `description`, the `commands/analysis.md` situation rows, `macro-framework.md` §9 mode triggers) so Chinese-phrased requests still route — those are input matchers, not output language. Keep proper nouns untranslated when citing them (document titles, author handles, and domain terms like 母单 / 格局, glossed on first use).
+- **Chat replies mirror the user's language, message by message** — they write Chinese, reply in Chinese; they switch to English, reply in English (rule set 2026-07-30, superseding the earlier English-only preference from the same day). **Anything written to a git-tracked file stays English**: this repo (`references/` — pitfalls, case studies, frameworks, `log.md`) and the personal knowledge dir (writedowns, digests, parsed YAML). Chinese in **trigger positions** (this file's `description`, the `commands/analysis.md` situation rows, `macro-framework.md` §9 mode triggers) stays as-is — those are input matchers, not output language. Keep proper nouns untranslated when citing them (document titles, author handles, and domain terms like 母单 / 格局, glossed on first use).
 
 ## Data Access
 
@@ -151,7 +151,7 @@ For anything the user collects or shares from outside (substack posts, X threads
 
 - Run `/trade setup` once to scaffold the knowledge directory (user chooses the path; default `./knowledge/`).
 - **Raw artifact** (PDF / screenshot / text file) → run `/trade import <file_path>` to parse it into structured YAML in `substack/` or `twitter/`.
-- **A shared link / article you read and *synthesize*** (a macro thesis, a research report — anything that isn't a clean platform post) → write a **writedown** markdown digest at `<knowledge>/writedowns/YYYY-MM-DD-<topic>.md`, in the user's language, with source attribution, a "not independently verified" caveat, and a bear case. See [references/commands/import.md](references/commands/import.md).
+- **A shared link / article you read and *synthesize*** (a macro thesis, a research report — anything that isn't a clean platform post) → write a **writedown** markdown digest at `<knowledge>/writedowns/YYYY-MM-DD-<topic>.md`, in English (knowledge-dir files are git content — see User Profile), with source attribution, a "not independently verified" caveat, and a bear case. See [references/commands/import.md](references/commands/import.md).
 - Author the user's own writedowns directly as markdown in `<knowledge>/writedowns/`.
 
 The `analysis` command auto-loads matching files from the knowledge dir on every invocation — see [references/commands/analysis.md](references/commands/analysis.md).
