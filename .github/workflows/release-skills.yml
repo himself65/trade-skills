@@ -1,8 +1,19 @@
 name: Release Skills
 
 on:
+  # Manual path: push a vX.Y.Z tag yourself.
   push:
     tags: ['v*']
+  # Automated path: called by auto-tag.yml right after it creates the tag.
+  # A tag pushed with GITHUB_TOKEN does NOT fire the `push: tags` trigger above
+  # (GitHub suppresses recursive workflow runs), so auto-tag.yml has to invoke
+  # this workflow directly instead of relying on the tag push.
+  workflow_call:
+    inputs:
+      tag:
+        description: 'Tag to release, e.g. v2.7.0'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -10,12 +21,16 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      TAG: ${{ inputs.tag || github.ref_name }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
 
       - name: Extract version from tag
         id: version
-        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+        run: echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
 
       - name: Zip each skill
         run: |
@@ -32,10 +47,10 @@ jobs:
 
       - name: Create or update release
         run: |
-          if gh release view "${{ github.ref_name }}" > /dev/null 2>&1; then
-            gh release upload "${{ github.ref_name }}" dist/*.zip --clobber
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            gh release upload "$TAG" dist/*.zip --clobber
           else
-            gh release create "${{ github.ref_name }}" dist/*.zip \
+            gh release create "$TAG" dist/*.zip \
               --title "v${{ steps.version.outputs.version }}" \
               --generate-notes \
               --latest

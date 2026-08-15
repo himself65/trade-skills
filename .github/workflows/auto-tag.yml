@@ -1,0 +1,53 @@
+name: Auto Tag Release
+
+# Keeps the GitHub release page in sync with plugin.json. Whenever main carries a
+# version that has no matching tag yet, tag it and release it — so a merged
+# version bump can no longer sit on main unreleased (v2.7.0 did exactly that).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.check.outputs.tag }}
+      created: ${{ steps.check.outputs.created }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Tag when plugin.json carries a new version
+        id: check
+        run: |
+          # plugin.json is the version source of truth; skill-lint already fails
+          # the build if .claude-plugin/marketplace.json has drifted from it.
+          version=$(jq -r '.version' plugins/trade/plugin.json)
+          tag="v${version}"
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+
+          if git rev-parse -q --verify "refs/tags/${tag}" > /dev/null; then
+            echo "created=false" >> "$GITHUB_OUTPUT"
+            echo "Tag ${tag} already exists — nothing to release."
+            exit 0
+          fi
+
+          git tag "$tag"
+          git push origin "$tag"
+          echo "created=true" >> "$GITHUB_OUTPUT"
+          echo "Tagged ${tag} at $(git rev-parse --short HEAD)."
+
+  release:
+    needs: tag
+    if: needs.tag.outputs.created == 'true'
+    uses: ./.github/workflows/release-skills.yml
+    with:
+      tag: ${{ needs.tag.outputs.tag }}
+    permissions:
+      contents: write

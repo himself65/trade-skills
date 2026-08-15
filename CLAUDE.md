@@ -101,7 +101,9 @@ Version lives in `plugins/trade/plugin.json`, not in SKILL.md frontmatter.
 
 **Version bumps must touch both files.** `plugins/trade/plugin.json` is the source of truth, and `.claude-plugin/marketplace.json` mirrors it in **two** places — `metadata.version` and `plugins[0].version`. They drift silently otherwise: the release workflow only packages the skill directories, so a stale marketplace.json never appears in a release artifact, but it *is* what `npx plugins add himself65/trade-skills` reads off the default branch (v2.4.0 and v2.5.0 both shipped with it pinned at 2.3.0). CI enforces this — `himself65/skill-lint@v3` (3.1.0+) auto-detects `.claude-plugin/marketplace.json` and fails on version drift, so the existing `lint` job covers it with no extra config.
 
-Release is tag-driven: merge to `main`, then push a `vX.Y.Z` tag matching `plugin.json` — `.github/workflows/release-skills.yml` zips each skill and creates the GitHub release.
+**Release is automatic — bumping the version in `plugin.json` *is* the release.** On every push to `main`, `.github/workflows/auto-tag.yml` reads `plugins/trade/plugin.json`; if no `vX.Y.Z` tag matches that version yet, it creates and pushes the tag, then calls `.github/workflows/release-skills.yml` to zip each skill and publish the GitHub release. It is idempotent — a push whose version is already tagged does nothing — and `workflow_dispatch` can backfill a release that was missed. Pushing a `vX.Y.Z` tag by hand still works and takes the same path.
+
+The two workflows are wired via `workflow_call` rather than letting the tag push trigger the release, because **a tag pushed with `GITHUB_TOKEN` does not fire `on: push: tags`** — GitHub suppresses recursive workflow runs. Don't "simplify" that indirection away; the release would silently stop firing. (This is the failure the automation replaced: v2.7.0 merged to `main` and sat untagged, so the release page kept showing v2.6.0.)
 
 Users install via:
 
