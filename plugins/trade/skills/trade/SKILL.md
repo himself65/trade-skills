@@ -137,23 +137,34 @@ This knowledge base is an **[Open Knowledge Format (OKF) v0.1](references/OKF.md
 | [references/ticker/&lt;name&gt;.md](references/ticker/) | Individual case study — load when the current setup pattern-matches a prior trade. |
 | `<knowledge>/` (user-chosen path, scaffolded by `/trade setup`) | User-owned documents. `substack/*.yaml` and `twitter/*.yaml` are parsed external content; `writedowns/*.md` are user-authored notes; any other subdir (e.g. a curated module) is loaded too. `*/raw/` holds source PDFs / screenshots and is normally not loaded. Checked at the start of every `analysis` — see `references/commands/analysis.md` for the full situation → reference map. |
 
-## Adding to the Knowledge Base
+## Knowledge Architecture
 
-> **Destination rule — decide this FIRST: *whose* knowledge is it?**
-> - **First-party, reusable trading knowledge** meant to ship to *every* installer — a pitfall, a decision framework, or a case study of the **user's own trade** → the curated **`references/`** library (this repo, public).
-> - **Anything the user collected or shared from the outside world** — a substack / X post, a **macro or brokerage research report**, a KOL thread, **any third-party article or link they hand you to read / study / digest / save to the knowledge base** → the **user's personal knowledge directory** (below). **Never** put a third-party article digest in `references/`; that library is first-party and ships publicly.
->
-> - **Bulk material you collected yourself** — a crawled archive, a scraped history, a downloaded dataset → a **durable corpus directory**, never `references/` and never a temp path. Layout, manifest and privacy rules in [references/data-collection.md](references/data-collection.md).
->
-> "Our knowledge base," said while you happen to be working inside this repo, still means the **user's** knowledge — default external research to the **personal dir** (which is usually a *separate* repo found via `knowledge_path`). Choose `references/` only for a de-identified, reusable rule/framework for all installers. **If unsure, ask** before writing.
+Three tiers. The boundary that matters is **how each is used**, not how big it is — **L2 is read every session; L3 is queried on demand.**
 
-### Curated library (this skill — shared, ships to all installers)
+| | Where | Visibility | What lives there | How it loads |
+|---|---|---|---|---|
+| **L1 — Rules** | `references/` (this repo) | **Public** — ships to every installer | Pitfalls, frameworks, conventions, case studies of the **user's own** trades | Selectively, by situation |
+| **L2 — Judgement** | Personal knowledge dir (`knowledge_path`; default `./knowledge/`) | Private | The user's own synthesis — writedowns, digests of third-party research, parsed post YAML | **Auto-scanned on every `/trade analysis`** |
+| **L3 — Evidence** | Durable corpus repo (`$TRADE_CORPUS_DIR` → `<knowledge>/corpora/` → ask) | Per-corpus `access_class` | Crawled archives, scraped histories, bulk pulls, and the raw source documents behind L2 digests | **Never auto-loaded** — queried by script on demand |
+
+> **Destination rule — decide this FIRST: *whose* knowledge is it, and how will it be used?**
+> - A reusable, **de-identified** rule for *every* installer — pitfall, framework, convention, or a case study of the user's **own** trade → **L1**. Never put third-party content here; this library is public.
+> - The user's **own conclusion** about outside material — a digest of a substack / X post, a macro or brokerage report, a KOL thread, any article they hand you to read → **L2**, written in English.
+> - Anything **collected** — a crawl, a scrape, a bulk pull, or a one-off raw source document you were handed → **L3**, never `references/` and never a temp path. Layout, `access_class`, manifest and privacy rules in [references/data-collection.md](references/data-collection.md).
+>
+> "Our knowledge base," said while you happen to be working inside this repo, still means the **user's** knowledge — L2 and L3 are usually separate repos found via `knowledge_path` / `$TRADE_CORPUS_DIR`. **If unsure, ask** before writing.
+
+**L2 has a size budget.** It is auto-scanned every session, so it must stay small enough to actually read. When a directory outgrows what one session can scan, the bulk belongs in L3 — move the material down and leave the synthesis behind.
+
+**The pipeline runs upward.** Collect into **L3** → analyse → the *conclusion* becomes an **L2** writedown → if the lesson generalises and de-identifies, it graduates to an **L1** pitfall or framework. Evidence does not skip tiers: an L1 rule states its case in prose and never links into a private corpus, because installers cannot follow that link.
+
+### L1 — curated library (this skill; public, ships to all installers)
 
 - **New pitfall**: copy `references/pitfalls/_template.md` → `references/pitfalls/NN-slug.md` (fill the OKF frontmatter per [references/OKF.md](references/OKF.md)), add a row to `references/pitfalls/index.md` and a dated entry to `references/log.md`
 - **New case study** (the user's *own* trade): copy `references/ticker/_template.md` → `references/ticker/<ticker>-YYYY-MM.md` (fill the OKF frontmatter), add a row to `references/ticker/index.md` and a dated entry to `references/log.md`
 - **Strategy update**: edit `references/strategies.md` directly — it stays flat because it's always-relevant framework
 
-### Personal knowledge (user's chosen dir — private; default `./knowledge/`, often a *separate* repo found via `knowledge_path`)
+### L2 — personal knowledge (user's chosen dir; private, usually a *separate* repo found via `knowledge_path`)
 
 For anything the user collects or shares from outside (substack posts, X threads, **macro / brokerage research, articles, links**) plus their own notes:
 
@@ -163,3 +174,11 @@ For anything the user collects or shares from outside (substack posts, X threads
 - Author the user's own writedowns directly as markdown in `<knowledge>/writedowns/`.
 
 The `analysis` command auto-loads matching files from the knowledge dir on every invocation — see [references/commands/analysis.md](references/commands/analysis.md).
+
+### L3 — collected corpora (durable, bulk, never auto-loaded)
+
+Everything you **collect** rather than write: crawled archives, scraped histories, bulk API pulls, and the raw source documents (PDFs, screenshots, transcripts) that an L2 digest was written from. One directory per corpus — `MANIFEST.md` / `raw/` / `derived/` / `scripts/` — with the manifest declaring coverage, the resume cursor, the **gap list**, and an **`access_class`** of `public`, `paid`, or `closed-community`.
+
+A repository's visibility is set by the **most restrictive** corpus it holds: one `paid` or `closed-community` corpus makes the whole repo private. Keep genuinely public sources in a separate public repo rather than downgrading everything to private-by-association.
+
+Full rules — path resolution, layout, resumability, gap accounting, and the sharing line between `raw/` and `derived/` — in [references/data-collection.md](references/data-collection.md).
