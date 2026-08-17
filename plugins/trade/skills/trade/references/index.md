@@ -31,6 +31,7 @@ The curated, shared knowledge bundle behind the `trade` skill. It is an **[Open 
 | File | Type | What it covers |
 |---|---|---|
 | [`unusual-whales.md`](unusual-whales.md) | Data Source | Direct Unusual Whales access when the user has a subscription (Data Access **tier 0**) — availability gate, MCP + REST auth, endpoint map by trading question, entitlement gaps (volatility add-on, congress, futures), and verified field traps. Load it before writing any UW request; skip the tier entirely when no key resolves. |
+| [`data-collection.md`](data-collection.md) | Convention | Durable corpus rule — collected data never lives in a temp directory. Path resolution (`$TRADE_CORPUS_DIR` → `<knowledge>/corpora/` → ask), the `MANIFEST.md` / `raw/` / `derived/` / `scripts/` layout, mandatory gap accounting that feeds pitfall 33's denominator, resumability rules, and the private-repo requirement for paid or closed-community sources. |
 
 ## Pitfalls
 

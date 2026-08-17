@@ -10,6 +10,12 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-08-17 — Durable corpus rule (collected data never lives in a temp directory)
+
+- Added [`data-collection.md`](data-collection.md) (new OKF type `Convention`) — crawls, scrapes and reusable data pulls go to a durable corpus directory (`$TRADE_CORPUS_DIR` → `<knowledge>/corpora/` → ask), never the agent scratchpad or any path under `/tmp`. Carries the `MANIFEST.md` / `raw/` / `derived/` / `scripts/` layout, mandatory gap accounting (the denominator [`pitfalls/33-denominator-before-framing.md`](pitfalls/33-denominator-before-framing.md) depends on), resumability rules for anything over ~5 minutes, incremental top-up via a persisted cursor, and the private-repo requirement for paid or closed-community sources.
+- Written after losing the same 84,601-comment corpus twice: the scratchpad lives under `/private/tmp`, which macOS purges on **every boot**, and the machine rebooted six times in seven days. The second loss happened immediately after the user asked to preserve the data. Roughly 35 minutes of crawling, twice.
+- Wired in: [`../SKILL.md`](../SKILL.md) (Data Access rule + a third branch on the destination rule + frameworks table), [`OKF.md`](OKF.md) (new `Convention` type), [`index.md`](index.md), [`commands/setup.md`](commands/setup.md) (scaffolds `corpora/`, and asks about a separate repo for bulk), [`commands/import.md`](commands/import.md) (import is one artifact; crawling is a corpus), [`commands/analysis.md`](commands/analysis.md).
+
 ## 2026-08-16 — Case-study structure unified across `ticker/`
 
 - Normalized all 13 case studies to one canonical body skeleton (fixed H2 order, `---` between sections): Setup → Strategy Evolution (by stage) → Outcome (bare heading; as-of qualifiers as a bold first line) → What Worked → What I Got Wrong (Analyst Side) (with `### Meta-insight` at its end) → Lessons / Updates to Framework → optional tails in fixed order: Reusable Framework: `<Setup-Type>` Plays, Specific Data Points (For Reference), Open Questions / Followups, Cross-References, Updates Log. Pure method / analysis-only studies ([`ticker/6981-2026-06.md`](ticker/6981-2026-06.md), [`ticker/nq-2026-07.md`](ticker/nq-2026-07.md)) omit What Worked / What I Got Wrong by rule.
