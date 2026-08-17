@@ -12,6 +12,8 @@ Anything **collected** — a crawled chat archive, a scraped post history, a dow
 
 **Why the scratchpad is disqualified.** It is session-scoped, and on macOS it sits under `/private/tmp`, which the OS purges on **every boot**. Measured on one user's machine while building an 84,601-comment corpus: six reboots in seven days, and the corpus — roughly 35 minutes of crawling — was destroyed twice, the second time immediately after the user asked to preserve it. Data you cannot cheaply re-fetch must not live somewhere the OS empties without warning.
 
+**One-off source documents count as collected material.** A PDF, screenshot or transcript handed over so a digest can be written from it is evidence, and the digest is worthless later if the source is gone. It goes to a corpus directory alongside crawled material — not next to the digest, which belongs in the personal knowledge dir.
+
 The scratchpad remains correct for genuinely disposable artifacts: a one-off diff, a scratch script, an intermediate nobody will want tomorrow. The test is simple — **if losing it would cost more than a minute to rebuild, it is not scratch.**
 
 ## Where it goes — resolution order
@@ -45,7 +47,12 @@ Write it **before** the crawl starts; update it when the crawl finishes.
 - **Coverage** — the date range of the *content* and the unit counts (threads, posts, comments, rows)
 - **Gaps** — every unit that could not be retrieved, with reason and count. **A corpus without a stated gap list cannot support a share-of-corpus computation** — see [`pitfalls/33-denominator-before-framing.md`](pitfalls/33-denominator-before-framing.md), which requires a denominator you can defend.
 - **Cursor** — the last id or timestamp reached, so the next run is a top-up rather than a full re-crawl
-- **Access constraints** — paid / subscriber-only / closed community, and the handling that follows from it
+- **`access_class`** — exactly one of:
+  - `public` — reachable without credentials by anyone (SEC filings, public timelines, news, open forums)
+  - `paid` — behind a paywall or a subscription you hold (subscriber newsletters, research portals, licensed data feeds)
+  - `closed-community` — posts by named individuals inside a members-only space they did not publish to the open web
+
+  A corpus may be both `paid` and `closed-community`; record both and treat it as the stricter.
 
 ## Resumability — mandatory above ~5 minutes of runtime
 
@@ -58,7 +65,9 @@ Write it **before** the crawl starts; update it when the crawl finishes.
 
 Much trading source material is **paid** (subscriber newsletters, research portals) or comes from **closed communities** whose participants are named individuals who never published to the open web.
 
-- Keep such a corpus in a **private** repository. A personal archive of content the user paid for is ordinary; redistributing it is not.
+**A repository's visibility is set by the most restrictive corpus it contains.** One `paid` or `closed-community` corpus makes the whole repo private. Do not downgrade genuinely `public` corpora by association — keep them in a separate public repo, so open data stays shareable and citable.
+
+- Keep `paid` and `closed-community` corpora in a **private** repository. A personal archive of content the user paid for is ordinary; redistributing it is not.
 - Never push a closed community's posts to a public repo, and never reproduce paid articles wholesale in a shipped deliverable — quote briefly, with attribution.
 - **`derived/` carries far less of this weight than `raw/`.** Counts, rankings, scored ledgers and price joins are the user's own analysis. When something has to be shared, share `derived/`.
 - State the constraint in MANIFEST.md so the next session does not have to re-derive it.

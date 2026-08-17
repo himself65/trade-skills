@@ -33,13 +33,9 @@ Accept either:
   README.md                     # One-line stub pointing to index.md (from template)
   substack/
     .gitkeep
-    raw/                        # User drops PDFs / screenshots here
-      .gitkeep
     _template.yaml              # YAML schema for parsed substack posts
   twitter/                      # Covers X / twitter
     .gitkeep
-    raw/
-      .gitkeep
     _template.yaml              # YAML schema for parsed X posts / threads
   writedowns/
     .gitkeep
@@ -47,6 +43,8 @@ Accept either:
   corpora/
     .gitkeep                    # Durable home for crawled / scraped corpora
 ```
+
+**No `raw/` inside the knowledge dir.** Source artifacts — the PDFs, screenshots and transcripts a digest is written from — are **evidence (L3)**, not judgement (L2). They land in a corpus directory, not beside the digest. This directory is auto-scanned every session and has to stay small enough to read; binaries in it are dead weight. If an existing knowledge dir still has `substack/raw/` or `twitter/raw/`, offer to move their contents to a corpus and drop the empty directories.
 
 **On `corpora/`**: this is where anything *collected* lands — a crawled chat archive, a scraped post history, a downloaded filing set — so that it never goes to a temp directory that the OS purges on boot. Each corpus is its own subdirectory with a `MANIFEST.md`, an append-only `raw/`, a regenerable `derived/`, and the `scripts/` that produced it. See [`../data-collection.md`](../data-collection.md).
 
