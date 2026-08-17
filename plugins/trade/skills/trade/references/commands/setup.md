@@ -44,7 +44,13 @@ Accept either:
   writedowns/
     .gitkeep
     _template.md                # Markdown template — user authors directly
+  corpora/
+    .gitkeep                    # Durable home for crawled / scraped corpora
 ```
+
+**On `corpora/`**: this is where anything *collected* lands — a crawled chat archive, a scraped post history, a downloaded filing set — so that it never goes to a temp directory that the OS purges on boot. Each corpus is its own subdirectory with a `MANIFEST.md`, an append-only `raw/`, a regenerable `derived/`, and the `scripts/` that produced it. See [`../data-collection.md`](../data-collection.md).
+
+If the user expects large collections (tens of MB and up), **ask whether they want a separate repository instead** and point `$TRADE_CORPUS_DIR` at it — a bulk archive inside a notes repo makes the notes repo unusable. `corpora/` is the default, not a requirement.
 
 **Idempotency rules:**
 

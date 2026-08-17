@@ -15,6 +15,8 @@ Ingest one external trading-knowledge item into the **user's personal knowledge 
 
 > **Destination — read first.** Output **always** lands in the user's personal knowledge dir (resolved the way `analysis` does: `$TRADE_KNOWLEDGE_DIR` → a `knowledge_path:` line in `CLAUDE.md` → `./knowledge/`). A third-party article digest is the *user's* collected research — it does **NOT** go in this repo's curated `references/` library, **even if the user says "our knowledge base."** `references/` is first-party content that ships to every installer; see the destination rule in `SKILL.md` → "Adding to the Knowledge Base." If you genuinely can't tell which is meant, ask before writing.
 
+> **Scope.** `/trade import` handles **one artifact at a time** — a file, a screenshot, a link. Anything that requires *crawling* (a whole chat archive, an account's full post history, a bulk filing pull) is a **corpus**, not an import: it goes to the durable corpus directory with a manifest and a resumable fetcher, never to a temp path. See [`../data-collection.md`](../data-collection.md), then digest from the corpus into a writedown as usual.
+
 ## Workflow
 
 ### 1. Resolve the source

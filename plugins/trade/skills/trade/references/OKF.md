@@ -51,6 +51,7 @@ Every concept file carries a YAML frontmatter block. OKF v0.1 requires only `typ
 | `Framework` | always-relevant decision framework | `strategies.md`, `gamma-framework.md`, `price-action-framework.md`, `overnight-futures-framework.md`, `parent-order-flow-framework.md`, `macro-framework.md` |
 | `Command Reference` | subcommand workflow | `commands/*.md` |
 | `Data Source` | provider access contract — availability gate, auth, endpoint map, field traps | `unusual-whales.md` |
+| `Convention` | working protocol the agent must follow — collection, storage, provenance | `data-collection.md` |
 | `Index` | directory navigation index | `index.md` (every directory) |
 | `Changelog` | chronological change history | `log.md` |
 | `Specification` | this document | `OKF.md` |
