@@ -14,7 +14,7 @@ description: >
   replacement, dealer GEX / gamma / options flow / dark pool, VIX / vol hedging,
   NQ / ES 夜盘 / overnight futures, position sizing / 仓位 / 止损 /
   leverage, or macro regime reads
-  (宏观, 晨报 morning note, 收盘复盘 EOD review, CPI / FOMC). 33 pitfalls,
+  (宏观, 晨报 morning note, 收盘复盘 EOD review, CPI / FOMC). 34 pitfalls,
   frameworks, cases. Unusual Whales / TradingView / Funda data; user-language
   replies, English files. 3 axes: vega vs IVR (p19), delta,
   asymmetry; bull-conviction >= 4 forbids Jade Lizard /

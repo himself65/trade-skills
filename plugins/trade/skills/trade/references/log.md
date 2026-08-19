@@ -10,6 +10,12 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-08-19 — Pitfall 34 (entry zone vs invalidation gap)
+
+- Added [`pitfalls/34-entry-zone-invalidation-gap.md`](pitfalls/34-entry-zone-invalidation-gap.md) — an entry zone and an invalidation level are two different prices; when the zone's lower bound touches the stop, the bottom of your own zone has a **zero-width stop**, `size = risk$ / stop distance` **diverges**, and the "enter" and "you are wrong" signals fire at the same price. Requires the gap test `(E_low − S) / ATR >= 0.5`, a published sizing table whose *bottom* row is the tell, and a deliberate resolution — lift the entry, deepen the stop, or split into tranches with separate stops. Generalized to any pair of opposite-action levels (add vs de-gear, take-profit zone vs trailing stop).
+- The failure is **structural, not careless**: the entry zone answers "where would I like to own this" and the invalidation answers "where is the thesis dead", and on a name fresh off a large directional move those two analyses land on the same price — the event-day low. It also survives a correct [pitfall 30](pitfalls/30-stop-distance-determines-size.md) derivation: the causal order can be right while the geometry makes it divide by zero.
+- Case: the [`ticker/nbis-2026-08.md`](ticker/nbis-2026-08.md) arc, where a plan named entry `$216–235` and invalidation `$216.11` in one message; a convertible-note delta hedge (~40–70% of ADV) drove the stock into the zone and through the low intraday five sessions later. Recorded there as Lesson 9.
+
 ## 2026-08-17 — Knowledge architecture: three tiers, and `access_class` per corpus
 
 - Replaced the two-branch destination rule in [`../SKILL.md`](../SKILL.md) with an explicit **three-tier architecture**. The boundary that matters is *how each tier is used*, not size: **L1 rules** (`references/`, public, ships to installers) are loaded by situation, **L2 judgement** (personal knowledge dir, private) is auto-scanned every `/trade analysis`, **L3 evidence** (durable corpus repos) is never auto-loaded and is queried on demand.

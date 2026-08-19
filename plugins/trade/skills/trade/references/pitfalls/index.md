@@ -1,14 +1,14 @@
 ---
 type: Index
 title: Trading Pitfalls — Index
-description: Lookup index for 33 analytical and risk-management biases to avoid in directional/options/futures trades; load individual files by trade type.
+description: Lookup index for 34 analytical and risk-management biases to avoid in directional/options/futures trades; load individual files by trade type.
 tags: [index, pitfalls, biases]
 timestamp: 2026-08-07T17:05:00Z
 ---
 
 # Trading Pitfalls
 
-33 analytical and risk-management biases to avoid when evaluating directional/options/futures trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
+34 analytical and risk-management biases to avoid when evaluating directional/options/futures trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
 
 ## Index
 
@@ -47,6 +47,7 @@ timestamp: 2026-08-07T17:05:00Z
 | 31 | HIGH | A per-trade risk cap is not risk management — without a daily loss limit, a consecutive-loss halt, and drawdown-tiered de-gearing, N disciplined stops in a row still ruin the account | `31-daily-loss-limit-drawdown-governor.md` |
 | 32 | HIGH | Check the multi-leg share before reading direction off an options block — spread legs print full premium with their own aggressor side and manufacture a net direction that isn't there | `32-multi-leg-share-before-block-direction.md` |
 | 33 | HIGH | Compute the subject's share of the corpus before framing a conclusion around it — the ticker that started the inquiry is a convenience sample; measure its share and re-derive the corpus boundary instead of inheriting it from the question | `33-denominator-before-framing.md` |
+| 34 | HIGH | An entry zone and an invalidation level are two different prices — when the zone's lower bound touches the stop, the bottom of your own zone has a zero-width stop, `size = risk$ / stop` diverges, and the buy signal and the wrong signal fire at the same price | `34-entry-zone-invalidation-gap.md` |
 
 ## Quick Lookup by Trade Type
 
@@ -84,6 +85,8 @@ timestamp: 2026-08-07T17:05:00Z
 - **M&A / merger-arb / sum-of-parts / stock-consideration / holdco-stub valuation**: **26** (share-anchored vs dollar-anchored — fixed reference price = fixed share count = marks to market; normalize the split basis; cross-check the tape) — also see [`../ticker/sats-2026-06.md`](../ticker/sats-2026-06.md)
 - **Stock split / pre- vs post-split share-count or price basis error**: **26**
 - **"Is this a discounted proxy for a private / to-be-listed company?"**: **26** + **23** (the lock/timing/going-concern discount is the risk premium)
+- **Writing a trade plan that carries both an entry zone and a stop / add-level vs de-gear-level / take-profit zone vs trailing stop**: **34** (measure the gap — `(E_low − S) / ATR >= 0.5`; publish the sizing table and check the *bottom* row, not the midpoint), **30**, **27**
+- **Post-event pullback where the attractive entry IS the event-day low**: **34** (the collision is structural — lift the entry, deepen the stop, or split into tranches; never publish both), **27**, **08**
 
 ## Adding a New Pitfall (OKF-conformant)
 
