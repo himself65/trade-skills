@@ -2,23 +2,23 @@
 name: trade
 description: >
   Personal US-equity options trading KB.
-  `/trade setup` scaffolds a knowledge dir (substack, X,
-  writedowns); `/trade import [file]` parses a raw file (PDF,
-  image) into YAML; `/trade report [tickers]`
-  reads today's 资金流向 (散户/大单/机构 from options + dark-pool
-  flow); `/trade analysis` (or any unknown first
-  word) runs the default flow. For earnings
-  plays, money-flow / 流入流出 / 母单吸筹·派发 checks, or ticker mentions.
-  Triggers on multi-leg options (Jade Lizard, bull put spread, iron
-  condor, diagonal, calendar), IV / IV crush, LEAPS / stock
-  replacement, dealer GEX / gamma / options flow / dark pool, VIX / vol hedging,
-  NQ / ES 夜盘 / overnight futures, position sizing / 仓位 / 止损 /
-  leverage, or macro regime reads
-  (宏观, 晨报 morning note, 收盘复盘 EOD review, CPI / FOMC). 34 pitfalls,
-  frameworks, cases. Unusual Whales / TradingView / Funda data; user-language
-  replies, English files. 3 axes: vega vs IVR (p19), delta,
-  asymmetry; bull-conviction >= 4 forbids Jade Lizard /
-  IC / Calendar (p24). Size = risk$ / stop, never reversed (p30).
+  `/trade setup` scaffolds a knowledge dir; `/trade import [file]`
+  parses a raw file (PDF/image) into YAML; `/trade report [tickers]`
+  reads today's 资金流向 (散户/大单/机构, options + dark pool);
+  `/trade daily <ticker>` is the one-name 看盘 read — 大单 block
+  filtering, volume vs own average, IV term/IVR, dealer GEX +
+  max pain, dark-pool baseline;
+  `/trade analysis` (or any unknown first word) runs the default
+  flow. For earnings plays, 今天有没有大单 / 成交量 / 流入流出 /
+  母单吸筹·派发, or ticker mentions. Triggers on multi-leg options
+  (Jade Lizard, bull put spread, iron condor, diagonal, calendar),
+  IV / IV crush, LEAPS, dealer GEX / gamma / options flow / dark
+  pool, VIX / vol hedging, NQ / ES 夜盘, position sizing / 仓位 /
+  止损 / leverage, macro (宏观, 晨报, 收盘复盘, CPI / FOMC).
+  35 pitfalls, frameworks, cases. Unusual Whales / TradingView /
+  Funda; user-language replies, English files. 3 axes: vega vs IVR
+  (p19), delta, asymmetry; conviction >= 4 forbids Jade Lizard /
+  IC / Calendar (p24). Size = risk$ / stop (p30).
 metadata:
   okf_version: "0.1"
   okf_conformance: references/OKF.md
@@ -103,15 +103,18 @@ Do not substitute yfinance, web search, or guesses. The MCP's options-chain IV i
 | `setup` | Scaffold a personal knowledge directory (`./knowledge/` by default) for substack posts, X / twitter threads, and writedowns | [references/commands/setup.md](references/commands/setup.md) |
 | `import <file_path>` | Parse one raw artifact (PDF, image, text) into structured YAML inside the knowledge directory | [references/commands/import.md](references/commands/import.md) |
 | `report [tickers | basket]` | Today's capital-flow / 资金流向 read (散户 / 大单 / 机构 proxied from Funda options premium-flow) across one or more names, as a comparison table + cross-section synthesis | [references/commands/report.md](references/commands/report.md) |
+| `daily <ticker>` | The repeatable one-name daily 看盘 read — tape, activity gate, 大单 block filter ladder, dark-pool baseline, IV term structure / percentile, dealer GEX + max pain, sector cross-check → a **named composite state** + falsification signposts | [references/commands/daily.md](references/commands/daily.md) |
 | `analysis [ticker | situation]` | Default trade analysis flow — preflight (knowledge dir, vega sanity, market data), then situation-specific loads | [references/commands/analysis.md](references/commands/analysis.md) |
 
 ### Routing rules
 
 1. **No argument** → render the commands table above as the user-facing menu and ask what they'd like to do.
-2. **First word matches `setup`, `import`, `report`, or `analysis`** → load the matching reference file and follow its instructions. Everything after the command name is the argument (file path, ticker(s), basket, situation, etc.).
+2. **First word matches `setup`, `import`, `report`, `daily`, or `analysis`** → load the matching reference file and follow its instructions. Everything after the command name is the argument (file path, ticker(s), basket, situation, etc.).
 3. **First word doesn't match** → default to `analysis`. Load [references/commands/analysis.md](references/commands/analysis.md) and treat the full input as the analysis target. This is the common case for natural language ("analyze NVDA", "structure for TSLA earnings", "sell put on APP", a single ticker, etc.).
 
-> **Capital-flow exception (route to `report`, not `analysis`):** if the request is for **today's money flow** — 资金流向 / 流入流出 / 净流入·净流出 / 散户·大单·机构 / capital flow / "who's buying or selling" across a name or basket — treat it as a [`report`](references/commands/report.md) request even when the first word isn't `report`. `analysis` is for structuring/deciding a trade; `report` is the standalone daily flow read.
+> **Daily-read exception (route to `daily`, not `analysis`):** if the request is *"what is `<TICKER>` doing today"* in any form — 今天有没有大单 / 成交量怎么样 / IV 拉升了吗 / max pain 在哪 / 现在呢 / "refresh" / "what's the state of X today" — run [`daily`](references/commands/daily.md) on that one name. `daily` is the state read; `analysis` is the decision. A follow-up *"现在呢"* inside the same session is a **delta re-run** of `daily`, not a fresh full report — see that file's Arguments section.
+
+> **Capital-flow exception (route to `report`, not `analysis`):** if the request is for **today's money flow across several names or a basket** — 资金流向 / 流入流出 / 净流入·净流出 / 散户·大单·机构 / capital flow / "who's buying or selling" — treat it as a [`report`](references/commands/report.md) request even when the first word isn't `report`. For a **single** name prefer [`daily`](references/commands/daily.md), which covers the same flow plus volatility, positioning and levels.
 
 > **Ingestion exception (don't mis-route to `analysis`):** if the input is an external **link / article / pasted research** the user wants you to read, study, digest, or save to the knowledge base (rather than analyze a live trade), treat it as an **ingestion** request — follow [references/commands/import.md](references/commands/import.md) and write the result to the **user's personal knowledge dir** (a writedown, or YAML for a raw artifact), **never** `references/`. See the destination rule under "Adding to the Knowledge Base."
 
@@ -131,7 +134,7 @@ This knowledge base is an **[Open Knowledge Format (OKF) v0.1](references/OKF.md
 | [references/parent-order-flow-framework.md](references/parent-order-flow-framework.md) | Parent-order (母单) net-flow × volatility × trend state matrix — 吸筹 / 动量 / 派发 / 风险释放 / 承接·换手. Load when classifying who is buying vs selling, reading 母单/大单 net flow, or calling accumulation vs distribution. |
 | [references/unusual-whales.md](references/unusual-whales.md) | Direct Unusual Whales access (Data Access tier 0). Load whenever a UW key / MCP is available and the question needs options flow, dark pool, dealer GEX, IV rank, intraday net-premium ticks, or exact multi-leg de-contamination — it carries the availability gate, endpoint map, entitlement gaps, and field traps. |
 | [references/data-collection.md](references/data-collection.md) | Durable corpus rule — where crawled or scraped data goes, required MANIFEST and gap accounting, resumable fetchers, and the private-repo line for paid or closed-community sources. Load before starting any collection that runs more than a few minutes. |
-| [references/pitfalls/index.md](references/pitfalls/index.md) | Index of 33 trading pitfalls — lookup by trade type. |
+| [references/pitfalls/index.md](references/pitfalls/index.md) | Index of 35 trading pitfalls — lookup by trade type. |
 | [references/pitfalls/NN-*.md](references/pitfalls/) | Individual pitfall rules — load when a relevant trade situation arises. The `analysis` reference has a full situation → pitfall map. |
 | [references/ticker/index.md](references/ticker/index.md) | Index of trade case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS). |
 | [references/ticker/&lt;name&gt;.md](references/ticker/) | Individual case study — load when the current setup pattern-matches a prior trade. |

@@ -1,7 +1,7 @@
 ---
 type: Index
 title: Trade Knowledge Base — Bundle Root
-description: OKF v0.1 entry point for the curated trade knowledge bundle — frameworks, 32 pitfalls, case studies, command references.
+description: OKF v0.1 entry point for the curated trade knowledge bundle — frameworks, 35 pitfalls, case studies, command references.
 tags: [index, okf, bundle-root, trading]
 timestamp: 2026-07-30T04:30:00Z
 ---
@@ -35,7 +35,7 @@ The curated, shared knowledge bundle behind the `trade` skill. It is an **[Open 
 
 ## Pitfalls
 
-**[`pitfalls/index.md`](pitfalls/index.md)** — 32 analytical and risk-management biases (`Trading Pitfall`), one file per rule, with lookup-by-trade-type. Load individual `pitfalls/NN-*.md` files when a matching situation arises.
+**[`pitfalls/index.md`](pitfalls/index.md)** — 35 analytical and risk-management biases (`Trading Pitfall`), one file per rule, with lookup-by-trade-type. Load individual `pitfalls/NN-*.md` files when a matching situation arises.
 
 ## Case studies
 
@@ -48,6 +48,7 @@ The curated, shared knowledge bundle behind the `trade` skill. It is an **[Open 
 | [`commands/setup.md`](commands/setup.md) | `/trade setup` | Scaffold the user's personal knowledge OKF bundle. |
 | [`commands/import.md`](commands/import.md) | `/trade import` | Parse one raw artifact into a structured knowledge file. |
 | [`commands/report.md`](commands/report.md) | `/trade report` | Daily capital-flow / 资金流向 read (散户 / 大单 / 机构 proxied from options premium-flow). |
+| [`commands/daily.md`](commands/daily.md) | `/trade daily` | One-name daily 看盘 read — tape, activity gate, block (大单) filter ladder, dark-pool baseline, IV term/percentile, dealer GEX + max pain → a named composite state + falsification signposts. |
 | [`commands/analysis.md`](commands/analysis.md) | `/trade analysis` | Default analysis flow — preflight + situation → reference map. |
 
 ## User-private knowledge bundle
