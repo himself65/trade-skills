@@ -8,7 +8,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # skill-lint 3.1.0+ also auto-detects .claude-plugin/marketplace.json and
       # fails on version drift against the plugin manifests it points at.
       - uses: himself65/skill-lint@v3
