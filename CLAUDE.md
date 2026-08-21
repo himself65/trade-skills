@@ -4,11 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-Personal options trading Claude Code plugin marketplace. Contains one plugin (`trade`) with a **single skill (`trade`) that exposes three subcommands** via the impeccable-style routing pattern:
+Personal options trading Claude Code plugin marketplace. Contains one plugin (`trade`) with a **single skill (`trade`) that exposes five subcommands** via the impeccable-style routing pattern:
 
 - `/trade setup` — asks the user where to scaffold a personal knowledge directory (default `./knowledge/`) and creates the substack / twitter / writedowns layout with templates
 - `/trade import <file_path>` — parses one raw artifact (PDF, screenshot, text) into structured YAML inside the knowledge directory
-- `/trade analysis [ticker | situation]` — default trade analysis flow. Triggered explicitly, or whenever the first argument doesn't match `setup` / `import` (so natural-language invocations like "analyze NVDA" route here)
+- `/trade report [tickers | basket]` — today's capital-flow / 资金流向 read across one or more names (散户 / 大单 / 机构 from options premium-flow + dark pool)
+- `/trade daily <ticker>` — the repeatable one-name daily 看盘 read: tape → activity gate → 大单 block filter ladder → dark-pool baseline → IV term/percentile → dealer GEX + max pain → sector → a **named composite state** + falsification signposts. Routes here for "今天有没有大单 / 成交量怎么样 / IV 拉升了吗 / max pain 在哪 / 现在呢"
+- `/trade analysis [ticker | situation]` — default trade analysis flow. Triggered explicitly, or whenever the first argument doesn't match `setup` / `import` / `report` / `daily` (so natural-language invocations like "analyze NVDA" route here)
 
 ## Repository structure
 
@@ -33,12 +35,13 @@ plugins/
           unusual-whales.md     # Data Access tier 0 — direct UW access when subscribed (gate, endpoints, traps)
           overnight-futures-framework.md
           parent-order-flow-framework.md
-          pitfalls/             # 32 trading pitfalls + index.md (one file per rule)
+          pitfalls/             # 35 trading pitfalls + index.md (one file per rule)
           ticker/               # Case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS) + index.md
           commands/             # Subcommand reference files (impeccable pattern)
             setup.md            # /trade setup workflow
             import.md           # /trade import workflow
-            report.md           # /trade report workflow (daily capital-flow read)
+            report.md           # /trade report workflow (multi-name capital-flow read)
+            daily.md            # /trade daily workflow (one-name daily state read)
             analysis.md         # default analysis preflight + situation→reference map
             templates/          # Files copied into the user's knowledge dir by /trade setup
               knowledge-index.md
@@ -61,8 +64,9 @@ The `references/` tree is an **Open Knowledge Format (OKF) v0.1** bundle: every 
 ### Routing rules (from SKILL.md)
 
 1. No argument → render the Commands table as a menu.
-2. First word matches `setup`, `import`, or `analysis` → load the matching `references/commands/<name>.md` and follow it.
+2. First word matches `setup`, `import`, `report`, `daily`, or `analysis` → load the matching `references/commands/<name>.md` and follow it.
 3. First word doesn't match → default to `analysis`; load `references/commands/analysis.md` and treat the full input as the analysis target.
+4. Two narrowing exceptions override rule 3: a **single-name "what is it doing today"** question routes to `daily`; a **multi-name money-flow sweep** routes to `report`.
 
 ### SKILL.md frontmatter
 

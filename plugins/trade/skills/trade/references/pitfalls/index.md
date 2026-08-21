@@ -1,14 +1,14 @@
 ---
 type: Index
 title: Trading Pitfalls — Index
-description: Lookup index for 34 analytical and risk-management biases to avoid in directional/options/futures trades; load individual files by trade type.
+description: Lookup index for 35 analytical and risk-management biases to avoid in directional/options/futures trades; load individual files by trade type.
 tags: [index, pitfalls, biases]
 timestamp: 2026-08-07T17:05:00Z
 ---
 
 # Trading Pitfalls
 
-34 analytical and risk-management biases to avoid when evaluating directional/options/futures trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
+35 analytical and risk-management biases to avoid when evaluating directional/options/futures trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
 
 ## Index
 
@@ -48,6 +48,7 @@ timestamp: 2026-08-07T17:05:00Z
 | 32 | HIGH | Check the multi-leg share before reading direction off an options block — spread legs print full premium with their own aggressor side and manufacture a net direction that isn't there | `32-multi-leg-share-before-block-direction.md` |
 | 33 | HIGH | Compute the subject's share of the corpus before framing a conclusion around it — the ticker that started the inquiry is a convenience sample; measure its share and re-derive the corpus boundary instead of inheriting it from the question | `33-denominator-before-framing.md` |
 | 34 | HIGH | An entry zone and an invalidation level are two different prices — when the zone's lower bound touches the stop, the bottom of your own zone has a zero-width stop, `size = risk$ / stop` diverges, and the buy signal and the wrong signal fire at the same price | `34-entry-zone-invalidation-gap.md` |
+| 35 | HIGH | Check for a corporate action before reading volume as positioning — convertible pricings, secondaries, exchange offers and index rebalances generate record block and dark-pool volume that carries no opinion, and the two halves of one deal often run opposite ways | `35-mechanical-volume-not-opinion.md` |
 
 ## Quick Lookup by Trade Type
 
@@ -86,6 +87,7 @@ timestamp: 2026-08-07T17:05:00Z
 - **Stock split / pre- vs post-split share-count or price basis error**: **26**
 - **"Is this a discounted proxy for a private / to-be-listed company?"**: **26** + **23** (the lock/timing/going-concern discount is the risk premium)
 - **Writing a trade plan that carries both an entry zone and a stop / add-level vs de-gear-level / take-profit zone vs trailing stop**: **34** (measure the gap — `(E_low − S) / ATR >= 0.5`; publish the sizing table and check the *bottom* row, not the midpoint), **30**, **27**
+- **Unusual block / dark-pool volume, "who bought that", 今天有没有大单**: **35** (check EDGAR for a convertible, secondary, exchange offer, rebalance or lock-up FIRST — settlement plumbing has no opinion in it; `qualified_contingent_trade`, repeated identical clip sizes and a 15-point jump in off-exchange share are the tells), **32** (filter multi-leg *and* stock-multi-leg before ranking), **02** (persistence), **17**
 - **Post-event pullback where the attractive entry IS the event-day low**: **34** (the collision is structural — lift the entry, deepen the stop, or split into tranches; never publish both), **27**, **08**
 
 ## Adding a New Pitfall (OKF-conformant)
