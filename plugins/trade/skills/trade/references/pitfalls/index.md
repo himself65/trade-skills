@@ -1,14 +1,14 @@
 ---
 type: Index
 title: Trading Pitfalls — Index
-description: Lookup index for 35 analytical and risk-management biases to avoid in directional/options/futures trades; load individual files by trade type.
+description: Lookup index for 36 analytical and risk-management biases to avoid in directional/options/futures trades; load individual files by trade type.
 tags: [index, pitfalls, biases]
 timestamp: 2026-08-07T17:05:00Z
 ---
 
 # Trading Pitfalls
 
-35 analytical and risk-management biases to avoid when evaluating directional/options/futures trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
+36 analytical and risk-management biases to avoid when evaluating directional/options/futures trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
 
 ## Index
 
@@ -49,6 +49,7 @@ timestamp: 2026-08-07T17:05:00Z
 | 33 | HIGH | Compute the subject's share of the corpus before framing a conclusion around it — the ticker that started the inquiry is a convenience sample; measure its share and re-derive the corpus boundary instead of inheriting it from the question | `33-denominator-before-framing.md` |
 | 34 | HIGH | An entry zone and an invalidation level are two different prices — when the zone's lower bound touches the stop, the bottom of your own zone has a zero-width stop, `size = risk$ / stop` diverges, and the buy signal and the wrong signal fire at the same price | `34-entry-zone-invalidation-gap.md` |
 | 35 | HIGH | Check for a corporate action before reading volume as positioning — convertible pricings, secondaries, exchange offers and index rebalances generate record block and dark-pool volume that carries no opinion, and the two halves of one deal often run opposite ways | `35-mechanical-volume-not-opinion.md` |
+| 36 | HIGH | IV Rank ranks vol against its own history — only the variance risk premium (implied vs *subsequent* realized) says whether selling it has edge; IVR picks the vega side, IV level sets what you collect, VRP decides if there is edge at all | `36-ivr-ranks-vol-vrp-prices-it.md` |
 
 ## Quick Lookup by Trade Type
 
@@ -74,6 +75,7 @@ timestamp: 2026-08-07T17:05:00Z
 - **Reading 大单 / block flow, "who bought the big print", ranking blocks by premium**: **32** (filter `multi_leg` and `stock_multi_leg` share BEFORE reading direction — an unfiltered tally sign-flips), **02**, **17** — also see [`../parent-order-flow-framework.md`](../parent-order-flow-framework.md), [`../commands/report.md`](../commands/report.md)
 - **Vol-thesis reasoning**: 16, 19, **21**
 - **Credit vs debit at low/high IV**: 7, 19, **21**, **24**
+- **About to SELL premium (short put, credit spread, covered call) — "IV is high, I should sell"**: **36** (IVR is a percentile, not a price — pull the *forward-aligned* IV-vs-subsequent-RV series and count the sign on the last ~10 observations; compute `P(S_T < breakeven)` under BOTH the IV sold and recent realized, and publish both), **19** (vega side), **7** (event crush is a different, dated edge that survives a negative VRP), **21**
 - **Post-earnings drift / continuation**: 9, 10, **20**
 - **Multi-week thematic re-rate / sector co-move**: **20**, **21**, **24**
 - **Pattern recognition vs flow data check**: **20**, **21** (always pull data before applying pattern)
