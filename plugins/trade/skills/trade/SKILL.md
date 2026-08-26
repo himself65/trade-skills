@@ -71,7 +71,7 @@ Do not substitute yfinance, web search, or guesses. The MCP's options-chain IV i
 ## Core Principles
 
 1. Tape > opinion > DCF for short-term trades
-2. High IV (IV Rank >70) → sell premium; low IV → buy premium
+2. High IV (IV Rank >70) → sell premium; low IV → buy premium — but **IVR picks the vega side only**. Whether the premium is worth selling is the variance risk premium (implied vs *subsequent* realized), and what you collect is the IV *level*. Three questions, three instruments (pitfall 36)
 3. Thesis invalidated → flip, don't hold
 4. Defined risk always — never naked on event trades
 5. "Priced in" is a percentage, not yes/no
