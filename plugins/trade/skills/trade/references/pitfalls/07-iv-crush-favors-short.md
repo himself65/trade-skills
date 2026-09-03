@@ -21,3 +21,5 @@ High IV Rank (>70) favors **selling** premium (credit spreads, short puts, iron 
 - Pre-earnings IV >100% → never buy naked options through the print
 
 Reference: `../ticker/app-2026-05.md` — IV Rank 50% pre-earnings + 150% on 5/8 weeklies → Jade Lizard captured the IV crush instead of paying it.
+
+**Cross-reference**: [Pitfall 37](37-iv-floor-with-catalyst-is-a-ramp-trade.md) — the ramp *before* the print is the other half of this rule; a long-vega position built at an IV floor is converted into a spread at T−1 so that this rule, not the crush, is what it meets on the print.

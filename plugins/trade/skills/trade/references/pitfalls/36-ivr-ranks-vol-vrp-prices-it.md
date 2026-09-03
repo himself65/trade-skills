@@ -46,3 +46,4 @@ The two facts are independent, and the four cells give opposite instructions:
 - [Pitfall 16](16-bsm-drift-vs-vol.md) — the same discipline applied to a drift claim rather than a vol claim
 - [`../ticker/nbis-2026-08.md`](../ticker/nbis-2026-08.md) — the arc this was found in; implied ran below realized both pre- and post-print
 - [`../unusual-whales.md`](../unusual-whales.md) §6 — the `unshifted_rv_date` alignment mechanic
+- [Pitfall 37](37-iv-floor-with-catalyst-is-a-ramp-trade.md) — the VRP must be measured over the window you will hold; a post-crush trailing VRP is the wrong window for a pre-event long-vega trade, whose sign is set by the name's own ramp history

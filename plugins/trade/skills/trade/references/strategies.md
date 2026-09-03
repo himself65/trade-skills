@@ -48,12 +48,13 @@ Tally before picking structure. Each = 1 point:
 | **High IV + manipulator-tape (APP/MSTR/COIN/PLTR)** | Jade Lizard + leveraged-proxy scalp | short | At credit | Manipulator tapes whip both directions — Jade Lizard fits because you genuinely have no directional edge. **NOT a substitute for "high IV + bullish".** |
 | **Low IV (IVR <30) + bullish** | **Bull call debit spread** | **long** | At long strike | IV mean-reverts upward, debit structures gain on both axes |
 | **Low IV (IVR <30) + bearish** | **Bear put debit spread** | **long** | At long strike | Same — buy IV, right direction |
+| **IV at its 1-year floor (percentile ≤10) + scheduled event 30–60 days out** | **Ramp trade**: long call 2–3 expiries out (long delta + long vega) converted to a spread at T−1; or a no-event/event calendar (positive carry); event-month naked buys only from ~T−15 | **long** | Uncapped until the T−1 conversion | The pre-event IV ramp is the base rate and the pre-event forward VRP flips negative — but event-month theta beats an average ramp at T−40. Pitfall 37 |
 | **High IV term skew (front >> back)** | Calendar / diagonal | mixed | At short strike (PIN) | Sell expensive front, own cheap back — ONLY if implied move < strike distance × 0.75 AND directional conviction <4 |
 | **Uncertain direction, want to bet on move** | Long straddle — ONLY if IV <50% | long | Uncapped | Otherwise IV crush kills you |
 
 **Sanity-check sequence before submitting any directional trade**:
 
-1. **Vega sign**: Long vega at IVR <30 ✓ or short vega at IVR >70 ✓
+1. **Vega sign**: Long vega at IVR <30 ✓ or short vega at IVR >70 ✓ — and at a 1-year floor with a scheduled event 30–60 days out, long vega is the *default*, expressed per pitfall 37 (carrier, clock, T−1 conversion), not as a naked event-month buy
 2. **Direction**: Net delta sign matches directional thesis
 3. **Asymmetry** (the often-missed step): Compute max P/L if your **high-conviction scenario** prints — bull case +20%, +35%, +50% for bull trades; bear case symmetric. If candidate structure shows FLAT or LOSS in your conviction scenario AND bull-conviction count ≥ 4 → REJECT and pick uncapped alternative.
 
