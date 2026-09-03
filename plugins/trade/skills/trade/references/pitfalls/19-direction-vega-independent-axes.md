@@ -43,3 +43,4 @@ Concrete failure (ISRG 2026-05-10): bullish view at IVR 26 → bull put credit s
 - Pitfall 7 — IV crush benefits short premium (the high-IV mirror of this rule)
 - Pitfall 6 — clever structures signal fading conviction (don't rationalize a wrong-vega pick with strike geometry)
 - `../strategies.md` — Structure-to-regime matching table
+- Pitfall 37 — at a 1-year IV floor with a scheduled event 30–60 days out, long vega is the default; the carrier / clock / T−1-conversion mechanics live there

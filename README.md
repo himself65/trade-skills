@@ -3,7 +3,7 @@
 > [!WARNING]
 > This project is for educational and informational purposes only. Nothing here constitutes financial advice. Always do your own research and consult a qualified financial advisor before making investment decisions.
 
-A personal Claude Code plugin marketplace housing one options-trading skill — backed by a curated [Open Knowledge Format (OKF)](plugins/trade/skills/trade/references/OKF.md) library of 32 pitfalls and case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS). Layout follows the [`himself65/finance-skills`](https://github.com/himself65/finance-skills) convention.
+A personal Claude Code plugin marketplace housing one options-trading skill — backed by a curated [Open Knowledge Format (OKF)](plugins/trade/skills/trade/references/OKF.md) library of 37 pitfalls and case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE). Layout follows the [`himself65/finance-skills`](https://github.com/himself65/finance-skills) convention.
 
 ## Quick Start
 
@@ -40,7 +40,7 @@ Multi-leg options trading assistant with concrete strikes, IV-aware structures, 
 
 | Skill | Description |
 |---|---|
-| [trade](plugins/trade/skills/trade/) | Options trading knowledge base — 32 pitfalls + case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS) + structure-to-regime framework. Lazy-loaded, OKF-conformant. |
+| [trade](plugins/trade/skills/trade/) | Options trading knowledge base — 37 pitfalls + case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE) + structure-to-regime framework. Lazy-loaded, OKF-conformant. |
 
 ## Open Knowledge Format
 

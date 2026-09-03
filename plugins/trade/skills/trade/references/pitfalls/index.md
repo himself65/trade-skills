@@ -1,14 +1,14 @@
 ---
 type: Index
 title: Trading Pitfalls — Index
-description: Lookup index for 36 analytical and risk-management biases to avoid in directional/options/futures trades; load individual files by trade type.
+description: Lookup index for 37 analytical and risk-management biases to avoid in directional/options/futures trades; load individual files by trade type.
 tags: [index, pitfalls, biases]
 timestamp: 2026-08-07T17:05:00Z
 ---
 
 # Trading Pitfalls
 
-36 analytical and risk-management biases to avoid when evaluating directional/options/futures trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
+37 analytical and risk-management biases to avoid when evaluating directional/options/futures trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
 
 ## Index
 
@@ -50,6 +50,7 @@ timestamp: 2026-08-07T17:05:00Z
 | 34 | HIGH | An entry zone and an invalidation level are two different prices — when the zone's lower bound touches the stop, the bottom of your own zone has a zero-width stop, `size = risk$ / stop` diverges, and the buy signal and the wrong signal fire at the same price | `34-entry-zone-invalidation-gap.md` |
 | 35 | HIGH | Check for a corporate action before reading volume as positioning — convertible pricings, secondaries, exchange offers and index rebalances generate record block and dark-pool volume that carries no opinion, and the two halves of one deal often run opposite ways | `35-mechanical-volume-not-opinion.md` |
 | 36 | HIGH | IV Rank ranks vol against its own history — only the variance risk premium (implied vs *subsequent* realized) says whether selling it has edge; IVR picks the vega side, IV level sets what you collect, VRP decides if there is edge at all | `36-ivr-ranks-vol-vrp-prices-it.md` |
+| 37 | HIGH | An IV floor with a dated catalyst 30–60 days out is a long-vega regime — express it as a ramp trade (carrier 2–3 expiries out or a no-event/event calendar, event month only from ~T−15, convert to a spread at T−1), never as "buy options and wait"; a post-crush trailing VRP is not evidence against it | `37-iv-floor-with-catalyst-is-a-ramp-trade.md` |
 
 ## Quick Lookup by Trade Type
 

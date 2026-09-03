@@ -73,10 +73,10 @@ Full trigger list in the `description` field of `SKILL.md`.
 
 | File | Description |
 |---|---|
-| `references/pitfalls/index.md` | Index of 32 trading pitfalls (severity-tagged, lookup by trade type) |
+| `references/pitfalls/index.md` | Index of 37 trading pitfalls (severity-tagged, lookup by trade type) |
 | `references/pitfalls/NN-*.md` | One file per pitfall — loaded only when relevant |
 | `references/ticker/index.md` | Index of closed trade case studies |
-| `references/ticker/<name>.md` | One file per case study (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS) |
+| `references/ticker/<name>.md` | One file per case study (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE) |
 
 ### Templates (used by `/trade setup`)
 
@@ -90,6 +90,6 @@ Full trigger list in the `description` field of `SKILL.md`.
 ## Coverage
 
 - 32 analytical and risk-management pitfalls covering consensus anchoring, flow misreading, multi-leg block-flow contamination, IV crush traps, T+1 reverse drift, LEAPS vega tax, manipulator-tape recognition, channel-check sample bias, AH order-book fades, demand-IV vs event-IV, vega-axis sanity checks, retest entry confirmation, macro-right/trade-wrong, second-derivative reading, stop-distance-determines-size, daily-loss-limit / drawdown governors, and more.
-- 14 detailed case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS) showing thesis evolution, structure selection, and post-mortem lessons.
+- 15 detailed case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE) showing thesis evolution, structure selection, and post-mortem lessons.
 - Structure-to-regime quick reference covering high/low IV regimes paired with directional / neutral / manipulator-tape views.
 - Personal-knowledge layer for the user's own substack / X / writedown collection, auto-loaded on every analysis.
