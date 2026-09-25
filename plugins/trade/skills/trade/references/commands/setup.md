@@ -108,11 +108,11 @@ Report to the user which files were edited (project `.gitignore`, global gitigno
 
 After scaffolding, explain the two ingestion paths:
 
-**External content (substack, X) — drop & import:**
+**External content (substack, X, research) — import:**
 
-1. Drop the raw artifact (PDF / screenshot / `.txt`) into `substack/raw/` or `twitter/raw/`.
-2. Run `/trade import <file_path>` to parse it into structured YAML alongside the parsed-content folder.
-3. Optional: move or delete the raw artifact after import. Nothing deletes raw files automatically.
+1. Run `/trade import <file_path | url>` on the PDF / screenshot / `.txt` wherever it already is, or on a link.
+2. The import writes structured YAML (or a writedown digest for research) into the knowledge dir and keeps a copy of the source file in a corpus under `corpora/` (or `$TRADE_CORPUS_DIR`).
+3. The original is left in place; delete it yourself once you no longer need it.
 
 **User-authored writedowns — direct markdown:**
 

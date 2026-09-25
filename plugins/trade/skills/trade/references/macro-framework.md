@@ -42,7 +42,7 @@ Every analysis opens by answering: what the dominant marginal variable is **now*
 - The previous phase's dominant variable has usually been superseded (2023's hike expectations → 2026's oil supply shock / AI capex). Re-ask the question monthly, not once a cycle.
 - Multiple central banks mean multiple independent paths, not one "global rates" object (Fed holding longer, ECB hiking and BoJ hiking price very differently).
 
-**Self-check**: ☐ the opening paragraph names a single dominant variable (not a list of data points) ☐ the chain variable → transmission → repriced asset is drawn ☐ it says which markets *must* respond if the call is right ☐ it says which markets, by not confirming, weaken the call
+**Complete when**: ☐ the opening paragraph names a single dominant variable (not a list of data points) ☐ the chain variable → transmission → repriced asset is drawn ☐ it says which markets *must* respond if the call is right ☐ it says which markets, by not confirming, weaken the call
 
 ## 2. The micro-to-macro jigsaw
 
@@ -65,7 +65,7 @@ For each micro signal, state which macro variable it leads, the typical lead, wh
 
 **The industry-scale test**: when a sector-level boom appears (AI power demand, memory pricing, defense), force the question *"are these orders / this capex large enough to move the aggregate?"* If yes, you have a genuine micro-to-macro chain (AI power demand → grid and generation capex → total fixed investment → GDP composition → pull on rates and inflation), not just a narrative. Cross-check the single-name side with [`parent-order-flow-framework.md`](parent-order-flow-framework.md) before assuming the theme is still uncrowded.
 
-**Self-check**: ☐ at least 1–2 micro leading indicators support the conclusion ☐ for each signal you can state what it leads and by how long ☐ the signals confirm each other rather than conflict ☐ you checked whether the market already reacted
+**Complete when**: ☐ at least 1–2 micro leading indicators support the conclusion ☐ for each signal you can state what it leads and by how long ☐ the signals confirm each other rather than conflict ☐ you checked whether the market already reacted
 
 ## 3. Pricing before forecasting (the highest-value stage)
 
@@ -90,7 +90,7 @@ Then quantify the gap in the *market's* own units: "dot-plot median implies unch
 
 **A central bank's minutes are a reaction function, not a forecast.** Your job isn't guessing the next move — it's judging whether the market's pricing of the *reaction function* matches the one the bank just described. A mismatch is the trade.
 
-**Self-check**: ☐ you stated the corresponding market-implied level (which instrument, what value) ☐ you quantified the gap ☐ you accepted that no gap means no alpha ☐ you named a catalyst and a time window
+**Complete when**: ☐ you stated the corresponding market-implied level (which instrument, what value) ☐ you quantified the gap ☐ you accepted that no gap means no alpha ☐ you named a catalyst and a time window
 
 ## 4. The change in the change (second derivative)
 
@@ -107,7 +107,7 @@ The canonical asymmetries all live in the derivative, not the level:
 
 This is pitfall [`29`](pitfalls/29-second-derivative-not-level.md), and the most common failure when reading a data print live.
 
-**Self-check**: ☐ level and direction are separated ☐ you asked about acceleration ☐ the surprise is broad-based rather than a single line item ☐ transitory versus persistent is classified ☐ you checked whether it's priced
+**Complete when**: ☐ level and direction are separated ☐ you asked about acceleration ☐ the surprise is broad-based rather than a single line item ☐ transitory versus persistent is classified ☐ you checked whether it's priced
 
 ## 5. Price reaction as evidence
 
@@ -125,7 +125,7 @@ Price action is **evidence**, not just the scoreboard. Ask every session:
 
 **Regime-change tell**: when a catalyst that *should* work stops working (hikes that no longer cool an economy running into supply constraints — an "inelastic" economy), that is not the market being stupid; it is the transmission channel changing. Re-run §1 instead of doubling down. Related: [`pitfalls/04`](pitfalls/04-flip-on-invalidation.md) (precondition broken → flip), [`pitfalls/03`](pitfalls/03-tape-over-dcf.md) (tape outranks the macro opinion), [`pitfalls/20`](pitfalls/20-post-earnings-momentum-vs-fade.md) (pattern versus actual flow).
 
-**Self-check**: ☐ the last 3–5 catalysts produced price reactions consistent with the view ☐ if not, you decided whether it's timing, expression, or the view itself ☐ leadership is broadening rather than narrowing ☐ repeated catalysts are not producing decaying reactions
+**Complete when**: ☐ the last 3–5 catalysts produced price reactions consistent with the view ☐ if not, you decided whether it's timing, expression, or the view itself ☐ leadership is broadening rather than narrowing ☐ repeated catalysts are not producing decaying reactions
 
 ## 6. Cross-asset confirmation (without forcing causality)
 
@@ -135,7 +135,7 @@ If the call is "the Fed holds longer", then the curve, the dollar, commodities a
 
 When leaning on a single leading market, say why it leads, which markets should eventually confirm, the expected lag, and what non-confirmation would mean. **Don't bolt two markets together just to fill the template.**
 
-**Self-check**: ☐ confirmed in ≥2 asset families ☐ you distinguished true causality from shared-cause coincidence ☐ any divergence is attributed (lag / distortion / thesis broken) ☐ you named the leading market and who should follow it
+**Complete when**: ☐ confirmed in ≥2 asset families ☐ you distinguished true causality from shared-cause coincidence ☐ any divergence is attributed (lag / distortion / thesis broken) ☐ you named the leading market and who should follow it
 
 ## 7. Best expression and position risk (the options-book bridge)
 
@@ -154,7 +154,7 @@ Then hand off: the vega sign comes from the IV regime, not from the macro view (
 
 **Lifecycle tagging** — every live macro judgment carries a stage, and size follows the stage: **watching (small) → developing → confirmed (add) → crowded (trim) → deteriorating → broken (out)**. High conviction is not the same as a big position: size must reflect liquidity, vol, correlation to the rest of the book, and how *clearly falsifiable* the thesis is. A thesis with no clean invalidation level cannot be sized up, however convincing it reads.
 
-**Self-check**: ☐ you listed ≥3 candidate expressions ☐ the chosen one is the least contaminated ☐ the lifecycle stage is tagged and size matches it ☐ the invalidation condition is written down (trim or flip) ☐ size reflects vol, correlation and liquidity — not just conviction
+**Complete when**: ☐ you listed ≥3 candidate expressions ☐ the chosen one is the least contaminated ☐ the lifecycle stage is tagged and size matches it ☐ the invalidation condition is written down (trim or flip) ☐ size reflects vol, correlation and liquidity — not just conviction
 
 ---
 

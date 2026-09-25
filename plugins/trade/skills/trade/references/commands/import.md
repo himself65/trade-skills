@@ -13,9 +13,9 @@ Ingest one external trading-knowledge item into the **user's personal knowledge 
 - **A clean platform post** (a substack post, or an X / twitter post / thread), as a raw artifact *or* a link → parse per the matching template into **structured YAML** in `substack/` or `twitter/`.
 - **Other external research** (a macro / brokerage report, a blog or WeChat article, a pasted thesis — anything you must *read and synthesize* rather than mechanically extract) → write a **writedown** markdown digest in `writedowns/`.
 
-> **Destination — read first.** Output **always** lands in the user's personal knowledge dir (resolved the way `analysis` does: `$TRADE_KNOWLEDGE_DIR` → a `knowledge_path:` line in `CLAUDE.md` → `./knowledge/`). A third-party article digest is the *user's* collected research — it does **NOT** go in this repo's curated `references/` library, **even if the user says "our knowledge base."** `references/` is first-party content that ships to every installer; see the destination rule in `SKILL.md` → "Adding to the Knowledge Base." If you genuinely can't tell which is meant, ask before writing.
+> **Destination — read first.** Output **always** lands in the user's personal knowledge dir (resolved the way `analysis` does: `$TRADE_KNOWLEDGE_DIR` → a `knowledge_path:` line in `CLAUDE.md` → `./knowledge/`). A third-party article digest is the *user's* collected research — it does **NOT** go in this repo's curated `references/` library, **even if the user says "our knowledge base."** `references/` is first-party content that ships to every installer; see the destination rule in `SKILL.md` → "Knowledge Architecture." If you genuinely can't tell which is meant, ask before writing.
 
-> **Keep the source.** After parsing or digesting an artifact, the original file goes to a **corpus directory (L3)**, not into the knowledge dir next to the digest — a digest whose source has vanished cannot be re-checked. Record which corpus in the digest's source line.
+> **Keep the source.** After parsing or digesting a file, copy it into a **corpus directory (L3)** — resolved per [`../data-collection.md`](../data-collection.md) — not into the knowledge dir next to the digest; a digest whose source has vanished cannot be re-checked. Record the copy's path in the output (`raw_artifact:` in YAML, the source line of a writedown). The original stays where the user put it.
 >
 > **Scope.** `/trade import` handles **one artifact at a time** — a file, a screenshot, a link. Anything that requires *crawling* (a whole chat archive, an account's full post history, a bulk filing pull) is a **corpus**, not an import: it goes to the durable corpus directory with a manifest and a resumable fetcher, never to a temp path. See [`../data-collection.md`](../data-collection.md), then digest from the corpus into a writedown as usual.
 
@@ -40,12 +40,14 @@ If a file doesn't exist or the type isn't supported, stop and report — do not 
 
 ### 2. Locate the knowledge directory
 
-Find the user's knowledge tree by checking, in order:
+An explicit `--knowledge-dir=<path>` flag wins (accept it as an optional inline flag). Otherwise resolve it the way `analysis` does — first hit wins:
 
-1. If the source path is inside a recognizable `*/{substack,twitter}/raw/` subtree, walk up to that knowledge root.
-2. Otherwise, check `./knowledge/` in the cwd.
-3. Otherwise, walk up from cwd looking for a directory containing `index.md` (or a legacy `README.md`) with `# Personal Trade Knowledge` as the heading.
-4. If none found, stop and tell the user to run `/trade setup` first (or pass `--knowledge-dir=<path>` — accept this as an optional inline flag if the user provides it).
+1. `$TRADE_KNOWLEDGE_DIR`, if set.
+2. A `knowledge_path:` line in the nearest `CLAUDE.md` (project root, then `~/.claude/CLAUDE.md`) — this is how a knowledge dir kept in a different repo is found.
+3. `./knowledge/` in the cwd.
+4. The source path sits inside a legacy `*/{substack,twitter}/raw/` subtree → walk up to that knowledge root.
+5. Walk up from cwd looking for a directory containing `index.md` (or a legacy `README.md`) with `# Personal Trade Knowledge` as the heading.
+6. None found → stop and tell the user to run `/trade setup` first.
 
 ### 3. Detect content kind
 
@@ -80,7 +82,7 @@ Field rules:
 - **Tickers**: lowercase, comma-separated string, includes every ticker mentioned in the body.
 - **Body / posts text**: verbatim from source. Drop nav, ads, paywall stubs, footer, UI chrome. Preserve paragraph breaks. Use YAML `|` block scalar for multi-line strings.
 - **Media description**: if charts / screenshots are embedded, describe what they show in plain English. The model can't recall the image later from a YAML file.
-- **Provenance**: always fill `raw_artifact:` with the source path (relative to the knowledge root) and `ingested_at:` with today's date in `YYYY-MM-DD`.
+- **Provenance**: fill `raw_artifact:` with the path of the source copy kept in the corpus (see *Keep the source* above; `null` for a link-only import, where `url:` is the provenance) and `ingested_at:` with today's date in `YYYY-MM-DD`.
 
 ### 5. Choose the output path
 
@@ -111,7 +113,7 @@ Report to the user:
 - Any parsing concerns (multi-page PDF truncation, blurry image regions, ambiguous tickers)
 - Suggested next step: review the YAML, fill `why_saved` / `my_take` / `related` if not done
 
-Do **not** delete or move the raw artifact. The user manages that themselves.
+Leave the original file where it was — the kept copy lives in the corpus, and deleting the original is the user's call.
 
 ## Research-digest path (writedown)
 
@@ -120,7 +122,7 @@ When step 3 classifies the item as **research** (not a clean substack/X post), d
 1. **Read fully** (file or URL via the web reader). Distill the argument; don't translate verbatim.
 2. **Output path**: `<knowledge>/writedowns/YYYY-MM-DD-<topic-slug>.md` (kebab-case, lowercase, ASCII). Never overwrite — suffix / ask.
 3. **Frontmatter** (per `<knowledge>/writedowns/_template.md`): `source: writedown`, `date`, `tickers` (lowercase, comma-separated — the names the thesis bears on, for the `analysis` scan to match), `tags`, `kind: research`, `status: watching`.
-4. **Write the file in English** — knowledge-dir files are git content (see `SKILL.md` User Profile); the chat reply around the import mirrors the user's language. Writedowns dated before 2026-07-30 are in Chinese; do not rewrite them, just match the structure. Keep the source's own title, author name, and untranslatable domain terms as-is, glossed on first use.
+4. **Write the file in English** — knowledge-dir files are git content (see `SKILL.md` User Profile); the chat reply around the import mirrors the user's language. Existing writedowns in another language stay as they are — match their structure; don't translate them. Keep the source's own title, author name, and untranslatable domain terms as-is, glossed on first use.
 5. **Structure**: source attribution + a **"data is the source's, not independently verified"** caveat → TL;DR (the one-sentence bet + summary) → the argument (faithful to the source) → **signposts** (how to verify it plays out) → **bear case / what would falsify it** (always include — the user builds both sides) → trading implications **clearly marked as your synthesis, not the source's claims** → related cross-links (to `references/` pitfalls/case-studies and other local knowledge).
    - **For a macro / brokerage research report, add a seven-stage scorecard** — mark ✓ / △ / ✗ against the stages in [`../macro-framework.md`](../macro-framework.md) (marginal driver · micro-to-macro · pricing · second derivative · price reaction · cross-asset · expression) and name the stage it skipped. Even top-tier houses rarely cover all seven, and **the missing stage is where the user's own edge goes** — most often 5 (price reaction) and 7 (expression and sizing). Where the report states a policy path, note the contemporaneous market-implied level so the gap is on record (pitfall [`28`](../pitfalls/28-macro-right-trade-wrong.md)).
 6. **Index**: add a one-line entry to the knowledge dir's `README.md` (or `index.md`) under a "Macro thesis digests" / research section, mirroring existing entries.
