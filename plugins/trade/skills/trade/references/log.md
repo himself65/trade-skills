@@ -10,6 +10,18 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-09-24 — `/trade setup`: the knowledge dir is tracked by default, no more global gitignore entry; release v2.17.0
+
+- **Setup contradicted the tier model.** Step 4 unconditionally appended an unanchored `knowledge/` to the user's **global** gitignore, and the same pattern to the `.gitignore` of whatever repo setup ran in, on the premise that the knowledge dir "stays local". The rest of the skill says the opposite. L2 is private and usually a *separate* repo found via `knowledge_path` ([`../SKILL.md`](../SKILL.md) → Knowledge Architecture). [`commands/import.md`](commands/import.md) never commits *because* the personal knowledge repo is version-tracked on purpose. And [`data-collection.md`](data-collection.md) sets a repo's visibility by the corpora it holds, a rule that only matters for a tracked repo.
+- **The failure is silent.** Reproduced in a scratch repo: with the global line present, a notes repo still shows edits to files it already tracks, but a **new** writedown never appears in `git status` and `git add -A` skips it. Only an explicit `git add <path>` complains. A notes repo that keeps its bundle in a `knowledge/` subdirectory looks healthy while new notes never reach a commit. The unanchored pattern also hid every `knowledge/` directory in every other repo on the machine. And the project-level entry resolved the repo from the cwd rather than from the target, so a target in a different repo got a path relative to the wrong one.
+- **One model now** ([`commands/setup.md`](commands/setup.md) step 4). The knowledge dir is private and version-tracked by default, and setup decides per target from the repo that contains it:
+  - **No repo**: write nothing.
+  - **A repo meant to hold the notes**: write nothing, then probe with `git check-ignore -v --no-index` that no rule hides the dir. Without `--no-index`, tracked files are skipped.
+  - **A repo not meant to hold them** (a code repo, a public repo, a clone of this plugin): add an anchored `/<path>/` to that clone's `.git/info/exclude`, never the committed `.gitignore`, and warn if notes are already tracked there.
+
+  Setup asks which case applies instead of inferring it, never writes the global gitignore, and offers to delete the entries older versions wrote under their `never commit` comment.
+- **Template.** The "Git tracking" section of the scaffolded [`commands/templates/knowledge-index.md`](commands/templates/knowledge-index.md) now describes the same model and says how to find a rule that hides a new note. Its last `raw/` leftover, a `knowledge/*/raw/` tip (the v2.16.0 audit fixed the rest of the template), is replaced by the corpus rule: a large corpus goes to its own repo via `$TRADE_CORPUS_DIR`. Step 1 of setup also warns when the cwd is a code repo, because the default path then puts the notes where step 4 excludes them.
+
 ## 2026-09-24 — Prompt audit for Claude Opus 5.5; release v2.16.0
 
 - **Why an audit, not a trim.** Current models follow instructions closely and literally, so text written as emphasis for older models — or left behind when a later rule superseded it — now over-applies or contradicts the newer rule. The audit looked for specific dated instructions; length was not the target (SKILL.md body −87 words, description 1019 → 874 of 1024 characters, always-on cost ~510 → ~430 tokens per session).
