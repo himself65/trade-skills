@@ -15,10 +15,8 @@ description: >
   IV / IV crush, LEAPS, dealer GEX / gamma / options flow / dark
   pool, VIX / vol hedging, NQ / ES 夜盘, position sizing / 仓位 /
   止损 / leverage, macro (宏观, 晨报, 收盘复盘, CPI / FOMC).
-  37 pitfalls, frameworks, cases. Unusual Whales / TradingView /
-  Funda; user-language replies, English files. 3 axes: vega vs IVR
-  (p19), delta, asymmetry; conviction >= 4 forbids Jade Lizard /
-  IC / Calendar (p24). Size = risk$ / stop (p30).
+  Pitfall library, frameworks and case studies; data from Unusual
+  Whales / TradingView / Funda.
 metadata:
   okf_version: "0.1"
   okf_conformance: references/OKF.md
@@ -40,7 +38,7 @@ Active US-equity options trader's personal knowledge base. Concrete strikes, pro
 
 - Trades multi-leg options on mega-cap US equities (earnings plays, event-driven)
 - Fluent in Greeks, IV term structure, IV crush dynamics
-- **Chat replies mirror the user's language, message by message** — they write Chinese, reply in Chinese; they switch to English, reply in English (rule set 2026-07-30, superseding the earlier English-only preference from the same day). **Anything written to a git-tracked file stays English**: this repo (`references/` — pitfalls, case studies, frameworks, `log.md`) and the personal knowledge dir (writedowns, digests, parsed YAML). Chinese in **trigger positions** (this file's `description`, the `commands/analysis.md` situation rows, `macro-framework.md` §9 mode triggers) stays as-is — those are input matchers, not output language. Keep proper nouns untranslated when citing them (document titles, author handles, and domain terms like 母单 / 格局, glossed on first use).
+- **Chat replies mirror the user's language, message by message** — they write Chinese, reply in Chinese; they switch to English, reply in English. **Anything written to a git-tracked file stays English**: this repo (`references/` — pitfalls, case studies, frameworks, `log.md`) and the personal knowledge dir (writedowns, digests, parsed YAML). Chinese in **trigger positions** (this file's `description`, the `commands/analysis.md` situation rows, `macro-framework.md` §9 mode triggers) stays as-is — those are input matchers, not output language. Keep proper nouns untranslated when citing them (document titles, author handles, and domain terms like 母单 / 格局, glossed on first use).
 
 ## Data Access
 
@@ -49,10 +47,10 @@ Active US-equity options trader's personal knowledge base. Concrete strikes, pro
 Then, in order:
 
 1. **TradingView MCP (`finance-data-providers:tradingview-mcp`) FIRST** for quotes, TA readouts / indicator ratings, multi-timeframe alignment, screeners / scans, gainers / losers, futures (NQ / ES 夜盘 overview + movers — UW futures endpoints 500, so 夜盘 stays here), pre/after-market prices, unusual options activity, and quick options-chain looks. Headless — no desktop app, no login, no CDP relaunch that closes the user's charts.
-2. **TradingView desktop reader (`finance-data-providers:tradingview-reader`)** when you need what the MCP can't give: options chain **with greeks** (delta / gamma / theta / vega), per-strike IV skew, expiries with contract counts, watchlists, alerts, TV news, chart screenshots. With tier 0 live, most greeks / skew pulls no longer need this trip.
+2. **TradingView desktop reader (`finance-data-providers:tradingview-reader`)** when you need what the MCP can't give: options chain **with greeks** (delta / gamma / theta / vega), per-strike IV skew, expiries with contract counts, watchlists, alerts, TV news, chart screenshots. With tier 0 live, UW serves most greeks / skew pulls, so this trip is rarely needed.
 3. **Funda AI API (`finance-data-providers:funda-data`)** for everything fundamental or flow-based: fundamentals, filings, transcripts, analyst estimates, options premium flow / GEX (the `report` command's fallback backbone), supply chain, sentiment, Polymarket, congressional trades, economics.
 
-**Collected data is never written to the scratchpad or any temp path.** A crawl, a scraped post history, a downloaded filing set, or a price series pulled for reuse goes to the durable corpus directory (`$TRADE_CORPUS_DIR` → `<knowledge>/corpora/` → **ask**), with a MANIFEST written first, an append-only `raw/`, a regenerable `derived/`, and a **resumable** fetcher. Temp directories are purged on every OS boot — an 84,601-comment corpus was lost twice that way. See [references/data-collection.md](references/data-collection.md). The scratchpad stays correct for genuinely disposable artifacts; the test is whether losing it would cost more than a minute to rebuild.
+**Collected data is never written to the scratchpad or any temp path.** A crawl, a scraped post history, a downloaded filing set, or a price series pulled for reuse goes to the durable corpus directory (`$TRADE_CORPUS_DIR` → `<knowledge>/corpora/` → **ask**), with a MANIFEST written first, an append-only `raw/`, a regenerable `derived/`, and a **resumable** fetcher. Temp directories are purged on every OS boot. See [references/data-collection.md](references/data-collection.md). The scratchpad stays correct for genuinely disposable artifacts; the test is whether losing it would cost more than a minute to rebuild.
 
 Do not substitute yfinance, web search, or guesses. The MCP's options-chain IV is Yahoo-sourced — fine for chain shape / OI / volume, not for IV-rank or skew decisions (use UW `iv-rank`, or tier 2 / 3).
 
@@ -64,14 +62,14 @@ Do not substitute yfinance, web search, or guesses. The MCP's options-chain IV i
 
 **Always quantify**: concrete strikes, bid/ask, probability tables, max profit/loss. No vague "consider a bull put spread".
 
-**Be self-critical**: when pushed back, update estimates and say so. Don't defensively reinforce prior calls.
+**Be self-critical, not suggestible**: when pushed back, re-check the specific claim against the data. If the pushback holds, update the estimate and say what changed; if it doesn't, keep the call and show why. Pushback here is sometimes a deliberate stress test and often a real correction — pitfalls 36 and 37 both came from one — so the evidence decides, not the pushback.
 
 **Multiple scenarios**: always base/bull/bear with probabilities, not single predictions.
 
 ## Core Principles
 
 1. Tape > opinion > DCF for short-term trades
-2. High IV (IV Rank >70) → sell premium; low IV → buy premium — but **IVR picks the vega side only**. Whether the premium is worth selling is the variance risk premium (implied vs *subsequent* realized), and what you collect is the IV *level*. Three questions, three instruments (pitfall 36)
+2. **IV Rank picks the vega side** — high (IVR >70) → sell premium, low → buy premium — and nothing more. Whether the premium is worth selling is the variance risk premium (implied vs *subsequent* realized), and what you collect is the IV *level*. Three questions, three instruments (pitfalls 19, 36)
 3. Thesis invalidated → flip, don't hold
 4. Defined risk always — never naked on event trades
 5. "Priced in" is a percentage, not yes/no
@@ -82,19 +80,9 @@ Do not substitute yfinance, web search, or guesses. The MCP's options-chain IV i
 10. **Margin over level** — level, direction and acceleration are three different facts; "weak but improving" beats "strong but decelerating" (pitfall 29)
 11. **Stop distance sets size, never the reverse** — invalidation level → stop distance → `size = risk$ ÷ (stop × point value)`; a stop under 0.2 ATR is noise, and a per-trade cap without a daily loss limit is not risk management (pitfalls 30, 31)
 
-## Structure-to-Regime Quick Reference
+## Structure Selection
 
-> ⚠️ **Three axes must match: Direction, Vega, AND Asymmetry.** See `references/strategies.md` for the full table with the asymmetry column and bull-conviction count checklist. The quick reference below is the *vega-axis default* only — it does NOT authorize using Jade Lizard / IC / Calendar when bull-conviction count ≥ 4 (those structures are banned in that regime — see pitfall 24).
-
-| Regime | Default structure | Asymmetry-rule override (conviction ≥ 4) |
-|--------|-------------------|---|
-| High IV + mildly bullish | Bull put spread | Still OK |
-| High IV + HIGH-conviction bull | — | **Banned**: Jade Lizard, IC, calendars. Use: naked short put, bull put spread, risk reversal, or long call |
-| High IV + bearish | Bear call spread | (Symmetric for bear conviction) |
-| High IV + neutral (no directional edge) | Iron condor | OK only when no directional conviction |
-| High IV + manipulator-tape (APP/MSTR/COIN/PLTR) | Jade Lizard + leveraged-proxy scalp | OK for whipsaw tapes where you genuinely have no directional edge; NOT a substitute for "high IV + bullish" |
-| Low IV + directional | Debit spread | Long-vega structure inherently uncapped on upside if single-leg |
-| Front-week IV >> back-month | Diagonal / calendar | **Banned if conviction ≥ 4** — pin structures fail in directional tails |
+A structure has to match three independent axes: **direction** (net delta vs the thesis), **vega** (IV Rank picks the side — pitfall 19), and **asymmetry** (it has to pay in the scenario you are most convinced of — pitfall 24). The regime → structure table, the bull-conviction checklist and the banned-structure list live in [references/strategies.md](references/strategies.md), which `analysis` always loads; Hard Rules 2 and 3 say when they gate a recommendation.
 
 ## Commands
 
@@ -112,13 +100,13 @@ Do not substitute yfinance, web search, or guesses. The MCP's options-chain IV i
 2. **First word matches `setup`, `import`, `report`, `daily`, or `analysis`** → load the matching reference file and follow its instructions. Everything after the command name is the argument (file path, ticker(s), basket, situation, etc.).
 3. **First word doesn't match** → default to `analysis`. Load [references/commands/analysis.md](references/commands/analysis.md) and treat the full input as the analysis target. This is the common case for natural language ("analyze NVDA", "structure for TSLA earnings", "sell put on APP", a single ticker, etc.).
 
-> **Daily-read exception (route to `daily`, not `analysis`):** if the request is *"what is `<TICKER>` doing today"* in any form — 今天有没有大单 / 成交量怎么样 / IV 拉升了吗 / max pain 在哪 / 现在呢 / "refresh" / "what's the state of X today" — run [`daily`](references/commands/daily.md) on that one name. `daily` is the state read; `analysis` is the decision. A follow-up *"现在呢"* inside the same session is a **delta re-run** of `daily`, not a fresh full report — see that file's Arguments section.
+> **Daily-read exception (route to `daily`, not `analysis`):** if the request is *"what is `<TICKER>` doing today"* in any form — 今天有没有大单 / 成交量怎么样 / IV 拉升了吗 / max pain 在哪 / 现在呢 / "refresh" / "what's the state of X today" — run [`daily`](references/commands/daily.md) on that one name. `daily` is the state read; `analysis` is the decision. A follow-up *"现在呢"* inside the same session is a **delta re-run** of `daily`, not a fresh full report — see that file's Arguments section. A question about **one specific print or spike** — 刚才那笔是什么 / 刚才的巨量是什么 / "what was that block" — is a lookup, not a state read: answer it first from the minute bars and the print itself, then offer the full `daily` run (same Arguments section).
 
 > **Capital-flow exception (route to `report`, not `analysis`):** if the request is for **today's money flow across several names or a basket** — 资金流向 / 流入流出 / 净流入·净流出 / 散户·大单·机构 / capital flow / "who's buying or selling" — treat it as a [`report`](references/commands/report.md) request even when the first word isn't `report`. For a **single** name prefer [`daily`](references/commands/daily.md), which covers the same flow plus volatility, positioning and levels.
 
-> **Ingestion exception (don't mis-route to `analysis`):** if the input is an external **link / article / pasted research** the user wants you to read, study, digest, or save to the knowledge base (rather than analyze a live trade), treat it as an **ingestion** request — follow [references/commands/import.md](references/commands/import.md) and write the result to the **user's personal knowledge dir** (a writedown, or YAML for a raw artifact), **never** `references/`. See the destination rule under "Adding to the Knowledge Base."
+> **Ingestion exception (don't mis-route to `analysis`):** if the input is an external **link / article / pasted research** the user wants you to read, study, digest, or save to the knowledge base (rather than analyze a live trade), treat it as an **ingestion** request — follow [references/commands/import.md](references/commands/import.md) and write the result to the **user's personal knowledge dir** (a writedown, or YAML for a raw artifact), **never** `references/`. See the destination rule under "Knowledge Architecture."
 
-The always-on content above (Hard Rule, User Profile, Data Access, Response Rules, Core Principles, Structure-to-Regime) applies to every command. Subcommand references add their specific workflow on top.
+The always-on content above (Hard Rules, User Profile, Data Access, Response Rules, Core Principles, Structure Selection) applies to every command. Subcommand references add their specific workflow on top.
 
 ## Always-relevant frameworks
 
@@ -138,7 +126,7 @@ This knowledge base is an **[Open Knowledge Format (OKF) v0.1](references/OKF.md
 | [references/pitfalls/NN-*.md](references/pitfalls/) | Individual pitfall rules — load when a relevant trade situation arises. The `analysis` reference has a full situation → pitfall map. |
 | [references/ticker/index.md](references/ticker/index.md) | Index of trade case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE). |
 | [references/ticker/&lt;name&gt;.md](references/ticker/) | Individual case study — load when the current setup pattern-matches a prior trade. |
-| `<knowledge>/` (user-chosen path, scaffolded by `/trade setup`) | User-owned documents. `substack/*.yaml` and `twitter/*.yaml` are parsed external content; `writedowns/*.md` are user-authored notes; any other subdir (e.g. a curated module) is loaded too. `*/raw/` holds source PDFs / screenshots and is normally not loaded. Checked at the start of every `analysis` — see `references/commands/analysis.md` for the full situation → reference map. |
+| `<knowledge>/` (user-chosen path, scaffolded by `/trade setup`) | User-owned documents. `substack/*.yaml` and `twitter/*.yaml` are parsed external content; `writedowns/*.md` are user-authored notes; any other subdir (e.g. a curated module) is loaded too, except `corpora/` (L3 evidence — queried on demand, never scanned) and any legacy `*/raw/` folder of source files. Checked at the start of every `analysis` — see `references/commands/analysis.md` for the full situation → reference map. |
 
 ## Knowledge Architecture
 
@@ -163,7 +151,7 @@ Three tiers. The boundary that matters is **how each is used**, not how big it i
 
 ### L1 — curated library (this skill; public, ships to all installers)
 
-- **New pitfall**: copy `references/pitfalls/_template.md` → `references/pitfalls/NN-slug.md` (fill the OKF frontmatter per [references/OKF.md](references/OKF.md)), add a row to `references/pitfalls/index.md` and a dated entry to `references/log.md`
+- **New pitfall**: copy `references/pitfalls/_template.md` → `references/pitfalls/NN-slug.md` (fill the OKF frontmatter per [references/OKF.md](references/OKF.md)), add a row to `references/pitfalls/index.md`, route it from the matching situation row in `references/commands/analysis.md`, and add a dated entry to `references/log.md`
 - **New case study** (the user's *own* trade): copy `references/ticker/_template.md` → `references/ticker/<ticker>-YYYY-MM.md` (fill the OKF frontmatter), add a row to `references/ticker/index.md` and a dated entry to `references/log.md`
 - **Strategy update**: edit `references/strategies.md` directly — it stays flat because it's always-relevant framework
 

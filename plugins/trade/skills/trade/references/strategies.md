@@ -14,7 +14,7 @@ Decision framework for matching options structures to market state.
 
 ## Three Axes Must Match: Direction, Vega, AND Asymmetry
 
-> ⚠️ **Pitfall 19** named Direction + Vega as two independent axes. **Pitfall 24** added a third: **Asymmetry / upside profile**. A structure that matches direction + vega can still be catastrophically wrong if it caps upside in the very scenario you predicted. Jade Lizard, Iron Condor, Calendar, and Diagonal all CAP upside — they are neutral or pin structures. When bull-conviction count ≥ 4 (see below), they are forbidden regardless of vega-axis fit.
+> Direction and vega are independent axes (**pitfall 19**), and **asymmetry / upside profile** is the third (**pitfall 24**): a structure that matches direction + vega can still be catastrophically wrong if it caps upside in the very scenario you predicted. Jade Lizard, Iron Condor, Calendar, and Diagonal all cap upside — they are neutral or pin structures. When the bull-conviction count is ≥ 4 (see below), they are forbidden regardless of vega-axis fit.
 
 ### Bull-Conviction Count (mandatory pre-structure check)
 
@@ -56,7 +56,7 @@ Tally before picking structure. Each = 1 point:
 
 1. **Vega sign**: Long vega at IVR <30 ✓ or short vega at IVR >70 ✓ — and at a 1-year floor with a scheduled event 30–60 days out, long vega is the *default*, expressed per pitfall 37 (carrier, clock, T−1 conversion), not as a naked event-month buy
 2. **Direction**: Net delta sign matches directional thesis
-3. **Asymmetry** (the often-missed step): Compute max P/L if your **high-conviction scenario** prints — bull case +20%, +35%, +50% for bull trades; bear case symmetric. If candidate structure shows FLAT or LOSS in your conviction scenario AND bull-conviction count ≥ 4 → REJECT and pick uncapped alternative.
+3. **Asymmetry** (the often-missed step): Compute max P/L if your **high-conviction scenario** prints — bull case +20%, +35%, +50% for bull trades; bear case symmetric. If the candidate is flat or losing in your conviction scenario and the bull-conviction count is ≥ 4, reject it and pick an uncapped alternative.
 
 Defaulting to the wrong vega side is the most common framework-violation failure mode. Defaulting to a **capped-upside structure when bull conviction is high** is the *second* most common — and is more expensive because the move usually prints precisely when conviction is high.
 

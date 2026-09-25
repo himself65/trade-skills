@@ -28,6 +28,7 @@ Route a multi-name money-flow sweep to `report`. Route "should I put this trade 
 - **Two or three tickers** — run the full flow per name, then add a one-paragraph relative read. Beyond three names it is a `report`, not a `daily`.
 - **No ticker** — ask which name, or offer the tickers named in the last few turns.
 - **A re-run inside the same session** (*"现在呢"*, "refresh") — do **not** re-render the whole report. Produce a **delta table** against your own prior read (metric | prior value | now | Δ), then only expand the rows that actually moved. Always restate the timestamp of both reads.
+- **One print or spike, not the day** (*"刚才那笔是什么"*, *"刚才的巨量是什么"*, "what was that block") — a lookup, and the user is waiting on it. Answer within one or two pulls: find the minute in `/api/stock/{t}/ohlc/1m`, then the print in `/api/darkpool/{t}` or `/api/option-trades` — time, size, price vs NBBO, `trade_code` — and whether lit volume followed. Hold *who* and *why* until the Step 0 corporate-action gate has run, and offer the full ladder rather than running it unasked.
 
 ---
 
@@ -35,12 +36,12 @@ Route a multi-name money-flow sweep to `report`. Route "should I put this trade 
 
 1. **Clock.** Get the current ET time and the session phase: pre-market / RTH / after-hours / closed. Every number below is *incomplete* intraday, and the reply must say so. **Never** present an intraday aggregate as an end-of-day number.
 2. **Is today an expiry?** Third Friday = monthly opex; also check weeklies. Opex changes the meaning of almost every metric in this file (see the opex box in Step 6).
-3. **Corporate-action gate — MANDATORY, run this BEFORE reading any block.** See [`../pitfalls/35-mechanical-volume-not-opinion.md`](../pitfalls/35-mechanical-volume-not-opinion.md). Pull the issuer's recent filings from EDGAR:
+3. **Corporate-action gate — run this before reading any block.** See [`../pitfalls/35-mechanical-volume-not-opinion.md`](../pitfalls/35-mechanical-volume-not-opinion.md). Pull the issuer's recent filings from EDGAR:
    ```
    https://data.sec.gov/submissions/CIK##########.json      (company facts / recent filings)
    https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&company=<name>&output=atom   (find the CIK)
    ```
-   with a real `User-Agent`. Read the **exhibit** (EX-99.1), not just the form cover. A convertible note, secondary, ATM program, exchange offer, index rebalance, lock-up expiry or M&A consideration **generates enormous volume that carries no opinion**. Attributing that volume to positioning is the single most expensive error this command exists to prevent.
+   with a `User-Agent` that includes a contact email — SEC's fair-access policy refuses anonymous agents, `Archives/` exhibit fetches included. Read the **exhibit** (EX-99.1), not just the form cover. A convertible note, secondary, ATM program, exchange offer, index rebalance, lock-up expiry or M&A consideration **generates enormous volume that carries no opinion**. Attributing that volume to positioning is the single most expensive error this command exists to prevent.
 4. **Knowledge dir.** Resolve it per [`analysis.md`](analysis.md) preflight step 1 and load any file matching the ticker — the user's own prior read on this name is context you must not re-derive or contradict silently.
 5. **Data path.** Run the Unusual Whales availability gate in [`../unusual-whales.md`](../unusual-whales.md) §1. UW direct is the assumed path for this command; several steps below have **no** substitute without it, and the reply must name the path either way.
 
@@ -68,7 +69,7 @@ Volume vs `avg30_volume` (from `/api/stock/{t}/info`), stated as a **multiple**,
 
 **This gate runs before anything else in the flow section, and its answer is often the whole answer.**
 
-- **< 0.5×** on both legs → this is a **quiet, information-poor day**. Say so first and loudly. Nothing you find in a 0.4× tape is a signal, and hunting for one manufactures a story. A large fraction of "今天有没有大单" questions terminate correctly right here.
+- **< 0.5×** on both legs → this is a **quiet, information-poor day**. Say so first. Nothing you find in a 0.4× tape is a signal, and hunting for one manufactures a story. A large fraction of "今天有没有大单" questions terminate correctly right here.
 - **0.5–1.5×** → normal. Proceed, but require the block work to clear the filters below.
 - **> 2×** → something is happening. Now the corporate-action gate from Step 0 earns its keep.
 
@@ -87,7 +88,7 @@ Then read direction off the same complete aggregate — never off the alert list
 
 Pull `/api/stock/{t}/flow-alerts?limit=200` **and** the raw tape `/api/option-trades?ticker_symbol={t}&min_premium=500000&limit=100`. Then run every candidate down this ladder. **A print that fails any rung cannot be read directionally** — report it as activity and move on.
 
-### Rung 1 — multi-leg contamination ([pitfall 32](../pitfalls/32-multi-leg-share-before-block-direction.md), MANDATORY)
+### Rung 1 — multi-leg contamination ([pitfall 32](../pitfalls/32-multi-leg-share-before-block-direction.md))
 
 Keep a print as *outright* only when **both**:
 - `multi_leg_volume / volume < 30%` (alert-level: `has_multileg == false` && `has_singleleg == true`)

@@ -55,7 +55,7 @@ plugins/
 
 The pattern is modeled on [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable):
 
-1. **SKILL.md is the single entry point.** It carries the trigger description, the always-on context (Hard Rule, Response Rules, Core Principles, Structure-to-Regime matrix, Data Access), a Commands table, and Routing rules.
+1. **SKILL.md is the single entry point.** It carries the trigger description, the always-on context (Hard Rules, Response Rules, Core Principles, the structure-selection rule, Data Access), a Commands table, and Routing rules.
 2. **Subcommand-specific instructions live in `references/commands/<name>.md`** and are lazy-loaded only when the user invokes that subcommand.
 3. **Reference content (pitfalls, case studies, frameworks) is lazy-loaded** too — `analysis.md` carries the situation → reference map so the model only reads the specific pitfall / case study files the current question needs.
 
@@ -92,10 +92,10 @@ Version lives in `plugins/trade/plugin.json`, not in SKILL.md frontmatter.
 
 ### User-private knowledge (lives in a user-chosen directory, default `./knowledge/`, never committed back to this repo)
 
-- Set up by running `/trade setup` — asks for the target path, then scaffolds `<knowledge>/{substack,twitter,writedowns}/` with templates plus an `index.md` (OKF index, with a `README.md` stub). The user dir is itself an OKF bundle.
-- `substack/` and `twitter/` each have a `raw/` subdir for source PDFs / screenshots; `/trade import <file_path>` parses raw artifacts into structured YAML.
+- Set up by running `/trade setup` — asks for the target path, then scaffolds `<knowledge>/{substack,twitter,writedowns,corpora}/` with templates plus an `index.md` (OKF index, with a `README.md` stub). The user dir is itself an OKF bundle.
+- `/trade import <file_path>` parses a source artifact (PDF / screenshot / text) into structured YAML in `substack/` or `twitter/` and keeps a copy of the source in a corpus (L3 — `corpora/` or `$TRADE_CORPUS_DIR`). There are no `raw/` folders inside the knowledge dir; setup offers to migrate legacy ones.
 - `writedowns/` holds user-authored markdown notes (no parsing needed) **and digests of shared external research** — when the user hands over a macro/brokerage report, article, or link to study or save to the knowledge base, `/trade import <file_path | url>` reads & synthesizes it into a `writedowns/YYYY-MM-DD-<topic>.md` digest (source attribution + not-verified caveat + bear case), in the user's language. See `references/commands/import.md`.
-- The `analysis` flow auto-loads matching `.yaml` / `.md` files when relevant to the current trade question (it ignores `*/raw/` unless asked to ingest).
+- The `analysis` flow auto-loads matching `.yaml` / `.md` files when relevant to the current trade question (it skips `corpora/`, which is queried on demand, and any legacy `*/raw/` folder).
 - Templates copied into the user's knowledge dir live under `plugins/trade/skills/trade/references/commands/templates/`.
 
 ## Plugin system

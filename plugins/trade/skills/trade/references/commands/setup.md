@@ -118,9 +118,9 @@ After scaffolding, explain the two ingestion paths:
 
 **External content (substack, X, research) — import:**
 
-1. Run `/trade import <file_path | url>` on the PDF, screenshot, text file or link, wherever it sits. There is no drop folder.
-2. A clean substack or X post is parsed into structured YAML in `substack/` or `twitter/`. Anything that has to be read and synthesized (a research report, an article) becomes a digest in `writedowns/`.
-3. The source file is evidence (L3). It is filed in a corpus (`$TRADE_CORPUS_DIR` if set, else `corpora/`) rather than beside the parsed file, and the parsed file records where. Nothing deletes it.
+1. Run `/trade import <file_path | url>` on the PDF / screenshot / `.txt` wherever it already is, or on a link.
+2. The import writes structured YAML (or a writedown digest for research) into the knowledge dir and keeps a copy of the source file in a corpus under `corpora/` (or `$TRADE_CORPUS_DIR`).
+3. The original is left in place; delete it yourself once you no longer need it.
 
 **User-authored writedowns — direct markdown:**
 

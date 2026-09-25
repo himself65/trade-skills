@@ -49,7 +49,7 @@ Resolution: absorption resolves via low-volume upside drift out of the range (va
 1. **Parent-order reconstruction is noisy.** Any 母单 feed is an algorithmic re-aggregation of child prints. Large ≠ institutional ≠ smart (pitfall 2). Only **multi-day, direction-consistent** net flow carries signal; treat any single-day reading as noise.
 2. **Passive accumulation is invisible to aggressor-signed flow.** Net inflow/outflow is usually signed by the aggressor side. Real accumulation is often institutions **posting passive bids and letting sellers hit them** — which prints as "sell aggressor" and *understates* cell 1. So allow "flow ~flat but price grinding up on low volume" to count as 稳健吸筹.
 3. **Flow is coincident, not leading.** The matrix names the current state; it does not time the transition. State → action needs the entry-confirmation layer (pitfall 27) on top.
-4. **口径 differs by market.** CN/HK L2 母单 reconstructions, US options premium-flow proxies (`commands/report.md`), and broker three-layer splits are different instruments with different blind spots — state which one you're reading. In this stack, the daily US read comes from Funda options premium-flow (see `report.md` 口径 block), which is itself dealer-/positioning-driven (pitfall 17).
+4. **口径 differs by market.** CN/HK L2 母单 reconstructions, US options premium-flow proxies (`commands/report.md`), and broker three-layer splits are different instruments with different blind spots — state which one you're reading. In this stack, the daily US read comes from options premium-flow — Unusual Whales direct when subscribed, the Funda proxy otherwise (see the `commands/report.md` 口径 block) — which is itself dealer-/positioning-driven (pitfall 17).
 
 ---
 

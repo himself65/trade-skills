@@ -34,7 +34,7 @@ Runs whenever the user invokes `/trade report ...`, or asks for 资金流向 / �
 **Check Unusual Whales first** — run the availability gate in [`../unusual-whales.md`](../unusual-whales.md) §1 (UW MCP in session, else `UNUSUAL_WHALES_API_KEY` from env → repo-root `.env` → the knowledge dir's repo `.env`).
 
 - **UW reachable → use §2a.** UW is the upstream source of the Funda options fields, so the same metrics come back without the proxy or its shared-credit ceiling, plus intraday ticks and the dark-pool layer.
-- **UW not reachable → use §2b (Funda).** Resolve the Funda key per the `finance-data-providers:funda-data` skill (env `FUNDA_API_KEY`, else `.env` at the repo root; **this user's `.env` names it `FUNDA_AI_API_KEY`** — see `SKILL.md` → Data Access). When inside a worktree, the key lives in the **main repo** `.env`.
+- **UW not reachable → use §2b (Funda).** Resolve the Funda key per the `finance-data-providers:funda-data` skill: env `FUNDA_API_KEY`, else the repo-root `.env`, where the variable may be named `FUNDA_AI_API_KEY` instead — check both names. When inside a worktree, the key lives in the **main repo** `.env`.
 - Either way: for more than ~3 tickers, batch them in one small script (loop + aggregate) rather than dozens of separate calls. **State in the reply which path produced the numbers** — the two are not interchangeable in resolution or coverage.
 
 ### 2a. Pull, per ticker — Unusual Whales path (preferred)
@@ -46,7 +46,7 @@ Runs whenever the user invokes `/trade report ...`, or asks for 资金流向 / �
 | 1 | `/api/stock/{t}/options-volume` | same daily aggregate as the Funda row below (`bullish_premium`, `net_call_premium`, ask/bid-side volumes, avg volumes, OI) | **核心** — 大单/机构 direction |
 | 2 | `/api/stock/{t}/net-prem-ticks` | 5-min intraday series: `net_call_premium`, `net_put_premium`, `net_delta`, ask/bid-side volume | **intraday shape** — morning-vs-close accumulation or distribution, which the daily aggregate flattens |
 | 3 | `/api/stock/{t}/flow-alerts` or `/api/option-trades/flow-alerts?ticker_symbol={t}&min_premium=50000` | big tickets, each carrying `has_multileg` / `has_singleleg` / `has_sweep` / `has_floor`, `total_ask_side_prem` vs `total_bid_side_prem`, `volume_oi_ratio`, `iv_start`→`iv_end` | 大单 detail — the per-alert `has_multileg` flag is the pitfall-32 filter applied at the print level |
-| 4 | `/api/option-trades/multi-leg` (+ `/multi-leg/{id}/legs`) | spread packages and their legs | **MANDATORY before ranking any block** — pitfall 32; here the de-contamination is exact, not a share estimate |
+| 4 | `/api/option-trades/multi-leg` (+ `/multi-leg/{id}/legs`) | spread packages and their legs | **Run before ranking any block** — pitfall 32; here the de-contamination is exact, not a share estimate |
 | 5 | `/api/darkpool/{t}` | off-exchange prints: `size`, `price`, `premium`, `executed_at`, `nbbo_bid`/`nbbo_ask`, `market_center` | the off-exchange block layer; direction is an **inference** from print vs NBBO — label it |
 | 6 | `/api/stock/{t}/ohlc/1d` (or the TradingView MCP quote) | day % change | 涨跌% |
 | 7 | `/api/stock/{t}/info` | `next_earnings_date`, `announce_time` (pre/postmarket), `beta`, `sector`, `avg30_volume` | 财报日 + basket context |
