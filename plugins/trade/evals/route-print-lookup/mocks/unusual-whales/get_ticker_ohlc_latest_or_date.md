@@ -1,0 +1,4 @@
+{"ticker":"NBIS","data":[
+{"date":"2026-09-24","open":"246.10","high":"249.19","low":"241.62","close":"243.19","volume":"12695550","iv_rank":"38.2","volatility_30":"0.842","implied_move_perc_30":"0.241","call_volume":"141220","put_volume":"98430","avg_7_day_call_volume":"182300","avg_7_day_put_volume":"133100","avg_30_day_call_volume":"168400","avg_30_day_put_volume":"121900","bullish_premium":"61240000","bearish_premium":"57810000","net_premium":"3430000"},
+{"date":"2026-09-23","open":"238.40","high":"247.02","low":"236.95","close":"245.88","volume":"18412300","iv_rank":"41.5","volatility_30":"0.861","implied_move_perc_30":"0.247","call_volume":"204880","put_volume":"126310","avg_7_day_call_volume":"179900","avg_7_day_put_volume":"131400","avg_30_day_call_volume":"166100","avg_30_day_put_volume":"120800","bullish_premium":"88410000","bearish_premium":"63020000","net_premium":"25390000"}
+]}

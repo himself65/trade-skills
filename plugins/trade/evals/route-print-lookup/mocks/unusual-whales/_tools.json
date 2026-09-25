@@ -1,0 +1,144 @@
+{
+  "tools": [
+    {
+      "name": "get_ticker_candles_by_range",
+      "description": "Get intraday OHLC candles for a ticker at 1m, 5m, 10m, 15m, 30m, 1h, or 4h.\nSupports date range filtering with interval (start anchor), end_interval (end anchor), and session (regular, premarket, postmarket).\nUse relative date anchors only for interval and end_interval: 1d, 5d, 2w, 1m, 3m, 1y, or ytd. Do not pass YYYY-MM-DD dates.\nReturns payload with data and is_index. Each candle in data has: o, h, l, c (numbers), start and end (ISO 8601, UTC), vol (volume traded during the candle), tv (cumulative session volume at the candle end), market (\"r\" regular, \"pr\" premarket, \"po\" postmarket), ticker.\nUse this for intraday chart windows and bar-by-bar analysis.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Ticker symbol (e.g., SPY).", "minLength": 1, "maxLength": 24 },
+          "range": { "type": "string", "enum": ["1m", "5m", "10m", "15m", "30m", "1h", "4h"], "description": "Candle aggregation range in minutes/hours, not months. Use lowercase values only." },
+          "interval": { "type": "string", "enum": ["1d", "5d", "2w", "1m", "3m", "1y", "ytd"], "description": "Required relative start date anchor such as 1d, 5d, 2w, 1m, 3m, 1y, or ytd. Do not pass YYYY-MM-DD." },
+          "end_interval": { "type": "string", "enum": ["0d", "1d", "5d", "2w", "1m", "3m", "1y", "ytd"], "description": "Required relative end date anchor. An independent upper bound relative to now, not a duration after interval." },
+          "session": { "type": "string", "enum": ["regular", "premarket", "postmarket"], "description": "Optional session filter." }
+        },
+        "required": ["ticker", "range", "interval", "end_interval"]
+      }
+    },
+    {
+      "name": "get_dark_pool_trades",
+      "description": "Screen and rank off-exchange (dark pool/TRF) stock prints by size, premium, market-cap, and session context.\nUse this for dark-pool block-flow discovery and filtering, not listed-options contract activity.\nSupports session scoping (market_times) and relative-size filters versus daily/30-day volume.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker_symbol": { "type": "string" },
+          "limit": { "type": "number", "description": "Default 50" },
+          "order": { "type": "string", "enum": ["prem", "size", "volume", "executed_at"], "description": "Sort key. Defaults to executed_at when omitted." },
+          "newer_than": { "type": "string", "description": "Lower bound timestamp (ISO-8601)." },
+          "older_than": { "type": "string", "description": "Upper bound timestamp (ISO-8601)." },
+          "min_size": { "type": "string", "description": "Shares" },
+          "min_premium": { "type": "string", "description": "price * size" },
+          "min_size_daily_perc": { "type": "string", "description": "% of daily vol (-1 to 1)" },
+          "intraday_only": { "type": "boolean" },
+          "market_times": { "type": "array", "items": { "type": "string", "enum": ["regular", "outside_regular"] }, "maxItems": 1, "description": "Optional session filter." },
+          "trade_codes": { "type": "array", "items": { "type": "string", "enum": ["derivative_priced", "intermarket_sweep", "qualified_contingent_trade"] } },
+          "sale_cond_codes": { "type": "array", "items": { "type": "string", "enum": ["contingent_trade", "odd_lot_execution", "prior_reference_price", "average_price_trade"] } }
+        }
+      }
+    },
+    {
+      "name": "get_option_trades",
+      "description": "Get executed options trades/prints with tape-level filters, including unusual activity, sweeps, and large trades.\nUse this for transaction-level flow analysis, not for contract-ranking screens.\nReturns matching prints sorted by the requested field and direction.\nDo not assume option volume equals open interest or new positioning; describe high-volume activity as unconfirmed until the next OI update.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker_symbol": { "type": "string", "description": "Ticker symbol(s), typically comma-separated (e.g., AAPL,MSFT).", "minLength": 1, "maxLength": 128 },
+          "limit": { "type": "number", "description": "Maximum number of rows to return (default 200).", "minimum": 1, "maximum": 1000 },
+          "order": { "type": "string", "enum": ["executed_at", "premium", "size", "volume", "oi"], "description": "Sort field." },
+          "order_direction": { "type": "string", "enum": ["asc", "desc"], "description": "Sort direction." },
+          "newer_than": { "type": "string", "description": "Lower bound timestamp (ISO-8601)." },
+          "older_than": { "type": "string", "description": "Upper bound timestamp (ISO-8601)." },
+          "min_premium": { "type": "string", "description": "Minimum premium in dollars." },
+          "min_size": { "type": "string", "description": "Minimum trade size in contracts." },
+          "type": { "type": "string", "enum": ["Calls", "Puts"], "description": "Option side." },
+          "is_multi_leg": { "type": "boolean", "description": "If true, multi-leg trades only; if false, single-leg only; omit for both." },
+          "intraday_only": { "type": "boolean", "description": "If true, include intraday prints only." },
+          "expiry_dates": { "type": "array", "items": { "type": "string" }, "description": "Expiration dates in YYYY-MM-DD." },
+          "report_flag": { "type": "array", "items": { "type": "string", "enum": ["sweep", "cross", "floor", "normal"] }, "description": "Execution flags." }
+        }
+      }
+    },
+    {
+      "name": "get_ticker_ohlc_latest_or_date",
+      "description": "Get a HISTORICAL daily time series of ticker day-state rows for one symbol, one row per market-open day, ending at date (or the latest market-open date) and going back limit trading days.\nEach row includes OHLC, iv_rank, volatility_30, implied_move_perc_30, call/put volume, bullish/bearish premium, net_premium, and rolling 7/30-day call/put volume averages.\nUse get_ticker_candles_by_range for intraday bars.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Ticker symbol (e.g., QQQ). Required.", "minLength": 1, "maxLength": 24 },
+          "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", "description": "Optional end date in YYYY-MM-DD." },
+          "limit": { "type": "integer", "minimum": 0, "maximum": 500, "default": 500, "description": "Requested number of rows (0-500)." }
+        },
+        "required": ["ticker"]
+      }
+    },
+    {
+      "name": "get_flow_alerts",
+      "description": "Screen for options flow alert hits generated by predefined unusual-activity rules (repeated hits, floor trades, sweeps followed by floor, volume over OI).\nBest for rule-triggered event discovery and filtering, not for full raw tape reconstruction.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker_symbol": { "type": "string" },
+          "limit": { "type": "number", "description": "Default 200" },
+          "min_premium": { "type": "string" },
+          "is_call": { "type": "boolean" },
+          "is_put": { "type": "boolean" },
+          "is_sweep": { "type": "boolean" },
+          "is_floor": { "type": "boolean" },
+          "is_multi_leg": { "type": "boolean" },
+          "newer_than": { "type": "string" },
+          "older_than": { "type": "string" },
+          "order": { "type": "string", "enum": ["premium", "size"] }
+        }
+      }
+    },
+    {
+      "name": "get_greek_exposure_by_strike",
+      "description": "Get a ticker's Greek exposure grouped by strike price for a market date, including call and put gamma, delta, charm, and vanna values.\nUse this for ticker-level gamma exposure (GEX) broken down by option strike.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "minLength": 1, "description": "Ticker symbol, for example AAPL, TSLA, SPY, or NVDA." },
+          "date": { "type": "string", "description": "Optional market date in YYYY-MM-DD. Defaults to the last open market date." }
+        },
+        "required": ["ticker"]
+      }
+    },
+    {
+      "name": "get_gex_levels",
+      "description": "Get a ticker's key gamma-exposure (GEX) price levels for a market date: call_wall, put_wall, gamma_magnet, gamma_flip, and nearby_flips.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "minLength": 1, "description": "Ticker symbol, for example AAPL, TSLA, SPY, META, or NVDA." },
+          "date": { "type": "string", "description": "Optional market date in YYYY-MM-DD." },
+          "source": { "type": "string", "enum": ["vol", "oi"], "description": "Exposure basis. vol is directionalized volume (default); oi is open interest." }
+        },
+        "required": ["ticker"]
+      }
+    },
+    {
+      "name": "get_max_pain",
+      "description": "Get a ticker's max-pain level for each option expiry on a market date.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "minLength": 1, "maxLength": 24, "description": "Ticker symbol, for example AAPL, TSLA, SPY, or NVDA." },
+          "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", "description": "Optional market date in YYYY-MM-DD." }
+        },
+        "required": ["ticker"]
+      }
+    },
+    {
+      "name": "get_implied_volatility_term_structure",
+      "description": "Get the implied volatility term structure for a ticker on a market date.\nReturns each option expiration's volatility, implied move, implied move percentage, and days to expiration.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "minLength": 1, "description": "Ticker symbol, for example AAPL, TSLA, SPY, or NVDA." },
+          "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "Optional market date in YYYY-MM-DD." }
+        },
+        "required": ["ticker"]
+      }
+    }
+  ]
+}

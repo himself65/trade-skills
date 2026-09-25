@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: gate-snow-jade-lizard
+context:
+  # Needs --scaffold to seed ./knowledge/. Without it the gate graders still run,
+  # but the knowledge-dir checks (own notes loaded, corpora skipped) lose their signal.
+  scaffold_script: scaffold.sh

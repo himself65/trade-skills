@@ -130,6 +130,12 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# Output of `claude plugin eval` runs (aggregate-result.json, report.html).
+plugins/trade/evals/results/
+# A case that resumes history.jsonl writes the continued session beside it
+# as <session-id>.jsonl on every run.
+plugins/trade/evals/*/[0-9a-f]*-[0-9a-f]*-[0-9a-f]*-[0-9a-f]*-[0-9a-f]*.jsonl
+
 # Personal knowledge directory scaffolded by `/trade setup`.
 # Holds user-private substack posts, X / twitter threads, and writedowns —
 # never commit back to the plugin repo.
