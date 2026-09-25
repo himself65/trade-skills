@@ -20,6 +20,8 @@ Always ask first — never assume. Use `AskUserQuestion` (or a plain conversatio
 
 Show the user the resolved absolute path before creating anything. If the path looks unsafe (resolves to `/`, `/usr`, `/etc`, a home directory root, or anywhere outside the cwd tree without explicit confirmation), refuse and ask again.
 
+If the cwd sits in a code repo, say so before the user picks: the default then puts the notes inside that repo, where step 4 would exclude them locally and leave them unversioned. A separate private notes repo, made discoverable in step 6, is the way to give them history.
+
 Accept either:
 
 - A path relative to cwd (e.g., `./knowledge`, `notes/trade-kb`)
@@ -68,51 +70,57 @@ Read each template file from `references/commands/templates/` of this skill and 
 | `references/commands/templates/twitter-template.yaml` | `twitter/_template.yaml` |
 | `references/commands/templates/writedown-template.md` | `writedowns/_template.md` |
 
-### 4. Add the knowledge dir to gitignore
+### 4. Settle how git treats the knowledge dir
 
-The knowledge dir is **always meant to stay local** — it holds personal trade notes, copied substack content, screenshots, and writedowns that should never be committed back to a shared repo. Make sure it's ignored everywhere.
+The knowledge dir is **private (L2) and meant to be version-tracked**. It belongs in a private repo the user commits to, usually a separate notes repo found via `knowledge_path` (see `SKILL.md` → Knowledge Architecture). That is also why [`import.md`](import.md) never commits: staging is the user's job. So setup writes **no blanket ignore rule** and **never touches the global gitignore**, because a global pattern cannot tell a notes repo from a code repo. The one thing to prevent is notes being committed to a repo that is *not* meant to hold them. Decide that from the repo that contains the **target**, never from the cwd's repo.
 
-**Always do both, in this order:**
+**4a. Classify the host repo.** Find it with `git -C <target> rev-parse --show-toplevel`, then:
 
-**4a. Local project `.gitignore`.** If a `.gitignore` exists in the project root (resolve via `git rev-parse --show-toplevel`), check whether it already ignores the knowledge dir. If not, append:
+| Host repo | Action |
+|---|---|
+| **None**: the target is in no git repo | Write nothing. Tell the user the notes are unversioned, and that `git init` plus a **private** remote gives them history and a backup. That is their call, not setup's. |
+| **Meant to hold the notes**: a private notes repo | Write nothing, then confirm no rule hides the dir (4c). |
+| **Not meant to hold them**: a code repo, a work repo, a public repo, a clone of this plugin | Exclude the target in that clone only (4b). |
 
-```
-# Personal trade knowledge scaffolded by `/trade setup` — never commit.
-<knowledge-dir-relative-to-repo-root>/
-```
+When there is a host repo, **ask** which of the last two it is. Never infer it silently. Show the repo root and its `origin` remote so the user can answer. Recommend *meant to hold the notes* when the target is the repo root itself, and *not meant* when the repo is plainly code (a package manifest at its root, or this plugin's own repo). If the user picks *meant to hold the notes* and the remote is public (for a GitHub remote, `gh repo view <owner>/<repo> --json visibility`), say so plainly: L2 is private by definition, and a single `paid` or `closed-community` corpus under `corpora/` makes the whole repo private ([`../data-collection.md`](../data-collection.md)). Never change a repo's visibility yourself.
 
-If no git repo is detected, skip 4a silently.
-
-**4b. User's global gitignore.** Resolve the path in this order:
-
-1. `git config --global --get core.excludesfile` — if set, use that path.
-2. Else `$XDG_CONFIG_HOME/git/ignore`.
-3. Else `$HOME/.config/git/ignore` (the git default when `XDG_CONFIG_HOME` is unset).
-
-Create the file (and parent directory) if it doesn't exist. **Do not** modify `git config` — when `core.excludesfile` is unset, git auto-uses `~/.config/git/ignore`, so writing the file is enough.
-
-Check whether the file already contains a `knowledge/` (or equivalent) entry. If not, append:
+**4b. Not meant to hold them → that clone's `.git/info/exclude`.** This is git's per-clone ignore file. It is never committed, so it adds nothing to the diff of a repo that may not be the user's, and linked worktrees share it. Resolve it with `git -C <target> rev-parse --path-format=absolute --git-path info/exclude` (without `--path-format=absolute` the result is relative to `<target>`). Create the file and its `info/` directory if missing, then append an entry **anchored** at the repo root, so it matches this directory and no other `knowledge/` in the repo:
 
 ```
-# Personal trade knowledge scaffolded by `/trade setup` — never commit.
-knowledge/
+# Personal trade knowledge (/trade setup): this clone only, never committed.
+/<target-relative-to-repo-root>/
 ```
 
-The global entry is intentionally unanchored so it matches a `knowledge/` directory at any depth in any project. If the user picked a non-default knowledge-dir name (e.g., `notes/trade-kb`), append both `knowledge/` (for default) and the chosen pattern.
+- **Skip the write** if `git -C <target> check-ignore -q --no-index -- index.md` already succeeds. A clone of this plugin, for instance, ignores `knowledge/` in its own `.gitignore`. Report the rule that covers it (`check-ignore -v`).
+- **If `git -C <repo-root> ls-files -- <target-relative-to-repo-root>` lists anything**, notes are already committed there, and an ignore rule does not untrack files. Say so and show `git rm -r --cached -- <path>`, which keeps the files on disk. If those commits were pushed, the notes stay in the remote's history until that history is rewritten. Both steps are the user's decision, so run neither.
+- Tell the user the notes are now unversioned, and that a separate private repo plus step 6 is how to give them history.
 
-**Idempotency:** never duplicate entries. Skip and report if already present.
+**4c. Meant to hold them → confirm nothing hides the dir.** A stray ignore rule fails silently here. Files git already tracks keep showing their edits, but a **new** note never appears in `git status` and `git add -A` skips it, so the repo looks healthy while new notes never reach a commit. Test the rules directly against files setup just scaffolded:
 
-Report to the user which files were edited (project `.gitignore`, global gitignore) and which were already correct.
+```
+git -C <target> check-ignore -v --no-index -- index.md writedowns/_template.md corpora/.gitkeep
+```
+
+Keep `--no-index`: without it, `check-ignore` skips tracked files. No output means nothing hides the dir. Otherwise each line names the rule as `<file>:<line>:<pattern>`. If that rule is an old setup entry, handle it per 4d. If not, the user wrote it: report it and leave the fix to them.
+
+**4d. Remove what older versions wrote.** Versions up to v2.15.0 appended entries under the comment ``# Personal trade knowledge scaffolded by `/trade setup` — never commit.`` to two files:
+
+- **The global gitignore**: an unanchored `knowledge/`, plus the chosen path for a non-default name. It hides every directory named `knowledge` in every repo on the machine, including a notes repo meant to track one. Check for it whatever 4a decided. Resolve the file as `git config --global --get core.excludesfile`, else `$XDG_CONFIG_HOME/git/ignore`, else `~/.config/git/ignore`.
+- **The `.gitignore` of whichever repo setup ran in**. It only does harm in a repo meant to hold the notes, where 4c surfaces it. In a code repo it does the right job, so leave it.
+
+When an entry does harm, explain its effect and **offer** to delete that comment and the pattern lines setup wrote directly beneath it, and nothing else. Delete only if the user says yes, and never add anything to the global file.
+
+Report what was written, what was already correct, and what was left to the user.
 
 ### 5. Tell the user how to add content
 
 After scaffolding, explain the two ingestion paths:
 
-**External content (substack, X) — drop & import:**
+**External content (substack, X, research) — import:**
 
-1. Drop the raw artifact (PDF / screenshot / `.txt`) into `substack/raw/` or `twitter/raw/`.
-2. Run `/trade import <file_path>` to parse it into structured YAML alongside the parsed-content folder.
-3. Optional: move or delete the raw artifact after import. Nothing deletes raw files automatically.
+1. Run `/trade import <file_path | url>` on the PDF, screenshot, text file or link, wherever it sits. There is no drop folder.
+2. A clean substack or X post is parsed into structured YAML in `substack/` or `twitter/`. Anything that has to be read and synthesized (a research report, an article) becomes a digest in `writedowns/`.
+3. The source file is evidence (L3). It is filed in a corpus (`$TRADE_CORPUS_DIR` if set, else `corpora/`) rather than beside the parsed file, and the parsed file records where. Nothing deletes it.
 
 **User-authored writedowns — direct markdown:**
 
@@ -133,8 +141,9 @@ Offer to write the `~/.claude/CLAUDE.md` line for them (append-only, deduped). I
 ## Constraints
 
 - **Always ask for the directory first.** Never assume a target path.
-- **Never write outside the user-confirmed directory** — except the two gitignore files in step 4.
-- **Never overwrite existing files.** Skip and report. Gitignore writes are append-only and deduped.
-- **Never modify `git config`.** Step 4b creates `~/.config/git/ignore` if needed; git picks it up automatically.
+- **Never write outside the user-confirmed directory**, except the host clone's `.git/info/exclude` (4b) and deleting old setup entries the user agreed to remove (4d).
+- **Never overwrite existing files.** Skip and report. The `info/exclude` write is append-only and deduped.
+- **Never write the global gitignore, and never modify `git config`.** A global pattern hides the knowledge dir in the one repo meant to track it.
+- **Never commit, untrack files, or change a repo's visibility.** Report what needs doing and leave it to the user.
 
 Parsing rules (file types, field extraction, slug naming, idempotency) live in [`import.md`](import.md) — this command only handles scaffolding.
