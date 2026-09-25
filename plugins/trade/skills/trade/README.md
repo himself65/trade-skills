@@ -12,7 +12,7 @@ Multi-leg options trading assistant — concrete strikes, IV-aware structures, p
 /trade <natural language>              # any unrecognized first word routes to analysis
 ```
 
-Each subcommand has its own reference file under `references/commands/`. The main `SKILL.md` carries always-on context (Hard Rule, Response Rules, Core Principles, Structure-to-Regime matrix) plus the routing logic.
+Each subcommand has its own reference file under `references/commands/`. The main `SKILL.md` carries always-on context (Hard Rules, Response Rules, Core Principles, the structure-selection rule) plus the routing logic.
 
 ## Triggers
 

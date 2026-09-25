@@ -14,14 +14,13 @@ It is an **Open Knowledge Format (OKF) bundle** — the same portable markdown +
 
 ## Two ingestion paths
 
-### External content (substack, X) — drop & import
+### External content (substack, X) — import
 
 External posts usually start life as a **PDF export** or a **screenshot**. The flow:
 
-1. Drop the raw artifact in `substack/raw/` or `twitter/raw/`. Supported: `.pdf`, `.png`, `.jpg`, `.jpeg`, `.webp`, `.txt`, or a copy-pasted text file.
-2. Run `/trade import <file_path>` (or ask in natural language: "import `substack/raw/anonresearch-nvda.pdf`").
-3. The `import` flow reads the artifact, extracts fields per `_template.yaml`, and writes a structured YAML alongside the raw folder. Example output: `substack/anonresearch-nvda-thesis.yaml`.
-4. The raw artifact is never modified or deleted. Move or remove it yourself if you want to.
+1. Run `/trade import <file_path>` on the file wherever it is — supported: `.pdf`, `.png`, `.jpg`, `.jpeg`, `.webp`, `.txt` — or on a link (or ask in natural language: "import `~/Downloads/anonresearch-nvda.pdf`").
+2. The `import` flow reads the artifact, extracts fields per `_template.yaml`, and writes a structured YAML here. Example output: `substack/anonresearch-nvda-thesis.yaml`.
+3. A copy of the source file is kept in a corpus under `corpora/` (or `$TRADE_CORPUS_DIR`) so the YAML can be re-checked later. The original is never modified or deleted — remove it yourself if you want to.
 
 Parsed YAML artifacts are kept as structured-data OKF concepts. Their fields map to the OKF standard set: `source` → `type`, `title` → `title`, `url` → `resource`, `date` → `timestamp`, `tags` → `tags`.
 
@@ -38,10 +37,9 @@ Writedowns are your own notes (trade journal, thesis docs, channel-check summari
 | Folder | Contents | Format |
 |---|---|---|
 | `substack/` | Parsed substack posts | `.yaml` |
-| `substack/raw/` | Original PDFs / screenshots / clippings | binary / text |
 | `twitter/` | Parsed X / twitter posts and threads | `.yaml` |
-| `twitter/raw/` | Original screenshots / PDFs | binary / text |
-| `writedowns/` | Your own notes | `.md` |
+| `writedowns/` | Your own notes and research digests | `.md` |
+| `corpora/` | Source files and anything collected (crawls, scrapes, bulk pulls) — one directory per corpus with a `MANIFEST.md`; never auto-loaded | mixed |
 
 ## Naming convention
 
@@ -59,7 +57,7 @@ When you ask a trade question, the model:
 
 1. Locates this directory by resolving, in order: `$TRADE_KNOWLEDGE_DIR` → a `knowledge_path:` line in the nearest `CLAUDE.md` → `./knowledge/` in the current repo. (The first two let this dir live in a **different** repo and still be found from anywhere — see `/trade setup` step 6.)
 2. Reads this `index.md` (the OKF index) if it exists.
-3. Skims **every** subdir's filenames (substack, twitter, writedowns, and any curated module dir) for matches against the current ticker / theme, ignoring `*/raw/`.
+3. Skims **every** subdir's filenames (substack, twitter, writedowns, and any curated module dir) for matches against the current ticker / theme, skipping `corpora/` and any legacy `*/raw/` folder.
 4. Loads matched files — YAML for parsed external content, markdown for writedowns / module docs.
 
 User documents **augment** the curated library, they don't replace it. Pitfalls remain authoritative for framework rules; your knowledge adds primary sources and personal context.

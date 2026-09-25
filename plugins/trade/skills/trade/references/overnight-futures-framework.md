@@ -8,7 +8,7 @@ timestamp: 2026-07-22T05:40:00Z
 
 # Overnight Index-Futures Framework (夜盘 read)
 
-How to answer "今天/现在哪里在影响 NQ 夜盘" — a *market-level* attribution read, distinct from single-name analysis. Output is always: current tape → ranked drivers with numbers → catalyst clock → base/bull/bear scenarios keyed to levels. Productized as the funda-app `overnight-futures` play (PR #4007); this file is the human/agent version of the same discipline.
+How to answer "今天/现在哪里在影响 NQ 夜盘" — a *market-level* attribution read, distinct from single-name analysis. Output is always: current tape → ranked drivers with numbers → catalyst clock → base/bull/bear scenarios keyed to levels.
 
 ---
 

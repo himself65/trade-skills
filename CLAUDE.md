@@ -55,7 +55,7 @@ plugins/
 
 The pattern is modeled on [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable):
 
-1. **SKILL.md is the single entry point.** It carries the trigger description, the always-on context (Hard Rule, Response Rules, Core Principles, Structure-to-Regime matrix, Data Access), a Commands table, and Routing rules.
+1. **SKILL.md is the single entry point.** It carries the trigger description, the always-on context (Hard Rules, Response Rules, Core Principles, the structure-selection rule, Data Access), a Commands table, and Routing rules.
 2. **Subcommand-specific instructions live in `references/commands/<name>.md`** and are lazy-loaded only when the user invokes that subcommand.
 3. **Reference content (pitfalls, case studies, frameworks) is lazy-loaded** too — `analysis.md` carries the situation → reference map so the model only reads the specific pitfall / case study files the current question needs.
 
