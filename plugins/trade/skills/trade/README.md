@@ -1,6 +1,6 @@
 # Trade
 
-Multi-leg options trading assistant — concrete strikes, IV-aware structures, probability-weighted scenarios. Single skill with four subcommands, modeled on the [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable) pattern.
+Multi-leg options trading assistant — concrete strikes, IV-aware structures, probability-weighted scenarios. Single skill with five subcommands, modeled on the [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable) pattern.
 
 ## Commands
 
@@ -8,6 +8,7 @@ Multi-leg options trading assistant — concrete strikes, IV-aware structures, p
 /trade setup                           # scaffold a personal knowledge directory
 /trade import <file_path | url>        # parse one PDF / screenshot / text artifact into YAML, or digest shared research
 /trade report [tickers | basket]       # today's capital-flow read
+/trade daily <ticker>                  # one-name daily read — blocks, volume, IV, GEX + max pain → named state
 /trade analysis [ticker | situation]   # default — trade analysis flow
 /trade <natural language>              # any unrecognized first word routes to analysis
 ```
@@ -67,6 +68,7 @@ Full trigger list in the `description` field of `SKILL.md`.
 | `references/commands/setup.md` | `/trade setup` workflow |
 | `references/commands/import.md` | `/trade import` workflow (raw artifact → YAML; shared research → writedown digest) |
 | `references/commands/report.md` | `/trade report` workflow (daily capital-flow read) |
+| `references/commands/daily.md` | `/trade daily` workflow (one-name daily state read ending in a named composite state + falsification signposts) |
 | `references/commands/analysis.md` | Default analysis preflight + situation → reference map |
 
 ### Lazy-loaded library
@@ -82,6 +84,7 @@ Full trigger list in the `description` field of `SKILL.md`.
 
 | File | Copied to |
 |---|---|
+| `references/commands/templates/knowledge-index.md` | `<knowledge>/index.md` |
 | `references/commands/templates/knowledge-README.md` | `<knowledge>/README.md` |
 | `references/commands/templates/substack-template.yaml` | `<knowledge>/substack/_template.yaml` |
 | `references/commands/templates/twitter-template.yaml` | `<knowledge>/twitter/_template.yaml` |
@@ -89,7 +92,7 @@ Full trigger list in the `description` field of `SKILL.md`.
 
 ## Coverage
 
-- 32 analytical and risk-management pitfalls covering consensus anchoring, flow misreading, multi-leg block-flow contamination, IV crush traps, T+1 reverse drift, LEAPS vega tax, manipulator-tape recognition, channel-check sample bias, AH order-book fades, demand-IV vs event-IV, vega-axis sanity checks, retest entry confirmation, macro-right/trade-wrong, second-derivative reading, stop-distance-determines-size, daily-loss-limit / drawdown governors, and more.
+- 37 analytical and risk-management pitfalls covering consensus anchoring, flow misreading, multi-leg block-flow contamination, IV crush traps, T+1 reverse drift, LEAPS vega tax, manipulator-tape recognition, channel-check sample bias, AH order-book fades, demand-IV vs event-IV, vega-axis sanity checks, retest entry confirmation, macro-right/trade-wrong, second-derivative reading, stop-distance-determines-size, daily-loss-limit / drawdown governors, mechanical (corporate-action) volume, IV Rank vs the variance risk premium, IV-floor ramp trades, and more.
 - 15 detailed case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE) showing thesis evolution, structure selection, and post-mortem lessons.
-- Structure-to-regime quick reference covering high/low IV regimes paired with directional / neutral / manipulator-tape views.
+- Structure-to-regime table (`references/strategies.md`) covering high/low IV regimes paired with directional / neutral / manipulator-tape views, plus the bull-conviction count and banned-structure list.
 - Personal-knowledge layer for the user's own substack / X / writedown collection, auto-loaded on every analysis.
