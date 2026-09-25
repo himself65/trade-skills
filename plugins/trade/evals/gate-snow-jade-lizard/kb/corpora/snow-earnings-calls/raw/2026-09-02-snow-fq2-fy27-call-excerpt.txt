@@ -1,0 +1,11 @@
+SNOW FQ2 FY27 earnings call, 2026-09-02 (excerpt, collected for the corpus)
+
+Operator: Welcome to the second-quarter fiscal 2027 earnings call.
+
+CEO: Product revenue grew 37% year over year. Cortex Code is now used by more than half of our customers, and consumption from AI labs is our fastest-growing segment.
+
+CFO: We are raising our fiscal 2027 product revenue guidance to 36% growth. Beginning next quarter we will break out Cortex Code consumption pricing.
+
+Analyst: Can you size the AI-lab commitments?
+
+CFO: We signed a multi-year commitment with one lab this quarter and will provide more detail at our next report.

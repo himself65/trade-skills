@@ -49,6 +49,7 @@ plugins/
               substack-template.yaml
               twitter-template.yaml
               writedown-template.md
+    evals/                      # `claude plugin eval` suite: routing, pushback, gates (not in the release zip)
 ```
 
 ## How the skill works
@@ -116,6 +117,10 @@ npx plugins add himself65/trade-skills
 ```
 
 When invoked as a plugin, the skill is namespaced. Since plugin and skill share the name `trade`, the invocation form is `/trade <subcommand>` (or `/trade:trade <subcommand>` if disambiguation is needed).
+
+## Evals
+
+`plugins/trade/evals/` is a small behavioral suite for `claude plugin eval`. It covers routing, pushback handling and the structure gates, so a prompt edit to `SKILL.md` or `references/` can be measured against the previous version. The skill README (Evals section) explains how to run it and compare two versions, and `plugins/trade/evals/README.md` holds the authoring notes. The suite is outside the release zip, so editing it never needs a version bump. When a prompt change alters a behavior a case pins, such as the pushback rule, the lookup-vs-daily split, or a gate, update the case in the same PR.
 
 ## Important constraints
 
