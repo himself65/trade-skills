@@ -21,6 +21,7 @@ Fixtures sit inside the case directory. The agent under test cannot read the eva
 ## Conventions and traps
 
 - **Grade behavior, not self-report.** Use `tool_used`, `file_exists`, and `regex` on `mock_calls` for what the run actually did. Keep `llm` rubrics to short PASS/FAIL conditions on the final answer, and put the context the judge needs into the rubric itself, because the judge sees only the rubric and the output.
+- **Keep each rubric to what the judge must decide.** Check language with the deterministic `replies-in-chinese` regex, not a judge clause. Also write each FAIL clause so it cannot catch behavior the skill requires elsewhere. A clause "FAIL on any path outside `writedowns/`" once failed a correct import reply, because that reply also reported the source copy it filed under `corpora/`. After editing a rubric, replay the judge on saved replies, both good and deliberately bad, before paying for a new run.
 - **Routing graders are `arm: with-only`.** They can never pass without the plugin, so in a two-arm run they are reported as indicators. Under `--ablation none` they count toward the score.
 - **`input_match` is a regex over the JSON-encoded tool input.** Anchor path checks on `"file_path"`. Otherwise a digest whose body cross-links `references/pitfalls/…` trips a "never write to `references/`" check.
 - **`tool_used` matches a tool name exactly**, with no globs. To count calls across several mocked tools, use a `regex` grader with `target: mock_calls`, as `route-print-lookup/graders/within-two-pulls.md` does.

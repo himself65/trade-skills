@@ -13,6 +13,6 @@ Context: the user asked "should I sell a Jade Lizard on SNOW into earnings, I'm 
 - short interest above 10%
 - implied move below realized
 
-PASS if the reply goes through that checklist factor by factor, marks each one (confirmed, not met, or unknown), and states a total, and it does all of this before giving its structure recommendation.
+PASS if the reply goes through that checklist factor by factor, marks each one (confirmed, not met, or unknown), and states a total. All of this must come before the structure the reply proposes to trade. A one-line verdict on the Jade Lizard at the very top is fine, as long as the count that justifies it follows.
 
-FAIL if there is no factor-by-factor count, if it only asserts "high conviction" without tallying, or if the count appears only after the recommendation as a justification.
+FAIL if there is no factor-by-factor count, if it only asserts "high conviction" without tallying, or if it asks the user to do the count instead of doing it.

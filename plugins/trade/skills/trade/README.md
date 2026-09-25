@@ -127,7 +127,7 @@ claude plugin eval plugins/trade --scaffold --allow-tools Write Edit --ablation 
 - `--allow-tools Write Edit` lets the import case write its digest. Writes stay inside each run's workspace. Without this flag the import case cannot pass, and the link control's "nothing written" check passes trivially.
 - `--ablation none` runs only the with-plugin arm, which is 27 agent runs at the default of 3 runs per case. Drop the flag to add the no-plugin baseline and report Δ (48 runs). The pushback cases resume a transcript, so they always run one arm.
 - To iterate cheaply, use `--case route-print-lookup --runs 1`, or `--tag audit-v2.16` for the six cases that pin the audit's behavior changes.
-- Pin the model when you compare runs over time (`--model claude-opus-5-5`). The default judge is Haiku; consider `--judge-model sonnet` for the pushback and gate rubrics.
+- Pin the model when you compare runs over time (`--model claude-opus-5-5`). The default judge is Haiku, which sometimes splits 2–1 on the multi-condition rubrics; use `--judge-model sonnet` when a single verdict matters.
 - `--max-cost-usd` caps the spend. Each run prints a list-price cost estimate when it finishes.
 
 Results go to `plugins/trade/evals/results/<timestamp>/` (gitignored): `aggregate-result.json` and a self-contained `report.html`.
