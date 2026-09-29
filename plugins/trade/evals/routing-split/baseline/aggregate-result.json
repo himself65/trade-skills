@@ -1,0 +1,4728 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.284",
+  "startedAt": "2026-09-29T03:22:43.812Z",
+  "durationSeconds": 697,
+  "costUsd": 45.4520344,
+  "partial": false,
+  "suite": {
+    "root": "/Users/himself65/trade/plugins/trade",
+    "ablation": "none",
+    "modelOverride": "claude-opus-5-5",
+    "judgeModel": "claude-sonnet-5-5",
+    "tagFilters": [
+      "routing-split"
+    ],
+    "threshold": 1,
+    "concurrency": 8,
+    "plugins": [
+      {
+        "name": "trade",
+        "path": "/Users/himself65/trade/plugins/trade"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "split-analysis-01",
+      "dir": "evals/split-analysis-01",
+      "source": "prose",
+      "promptMarkdown": "伊朗战争结束了，我觉得石油来到了最低点，给我一个XLE的期权策略",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 9,
+            "costUsd": 0.3935598,
+            "judgeCostUsd": 0,
+            "durationSeconds": 50,
+            "startedAt": "2026-09-29T03:22:43.969Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-U7JlrM/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 10,
+            "costUsd": 0.3897496,
+            "judgeCostUsd": 0,
+            "durationSeconds": 43,
+            "startedAt": "2026-09-29T03:22:43.969Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-8plAh0/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-02",
+      "dir": "evals/split-analysis-02",
+      "source": "prose",
+      "promptMarkdown": "我觉得市场预估InP的价格错了，应该是实际四倍，请给我一个策略 https://x.com/i/status/2074007618046345249",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.351753,
+            "judgeCostUsd": 0,
+            "durationSeconds": 48,
+            "startedAt": "2026-09-29T03:22:43.969Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-OZ4k3Y/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.357002,
+            "judgeCostUsd": 0,
+            "durationSeconds": 51,
+            "startedAt": "2026-09-29T03:22:43.969Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-vU1mt6/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-03",
+      "dir": "evals/split-analysis-03",
+      "source": "prose",
+      "promptMarkdown": "研究一下NOK今天财报，给我股价和策略",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.31828639999999997,
+            "judgeCostUsd": 0,
+            "durationSeconds": 27,
+            "startedAt": "2026-09-29T03:22:43.969Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-asQDgm/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.31655540000000004,
+            "judgeCostUsd": 0,
+            "durationSeconds": 25,
+            "startedAt": "2026-09-29T03:22:43.969Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-GUSJfD/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-04",
+      "dir": "evals/split-analysis-04",
+      "source": "prose",
+      "promptMarkdown": "给我一个NBIS下周到期的Lade Lizard",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 11,
+            "costUsd": 0.7907492,
+            "judgeCostUsd": 0,
+            "durationSeconds": 78,
+            "startedAt": "2026-09-29T03:22:43.969Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-8W85zl/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 11,
+            "costUsd": 0.43807300000000005,
+            "judgeCostUsd": 0,
+            "durationSeconds": 33,
+            "startedAt": "2026-09-29T03:22:43.969Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-kH6ydH/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-05",
+      "dir": "evals/split-analysis-05",
+      "source": "prose",
+      "promptMarkdown": "AAPL财报出来了，给我推荐一个AAPL建仓leaps的策略",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 13,
+            "costUsd": 0.541939,
+            "judgeCostUsd": 0,
+            "durationSeconds": 74,
+            "startedAt": "2026-09-29T03:23:08.639Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-HCifjP/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 13,
+            "costUsd": 0.4514232,
+            "judgeCostUsd": 0,
+            "durationSeconds": 51,
+            "startedAt": "2026-09-29T03:23:11.108Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-ydcYLs/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-06",
+      "dir": "evals/split-analysis-06",
+      "source": "prose",
+      "promptMarkdown": "/trade INTC",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.3640254,
+            "judgeCostUsd": 0,
+            "durationSeconds": 23,
+            "startedAt": "2026-09-29T03:23:16.519Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-lddD11/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 6,
+            "costUsd": 0.28833719999999996,
+            "judgeCostUsd": 0,
+            "durationSeconds": 21,
+            "startedAt": "2026-09-29T03:23:26.882Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-jNuXT6/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-07",
+      "dir": "evals/split-analysis-07",
+      "source": "prose",
+      "promptMarkdown": "/trade 给我一个WDC策略，马上收盘了",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.26080860000000006,
+            "judgeCostUsd": 0,
+            "durationSeconds": 27,
+            "startedAt": "2026-09-29T03:23:31.769Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-tukfGp/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 4,
+            "costUsd": 0.2549354,
+            "judgeCostUsd": 0,
+            "durationSeconds": 25,
+            "startedAt": "2026-09-29T03:23:34.252Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-EPbwuf/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-08",
+      "dir": "evals/split-analysis-08",
+      "source": "prose",
+      "promptMarkdown": "/trade CRDO 财报出炉，仔细研究",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 12,
+            "costUsd": 0.6454827999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 74,
+            "startedAt": "2026-09-29T03:23:34.844Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-N6saTZ/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.27017,
+            "judgeCostUsd": 0,
+            "durationSeconds": 23,
+            "startedAt": "2026-09-29T03:23:39.477Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-eYqQc4/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-09",
+      "dir": "evals/split-analysis-09",
+      "source": "prose",
+      "promptMarkdown": "我感觉nbis的iv太高了，对比一下其他的neocloud，判断一下",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 11,
+            "costUsd": 0.5535853999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 55,
+            "startedAt": "2026-09-29T03:23:48.155Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-1xfs5t/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 11,
+            "costUsd": 0.5476486,
+            "judgeCostUsd": 0,
+            "durationSeconds": 54,
+            "startedAt": "2026-09-29T03:23:58.689Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-ROu5jy/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-10",
+      "dir": "evals/split-analysis-10",
+      "source": "prose",
+      "promptMarkdown": "据华尔街日报：据消息人士透露，英伟达(NVDA.O)暂停了一些提供信贷支持以换取收入分成的交易。  这是否利空CRWV",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.3671992,
+            "judgeCostUsd": 0,
+            "durationSeconds": 41,
+            "startedAt": "2026-09-29T03:23:58.826Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-C4FK6t/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.3052614,
+            "judgeCostUsd": 0,
+            "durationSeconds": 42,
+            "startedAt": "2026-09-29T03:24:01.989Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-jVMQCa/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-11",
+      "dir": "evals/split-analysis-11",
+      "source": "prose",
+      "promptMarkdown": "/trade https://x.com/illyquid/status/2102564233125019762 IONQ",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 9,
+            "costUsd": 0.5682296,
+            "judgeCostUsd": 0,
+            "durationSeconds": 49,
+            "startedAt": "2026-09-29T03:24:02.402Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-BNWVPp/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.370281,
+            "judgeCostUsd": 0,
+            "durationSeconds": 33,
+            "startedAt": "2026-09-29T03:24:02.943Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-d8FPg7/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-12",
+      "dir": "evals/split-analysis-12",
+      "source": "prose",
+      "promptMarkdown": "/trade 如果我想做多SpaceX，明天解禁日应该是做多，你怎么看",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 10,
+            "costUsd": 0.5297784,
+            "judgeCostUsd": 0,
+            "durationSeconds": 56,
+            "startedAt": "2026-09-29T03:24:22.393Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-zDE53b/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 9,
+            "costUsd": 0.4619204,
+            "judgeCostUsd": 0,
+            "durationSeconds": 52,
+            "startedAt": "2026-09-29T03:24:36.288Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-Lh4FRo/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-13",
+      "dir": "evals/split-analysis-13",
+      "source": "prose",
+      "promptMarkdown": "查一下s-1 doc，SATS手里的SpaceX股票是否是固定的30b，年底才会到账",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 9,
+            "costUsd": 0.2691548,
+            "judgeCostUsd": 0,
+            "durationSeconds": 27,
+            "startedAt": "2026-09-29T03:24:39.789Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-UyOT8K/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 5,
+            "costUsd": 0.1771122,
+            "judgeCostUsd": 0,
+            "durationSeconds": 43,
+            "startedAt": "2026-09-29T03:24:43.552Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-EHgcf3/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0,
+        "passRate": 0
+      }
+    },
+    {
+      "name": "split-analysis-14",
+      "dir": "evals/split-analysis-14",
+      "source": "prose",
+      "promptMarkdown": "nvda财报是否利空存储",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 10,
+            "costUsd": 0.37291399999999997,
+            "judgeCostUsd": 0,
+            "durationSeconds": 44,
+            "startedAt": "2026-09-29T03:24:43.665Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-1V3JwL/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.317286,
+            "judgeCostUsd": 0,
+            "durationSeconds": 33,
+            "startedAt": "2026-09-29T03:24:48.465Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-OC8JUs/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-15",
+      "dir": "evals/split-analysis-15",
+      "source": "prose",
+      "promptMarkdown": "研究一下13F，看看有没有什么值得关注的",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.30531,
+            "judgeCostUsd": 0,
+            "durationSeconds": 27,
+            "startedAt": "2026-09-29T03:24:51.412Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-Hwc40l/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 10,
+            "costUsd": 0.3156602,
+            "judgeCostUsd": 0,
+            "durationSeconds": 27,
+            "startedAt": "2026-09-29T03:24:52.947Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-2Qwfx0/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-16",
+      "dir": "evals/split-analysis-16",
+      "source": "prose",
+      "promptMarkdown": "最新调研CPO测试设备和上游零部件在快速ramp up  买哪个",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 9,
+            "costUsd": 0.351467,
+            "judgeCostUsd": 0,
+            "durationSeconds": 60,
+            "startedAt": "2026-09-29T03:25:06.669Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-F8yz9v/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 9,
+            "costUsd": 0.37604380000000004,
+            "judgeCostUsd": 0,
+            "durationSeconds": 49,
+            "startedAt": "2026-09-29T03:25:18.535Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-lmEfyh/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-17",
+      "dir": "evals/split-analysis-17",
+      "source": "mixed",
+      "promptMarkdown": "@preview-tsmc-26q2.pdf 给我TSMC的策略和目标价",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 4,
+            "costUsd": 0.1634426,
+            "judgeCostUsd": 0,
+            "durationSeconds": 21,
+            "startedAt": "2026-09-29T03:25:18.812Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-BxbkBu/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 4,
+            "costUsd": 0.16687000000000002,
+            "judgeCostUsd": 0,
+            "durationSeconds": 22,
+            "startedAt": "2026-09-29T03:25:19.702Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-BJj5kK/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0,
+        "passRate": 0
+      }
+    },
+    {
+      "name": "split-analysis-18",
+      "dir": "evals/split-analysis-18",
+      "source": "prose",
+      "promptMarkdown": "分析一下今天NBIS的走势，给我一个股价的分析和策略",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 8,
+            "costUsd": 0.4899801999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 52,
+            "startedAt": "2026-09-29T03:25:21.235Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-nhvMkg/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 8,
+            "costUsd": 0.414797,
+            "judgeCostUsd": 0,
+            "durationSeconds": 46,
+            "startedAt": "2026-09-29T03:25:26.149Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-LgmgfV/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0,
+        "passRate": 0
+      }
+    },
+    {
+      "name": "split-analysis-19",
+      "dir": "evals/split-analysis-19",
+      "source": "prose",
+      "promptMarkdown": "为什么今天neocloud全板块跌",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.3326426,
+            "judgeCostUsd": 0,
+            "durationSeconds": 29,
+            "startedAt": "2026-09-29T03:25:27.549Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-S3QtFy/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.3245892,
+            "judgeCostUsd": 0,
+            "durationSeconds": 25,
+            "startedAt": "2026-09-29T03:25:28.568Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-Ul5zIM/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-20",
+      "dir": "evals/split-analysis-20",
+      "source": "prose",
+      "promptMarkdown": "/trade NBIS CRWV",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 17,
+            "costUsd": 0.8995373999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 67,
+            "startedAt": "2026-09-29T03:25:39.575Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-890ITr/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.4071594,
+            "judgeCostUsd": 0,
+            "durationSeconds": 26,
+            "startedAt": "2026-09-29T03:25:41.726Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-Ope6d1/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-21",
+      "dir": "evals/split-analysis-21",
+      "source": "prose",
+      "promptMarkdown": "查询一下今天是否有skew，能否周五出现扎空行情，特别是一些nbis、intc、crdo、be……等股票",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 5,
+            "costUsd": 0.349586,
+            "judgeCostUsd": 0,
+            "durationSeconds": 50,
+            "startedAt": "2026-09-29T03:25:53.533Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-lUniOp/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 5,
+            "costUsd": 0.46628099999999995,
+            "judgeCostUsd": 0,
+            "durationSeconds": 59,
+            "startedAt": "2026-09-29T03:25:56.173Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-s6ZB7f/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0,
+        "passRate": 0
+      }
+    },
+    {
+      "name": "split-analysis-22",
+      "dir": "evals/split-analysis-22",
+      "source": "prose",
+      "promptMarkdown": "分析一下今天，现在，哪里在影响nq夜盘",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.30303140000000006,
+            "judgeCostUsd": 0,
+            "durationSeconds": 24,
+            "startedAt": "2026-09-29T03:26:06.729Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-KmgJ87/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 9,
+            "costUsd": 0.43141660000000004,
+            "judgeCostUsd": 0,
+            "durationSeconds": 51,
+            "startedAt": "2026-09-29T03:26:07.933Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-aJRnvc/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-analysis-23",
+      "dir": "evals/split-analysis-23",
+      "source": "prose",
+      "promptMarkdown": "今天个股的iv是不是都在暴跌",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/analysis\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 5,
+            "costUsd": 0.14429999999999998,
+            "judgeCostUsd": 0,
+            "durationSeconds": 22,
+            "startedAt": "2026-09-29T03:26:07.950Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-I3HtkN/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 5,
+            "costUsd": 0.163115,
+            "judgeCostUsd": 0,
+            "durationSeconds": 23,
+            "startedAt": "2026-09-29T03:26:12.416Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-Amq1sZ/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0,
+        "passRate": 0
+      }
+    },
+    {
+      "name": "split-daily-01",
+      "dir": "evals/split-daily-01",
+      "source": "prose",
+      "promptMarkdown": "今天nbis如何",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 9,
+            "costUsd": 0.4785703999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 49,
+            "startedAt": "2026-09-29T03:26:13.353Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-iLv1cr/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.4383566,
+            "judgeCostUsd": 0,
+            "durationSeconds": 50,
+            "startedAt": "2026-09-29T03:26:30.281Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-AbIQnF/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-02",
+      "dir": "evals/split-daily-02",
+      "source": "prose",
+      "promptMarkdown": "NOK这几天有没有大单，IV有没有拉升？",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 6,
+            "costUsd": 0.2286416,
+            "judgeCostUsd": 0,
+            "durationSeconds": 17,
+            "startedAt": "2026-09-29T03:26:30.775Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-DWuX4i/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 1,
+            "costUsd": 0.43513599999999997,
+            "judgeCostUsd": 0,
+            "durationSeconds": 52,
+            "startedAt": "2026-09-29T03:26:34.942Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-3k7dyH/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-03",
+      "dir": "evals/split-daily-03",
+      "source": "prose",
+      "promptMarkdown": "NBIS今天大单有吗",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.5691328,
+            "judgeCostUsd": 0,
+            "durationSeconds": 65,
+            "startedAt": "2026-09-29T03:26:43.066Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-qW4yHN/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.34031519999999993,
+            "judgeCostUsd": 0,
+            "durationSeconds": 37,
+            "startedAt": "2026-09-29T03:26:47.072Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-psZAIR/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-04",
+      "dir": "evals/split-daily-04",
+      "source": "prose",
+      "promptMarkdown": "nbis今天大单看一下",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.5734908,
+            "judgeCostUsd": 0,
+            "durationSeconds": 61,
+            "startedAt": "2026-09-29T03:26:47.587Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-DQFTIV/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.33528840000000004,
+            "judgeCostUsd": 0,
+            "durationSeconds": 38,
+            "startedAt": "2026-09-29T03:26:55.272Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-FTIklG/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-05",
+      "dir": "evals/split-daily-05",
+      "source": "prose",
+      "promptMarkdown": "看一下TSEM大单",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.4532832,
+            "judgeCostUsd": 0,
+            "durationSeconds": 57,
+            "startedAt": "2026-09-29T03:26:58.953Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-QgJSVE/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.6573034,
+            "judgeCostUsd": 0,
+            "durationSeconds": 63,
+            "startedAt": "2026-09-29T03:27:01.990Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-WXNk2F/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-06",
+      "dir": "evals/split-daily-06",
+      "source": "prose",
+      "promptMarkdown": "看一下slb大单",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.5030507999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 62,
+            "startedAt": "2026-09-29T03:27:19.883Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-mBaPym/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.4548134,
+            "judgeCostUsd": 0,
+            "durationSeconds": 51,
+            "startedAt": "2026-09-29T03:27:23.967Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-G2v83F/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-07",
+      "dir": "evals/split-daily-07",
+      "source": "prose",
+      "promptMarkdown": "分析一下今天nbis的大单和期权",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.5018024000000001,
+            "judgeCostUsd": 0,
+            "durationSeconds": 87,
+            "startedAt": "2026-09-29T03:27:27.299Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-6cQI5B/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.6833907999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 81,
+            "startedAt": "2026-09-29T03:27:33.479Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-v5rrHA/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-08",
+      "dir": "evals/split-daily-08",
+      "source": "prose",
+      "promptMarkdown": "/trade daily NBIS",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.4581542,
+            "judgeCostUsd": 0,
+            "durationSeconds": 50,
+            "startedAt": "2026-09-29T03:27:47.969Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-l72zxK/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.4903042,
+            "judgeCostUsd": 0,
+            "durationSeconds": 48,
+            "startedAt": "2026-09-29T03:27:48.683Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-L8iPw3/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-09",
+      "dir": "evals/split-daily-09",
+      "source": "prose",
+      "promptMarkdown": "/trade NBIS daily",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.5324078,
+            "judgeCostUsd": 0,
+            "durationSeconds": 65,
+            "startedAt": "2026-09-29T03:27:55.703Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-vQhJDF/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.5292720000000001,
+            "judgeCostUsd": 0,
+            "durationSeconds": 57,
+            "startedAt": "2026-09-29T03:28:04.680Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-CLgWAv/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-10",
+      "dir": "evals/split-daily-10",
+      "source": "prose",
+      "promptMarkdown": "/trade BE 大单",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.6463407999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 86,
+            "startedAt": "2026-09-29T03:28:15.177Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-wTjFzT/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.355662,
+            "judgeCostUsd": 0,
+            "durationSeconds": 28,
+            "startedAt": "2026-09-29T03:28:21.510Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-xgtGEU/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-11",
+      "dir": "evals/split-daily-11",
+      "source": "prose",
+      "promptMarkdown": "/trade LQDA 有什么大单是否值得跟",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 6,
+            "costUsd": 0.4378369999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 60,
+            "startedAt": "2026-09-29T03:28:37.023Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-TcF0pi/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.38825640000000006,
+            "judgeCostUsd": 0,
+            "durationSeconds": 54,
+            "startedAt": "2026-09-29T03:28:37.955Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-lzFgPV/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-12",
+      "dir": "evals/split-daily-12",
+      "source": "prose",
+      "promptMarkdown": "NBIS max pain 在哪",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 6,
+            "costUsd": 0.3905292000000001,
+            "judgeCostUsd": 0,
+            "durationSeconds": 55,
+            "startedAt": "2026-09-29T03:28:49.114Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-Fo0pOu/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.34258779999999994,
+            "judgeCostUsd": 0,
+            "durationSeconds": 44,
+            "startedAt": "2026-09-29T03:28:53.991Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-5R8hgd/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-13",
+      "dir": "evals/split-daily-13",
+      "source": "prose",
+      "promptMarkdown": "MU 今天成交量怎么样，放量了吗",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.48091839999999997,
+            "judgeCostUsd": 0,
+            "durationSeconds": 53,
+            "startedAt": "2026-09-29T03:28:54.055Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-0EVpsA/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.328067,
+            "judgeCostUsd": 0,
+            "durationSeconds": 41,
+            "startedAt": "2026-09-29T03:29:00.353Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-Z9dBj1/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-14",
+      "dir": "evals/split-daily-14",
+      "source": "prose",
+      "promptMarkdown": "What's the state of COHR today?",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.42292900000000005,
+            "judgeCostUsd": 0,
+            "durationSeconds": 49,
+            "startedAt": "2026-09-29T03:29:02.133Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-blY4rt/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.2379744,
+            "judgeCostUsd": 0,
+            "durationSeconds": 17,
+            "startedAt": "2026-09-29T03:29:31.837Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-7Wzpbi/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-15",
+      "dir": "evals/split-daily-15",
+      "source": "prose",
+      "promptMarkdown": "NBIS 资金流向",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.440164,
+            "judgeCostUsd": 0,
+            "durationSeconds": 51,
+            "startedAt": "2026-09-29T03:29:37.433Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-EK27ll/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 6,
+            "costUsd": 0.35474859999999997,
+            "judgeCostUsd": 0,
+            "durationSeconds": 45,
+            "startedAt": "2026-09-29T03:29:38.053Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-GdodeA/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-16",
+      "dir": "evals/split-daily-16",
+      "source": "mixed",
+      "promptMarkdown": "现在呢",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.3402598,
+            "judgeCostUsd": 0,
+            "durationSeconds": 40,
+            "startedAt": "2026-09-29T03:29:40.748Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-gKMAKT/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.3225254,
+            "judgeCostUsd": 0,
+            "durationSeconds": 39,
+            "startedAt": "2026-09-29T03:29:41.658Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-X0SYCL/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-lookup-01",
+      "dir": "evals/split-daily-lookup-01",
+      "source": "prose",
+      "promptMarkdown": "nbis刚才的巨量成交是什么，看一下大单",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "lookup-not-ladder",
+          "type": "llm",
+          "weight": 1,
+          "graderMarkdown": "Context: the user asked about one specific print, contract or block: \"nbis刚才的巨量成交是什么，看一下大单\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+          "config": {
+            "criteria": "Context: the user asked about one specific print, contract or block: \"nbis刚才的巨量成交是什么，看一下大单\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+            "focus": "last_message"
+          }
+        },
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.43533920000000004,
+            "judgeCostUsd": 0.008244000000000001,
+            "durationSeconds": 81,
+            "startedAt": "2026-09-29T03:29:43.842Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-nEW9Ub/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": true,
+                "weight": 1,
+                "explanation": "judge votes: PASS PASS PASS",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  true,
+                  true,
+                  true
+                ],
+                "evidence": "刚才那笔巨量我查不到，所以没法告诉你是什么。没拉到任何数据，下面也不会给你猜测的数字。\n\n**卡在哪里：**\n- 这个 session 没有 shell，也不能联网，我和子代理都只能读本地文件。所以 Unusual Whales 的 1 分钟 K 线、暗池成交、期权大单都调不了，SEC EDGAR 也查不了（要先排除增发、可转债这类机械性成交，才能判断大单方向）。\n- 读 `/Users/himself65/trade/.env` 被权限拒绝了，所以也确认不了 `UNUSUAL_WHALES_API_KEY` 在不在。我没有绕过这个限制。\n- 备用数据源 TradingView MCP 和 Funda 在这个 session 里也都没加载。\n\n**开通下面任意一项，我就能直接查：**\n1. **接入 Unusual Whales MCP**（最省事，不需要 shell）：\n   ```\n   claude mcp add --transport http unusual-whales https://api.unusualwhales.com/api/mcp --header \"Authorization: Bearer $UNUSUAL_WHALES_API_KEY\"\n   ```\n   不过查 EDGAR 公告还是得能联网。\n2. **在 settings 里放行** `Bash(curl:*)`、`Bash(python3:*)`，外加 `.env` 的读取权限，这是走 API 直连。\n3. **接入 TradingView MCP 或 Funda**，这是退一步的备用方案。\n\n**能查的时候我会这样做：**\n1. 用 1 分钟 K 线找出放量那一分钟，看成交量是当天中位数的几倍。\n2. 列出那个时间窗口里的暗池大单和期权大单：成交时间、数量、价格相对买卖报价、`trade_code`（有 QCT 标记的是对冲成交，不代表看涨看跌），再看是不是连着拿股票的组合单（比如 buy-write）。\n3. 看放量之后成交量是继续放大还是回落。\n4. 查 NBIS 最近 10 天有没有 8-K/6-K、增发、可转债之类的公告，再说明今天离 9/30 季末很近。\n\n先告诉你：暗池成交不带主动买卖方向，就算数据拉到了，\"谁在买\"也只能是推断。\n\n权限开通后说一声，我马上查。非投资建议。"
+              },
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 6,
+            "costUsd": 0.4054852,
+            "judgeCostUsd": 0.017012,
+            "durationSeconds": 47,
+            "startedAt": "2026-09-29T03:29:46.711Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-ncmEHn/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": true,
+                "weight": 1,
+                "explanation": "judge votes: PASS PASS PASS",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  true,
+                  true,
+                  true
+                ],
+                "evidence": "我没查到这笔巨量是什么，因为这次会话里拿不到任何行情或资金流数据，所以大单也看不了。我也没有估算或编造数字。\n\n**卡在哪里：**\n- **没有 Shell/Bash：** 不能跑 `curl` 调 Unusual Whales，不能读 `$UNUSUAL_WHALES_API_KEY`，也拿不到当前美东时间。\n- **没有 TradingView MCP 或 Funda：** 工具搜索里找不到。\n- **`/Users/himself65/trade` 读不了：** 当前模式拒绝了访问，所以那里和 knowledge 目录下有没有 `.env` 还没查。当前工作目录里没有 `.env`。\n- **SEC EDGAR 也连不上：** 所以公司行为这一关（可转债、增发、ATM、指数调仓）也没跑。\n\n**你可以选一种方式让我继续：**\n1. **打开 Bash 权限，并允许读 `/Users/himself65/trade`。** 我会按单笔查询的流程走：先用 1 分钟 K 线（`ohlc/1m`）定位放量的那一分钟，再看那一分钟的暗池成交，包括时间、股数、成交价相对买卖报价（NBBO）的位置、`trade_code`（成交类型代码）。然后查同时段的大额期权成交，确认是不是某个组合单的股票对冲腿，再看之后公开市场的量有没有跟上。最后查 EDGAR 过去 10 天的文件。\n2. **接入 Unusual Whales 的 MCP 服务：**\n   ```bash\n   claude mcp add --transport http unusual-whales https://api.unusualwhales.com/api/mcp --header \"Authorization: Bearer $UNUSUAL_WHALES_API_KEY\"\n   ```\n3. **直接把那笔成交的截图或数据发过来**，包括时间、股数、价格、成交场所。我先帮你判断是方向性的单子，还是机械性成交（对冲、交叉成交、调仓）。\n\n另外先提醒一句：巨量出现时，要先排除公司行为和对冲带来的机械性成交，再去猜\"谁在买\"。NBIS 以前出过可转债对冲引发的放量，成交记录里满是 QCT（附条件交易）类型的成交，那种量不代表任何人的买卖观点。数据拿到后我会先查这一项。\n\n非投资建议。"
+              },
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-lookup-02",
+      "dir": "evals/split-daily-lookup-02",
+      "source": "prose",
+      "promptMarkdown": "/trade NBIS 今天有Jan 2027的大单，这是在做多波动率吗？",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "lookup-not-ladder",
+          "type": "llm",
+          "weight": 1,
+          "graderMarkdown": "Context: the user asked about one specific print, contract or block: \"/trade NBIS 今天有Jan 2027的大单，这是在做多波动率吗？\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+          "config": {
+            "criteria": "Context: the user asked about one specific print, contract or block: \"/trade NBIS 今天有Jan 2027的大单，这是在做多波动率吗？\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+            "focus": "last_message"
+          }
+        },
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.5086854,
+            "judgeCostUsd": 0.010722000000000002,
+            "durationSeconds": 65,
+            "startedAt": "2026-09-29T03:29:49.101Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-8z8Vgm/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": true,
+                "weight": 1,
+                "explanation": "judge votes: PASS PASS PASS",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  true,
+                  true,
+                  true
+                ],
+                "evidence": "我拉不到今天 NBIS 的任何数据，所以现在没法判断这几笔 Jan 2027 的单是不是在做多波动率。这个会话里没有可用的数据源：没有 Unusual Whales 的 key（也读不了 `.env`），没有 TradingView 或 Funda 的 MCP，也不能跑 curl。成交、盘口、IV 我一个都没看到，下面不会给任何数字。\n\n**先说结论：买入 Jan 2027 的期权确实是多 vega，但这不等于对方在做多波动率。** 它离今天约 109 天，vega 占比高，只要是主动买入，持仓就一定是多 vega。可对方到底是在押波动率，还是在押方向、做滚仓、或者卖波动率，要按下面的顺序一项项排除：\n\n| 检查项 | 是在做多波动率 | 不是在做多波动率 |\n|---|---|---|\n| 1. 成交方向 | 在 ask 附近成交，买方主动 | 在 bid 成交是卖出（在卖波动率）；mid 成交或对倒（cross）看不出方向 |\n| 2. 单腿还是组合 | 同时买 call 和 put（straddle / strangle），或者买期权同时带反向股票腿做 delta 对冲 | 带正股的备兑（buy-write）是中性偏多、在卖波动率；只买 call 没对冲，主要是方向押注，vega 只是顺带的 |\n| 3. 对手腿 | 只买远月，没有别的腿 | 卖近月买 Jan27 是日历价差（calendar）：押的是期限结构，短 gamma；Oct/Nov 的同一行权价同时在减仓，那是滚仓 |\n| 4. 开仓还是平仓 | 成交量远大于原有持仓，明天 OI 增加 | OI 不变或减少，是平仓 |\n| 5. IV 有没有被推高 | 当天 Jan27 的 IV 相对其他到期日抬升，期限结构远端变陡 | IV 没动或下降，说明买方没付更高的波动率价格，多半是做方向或被动成交 |\n| 6. 有没有持续性 | 连续几天同方向加仓 | 只有一天、一个 desk 的单，不构成信号 |\n\n两个 NBIS 自己的背景要先排除：\n\n- **8 月的可转债。** 这是之前的 NBIS 案例（`ticker/nbis-2026-08.md`）里记下的，发行后对冲盘曾产生 ADV 40–70% 的机械性成交。如果今天的单跟可转债或 ATM 配股有关，就是对冲流水，不代表观点。所以要先查 EDGAR 最近两周有没有新的 8-K。\n- **Jan27 覆盖了 11 月的 Q3 财报。** 远月被买，可能只是在给财报事件定价，和\"长期看多波动率\"是两回事。\n\n**要继续，有两个办法：**\n1. 把那几笔单贴给我：行权价、C 还是 P、张数、成交价、当时的 bid/ask、成交时间，有截图也行。我照上面的顺序逐笔判断，这一步很快。\n2. 在本会话里开放 Bash 或 fetch，并让我能读 `/Users/himself65/trade/.env` 里的 UW key；或者接上 TradingView / Funda 的 MCP。然后我跑完整的 `/trade daily NBIS`：大单过滤、IV 期限结构和 IV rank、GEX，再加上次日 OI 的确认。\n\n非投资建议。"
+              },
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.3735378,
+            "judgeCostUsd": 0.015815999999999997,
+            "durationSeconds": 41,
+            "startedAt": "2026-09-29T03:29:50.900Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-sz5qrU/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": true,
+                "weight": 1,
+                "explanation": "judge votes: PASS PASS PASS",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  true,
+                  true,
+                  true
+                ],
+                "evidence": "**先说结论：我这边还没拿到这笔单子的数据，所以现在没法判断它是不是在做多波动率。** 光凭\"Jan 2027 的大单\"这一条也判断不了。单腿期权的 vega 正负取决于是买还是卖、有没有配对的腿，跟到期日远近无关。\n\n**数据方面的情况**：这个 session 里没有 Unusual Whales、TradingView 或 Funda 的工具，我也没有 shell。我去找 `.env` 里的 UW key 时权限被拒了，所以我没有去拉数，也不会编数字。\n\n## 怎么判断这笔单子\n\n| 这笔单实际是什么 | 怎么认出来 | vega 方向 | 结论 |\n|---|---|---|---|\n| 单腿买 call 或买 put，成交在 ask 附近 | 没有多腿，也没有绑定股票 | 正，但只是附带 | **方向性押注**，不算做多波动率 |\n| 买期权，同时反向对冲股票 | `stock_multi_leg` 占比高，暗池有 QCT（qualified contingent trade，和另一条腿绑定的成交）配对 | 正，而且 delta 接近中性 | ✅ **真正的做多波动率** |\n| 同时买同一到期日的 call 和 put（straddle / strangle） | 多腿包里 `strategy` 字段是 straddle 或 strangle，`net_side` 是买方 | 正 | ✅ **做多波动率** |\n| 卖近月、买 Jan27（calendar） | 同一行权价两个到期日同时成交 | 远月 vega 为正，gamma 为负 | 做多期限结构，**不算纯做多波动率** |\n| 卖 call，同时买股票（buy-write） | 股票腿占比往往超过 90% | **负** | 做空波动率，看多到中性 |\n| 从 Oct 或 Nov 滚仓到 Jan27 | 近月同一行权价的 OI 同时下降，实值部分的内在价值占大头 | 基本不变 | 调仓，**没有新观点** |\n| 买 put，同时持有股票或卖 call 来付权利金 | 行权价接近平值，发生在大涨之后、事件之前 | 正 | **对冲**，不算看空，也不算做多波动率 |\n| 撮合成交，或没有主动方 | 成交价在中间价，或者是 cross | 看不出 | 规模是真的，方向看不出来 |\n\n## NBIS 本身的背景\n\n- **8 月的时候，NBIS 的隐含波动率长期低于事后的实现波动率。** 回看最近 10 次，隐含波动率都比事后实现波动率低，差距 18–44 个波动率点。按这个历史，真在做多波动率的人一直是赚钱的一方。不过这份数据是 8 月的，那段实现波动率里还包括 +34% 的财报日和可转债对冲的平仓，现在可能已经过时。\n- **8 月那次 NBIS 发了可转债**，对冲流量大约占日均成交量的 40–70%。所以这次大单要先确认是不是和可转债或其他公司行为有关（要查 EDGAR）。这类机械性成交量不代表任何观点。\n- **今天距离 2027 年 1 月的月度到期（Jan 15）大约 109 天。** 这不算 LEAPS，更像是覆盖某个特定事件的窗口。我手上的资料只到 8 月，看不到这个窗口里有哪些日程。你那边知道的话可以告诉我，比如 Q3 财报、之前那个待审的规划听证有没有结果，这样就能看出买方想覆盖的是哪个事件。\n- **单独一笔，再大也不能当信号。** 要看它是不是新开仓（明天清算后的 OI 变化），还有之后几天有没有同方向的单子接着出现。\n\n## 下一步，两个选一个\n\n1. **把这笔单子的信息贴给我**：行权价、C 或 P、手数、成交价以及当时的买卖价、时间、有没有同时成交的其他腿，最好再附上当时的股价。我按上面的表逐条过一遍。\n2. **给我数据权限**：比如把 UW 的 MCP 加进来（`claude mcp add --transport http unusual-whales https://api.unusualwhales.com/api/mcp --header \"Authorization: Bearer $UNUSUAL_WHALES_API_KEY\"`），或者允许我读 `.env`。之后我可以直接查这笔单子，也可以跑一遍完整的 `/trade daily NBIS`。\n\n口径说明：以上都是方法和历史背景，今天的盘面我还没看。以上不构成投资建议。"
+              },
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-daily-lookup-03",
+      "dir": "evals/split-daily-lookup-03",
+      "source": "prose",
+      "promptMarkdown": "/trade NOK 今天是不是有一个10月份的nok蝴蝶大单？",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "lookup-not-ladder",
+          "type": "llm",
+          "weight": 1,
+          "graderMarkdown": "Context: the user asked about one specific print, contract or block: \"/trade NOK 今天是不是有一个10月份的nok蝴蝶大单？\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+          "config": {
+            "criteria": "Context: the user asked about one specific print, contract or block: \"/trade NOK 今天是不是有一个10月份的nok蝴蝶大单？\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+            "focus": "last_message"
+          }
+        },
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 4,
+            "costUsd": 0.2456,
+            "judgeCostUsd": 0.013892000000000005,
+            "durationSeconds": 22,
+            "startedAt": "2026-09-29T03:30:20.331Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-BNreXE/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": true,
+                "weight": 1,
+                "explanation": "judge votes: PASS PASS PASS",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  true,
+                  true,
+                  true
+                ],
+                "evidence": "我没法确认今天（2026-09-28）有没有这笔 10 月 NOK 蝴蝶大单，因为这次会话里拿不到任何行情或期权流数据：\n\n- **没有数据工具**：Unusual Whales、TradingView（MCP 和桌面版）、Funda 都没连上，工具搜索里一个都找不到。\n- **读不到 UW key**：我想确认 `.env` 里有没有 `UNUSUAL_WHALES_API_KEY`，但当前是 don't-ask 模式，这次读取被拒了。我没有换别的办法去读凭证。\n\n凭印象说\"有\"或\"没有\"都等于编数据，所以我不下结论。\n\n**能查的时候，我会按下面几步核实这笔单：**\n\n1. **先找到这笔成交**：拉 `/api/option-trades/multi-leg?ticker_symbol=NOK`（参数名必须是 `ticker_symbol`，写成 `ticker` 会被静默忽略，返回全市场所有股票），筛 10 月到期、`strategy` 为 butterfly 的组合，再用 `/multi-leg/{id}/legs` 看各条腿。要看的是时间、手数、成交价相对买卖报价（NBBO）的位置，以及三个行权价。\n2. **按整个组合算，不看单条腿**：看 `net_premium` 和 `net_side`。不能把中间那条卖出 2 倍的腿单独当成\"大额卖出\"来读，这是 pitfall 32 的多腿污染问题。\n3. **开仓还是平仓**：`all_opening_legs` 这个字段不可靠，要以清算后的 OI 变化为准（`oi-change?date=2026-09-28`，必须带 `date=`，否则返回的是前一个清算日的数据）。\n4. **怎么解读**：就算确认是新开的买入蝴蝶，它表达的是\"到期时价格停在中间行权价附近\"，也就是押一个价位，并不代表看多或看空。另外单笔大单本身不算信号（pitfall 2），得连续几天同方向才有意义。\n\n**怎么继续：**\n- 允许读取仓库根目录的 `.env`，或者把 UW / TradingView MCP 接进来，我马上查这笔单，需要的话再跑完整的 `/trade daily NOK`。\n- 如果你手上有这笔单的截图或具体信息（到期日、三个行权价、手数、成交价），直接贴过来，我可以先帮你算这个蝴蝶的盈亏区间，看它押的是哪个价位。\n\n非投资建议。"
+              },
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0.3333333333333333,
+            "passed": false,
+            "turns": 4,
+            "costUsd": 0.224207,
+            "judgeCostUsd": 0.010758000000000004,
+            "durationSeconds": 20,
+            "startedAt": "2026-09-29T03:30:20.623Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-uFA0Uj/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": true,
+                "weight": 1,
+                "explanation": "judge votes: PASS PASS PASS",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  true,
+                  true,
+                  true
+                ],
+                "evidence": "我现在没法确认，也不会凭空猜一个答案。\n\n**为什么查不了：**\n- 这个会话里没有可用的数据源：没有接 Unusual Whales MCP，也没有 TradingView 和 Funda 的工具，我这边也没有 shell 能跑 REST 请求。\n- 我试过找 UW 的 API key（`.env`），但权限被拒了，当前是 don't-ask 模式。这是你设的限制，所以我没有让子代理去绕开它。\n\n**你可以选一种方式让我查：**\n1. **允许读取 `.env`**，或者接上 UW MCP：\n   `claude mcp add --transport http unusual-whales https://api.unusualwhales.com/api/mcp --header \"Authorization: Bearer $UNUSUAL_WHALES_API_KEY\"`\n   接好后我会拉 `/api/option-trades/multi-leg` 和 `/api/stock/NOK/flow-alerts`，找今天 NOK 10 月到期的多腿单，再用 `/multi-leg/{id}/legs` 拿到具体几条腿。\n2. **直接贴那笔单的截图或信息**，包括到期日、三个行权价、call 还是 put、张数、成交价和时间，我帮你拆。\n\n**查到之后我会先确认这几点**（避免把一笔单读成方向信号，见 pitfall 02 和 32）：\n- **是买蝴蝶还是卖蝴蝶。** 买蝴蝶是在赌 10 月到期时价格钉在中间那个行权价附近，看的是\"价格停在哪\"，不是看涨或看跌。卖蝴蝶才是在赌价格大幅波动。\n- **成交价相对 NBBO 在哪一侧**，还有当天该行权价的 OI 有没有增加。OI 没增加的话，可能是平掉或移仓旧仓位，不是新开仓。\n- **中间行权价的位置**，看它离现价多远，和 dealer GEX 的集中位置、max pain 有没有重合。\n- **净权利金的大小。** 蝴蝶的净权利金通常很小，名义张数看着吓人，真实的风险敞口可能不大。\n\n你选哪种方式？"
+              },
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0.6666666666666666,
+        "passRate": 0.5
+      }
+    },
+    {
+      "name": "split-daily-lookup-04",
+      "dir": "evals/split-daily-lookup-04",
+      "source": "prose",
+      "promptMarkdown": "STM 2026-11-20 $55 Call 看涨 $2.01M | iso_sweep  深挖一下",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "lookup-not-ladder",
+          "type": "llm",
+          "weight": 1,
+          "graderMarkdown": "Context: the user asked about one specific print, contract or block: \"STM 2026-11-20 $55 Call 看涨 $2.01M | iso_sweep  深挖一下\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+          "config": {
+            "criteria": "Context: the user asked about one specific print, contract or block: \"STM 2026-11-20 $55 Call 看涨 $2.01M | iso_sweep  深挖一下\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+            "focus": "last_message"
+          }
+        },
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 0.6666666666666666,
+            "passed": false,
+            "turns": 6,
+            "costUsd": 0.45910300000000004,
+            "judgeCostUsd": 0.027134000000000005,
+            "durationSeconds": 75,
+            "startedAt": "2026-09-29T03:30:22.816Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-X8yMm3/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": false,
+                "weight": 1,
+                "explanation": "judge votes: FAIL FAIL FAIL",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  false,
+                  false,
+                  false
+                ],
+                "evidence": "这笔单我暂时没法深挖，因为这个会话拉不到任何数据。我这边没有 Bash，也没有网络访问；`/Users/himself65/trade/.env` 读不了，是权限模式挡住的；Unusual Whales (UW)、TradingView、Funda 的 MCP 也都没挂上。所以这笔 STM 11/20 $55C 的成交价、张数、成交时的 bid/ask、当时股价、Vol/OI、是不是多腿，我一项都没核实。下面不带任何编造的数字，只说这笔单本身能看出什么，以及要确认的几件事。\n\n## 光看这一行，能看出和看不出的\n\n| 已知 | 含义 |\n|---|---|\n| `iso_sweep` | 扫单，买方主动吃了多个交易所的 ask，**说明急**。但急不代表有信息优势，对冲腿和平仓也常用 sweep。 |\n| 看涨标签 | 这是 UW 按 ask-side 自动打的标签，**不代表开仓，也不代表不是价差的一条腿**。 |\n| $2.01M | 这是单腿的权利金。STM 的正常水平我还没核对，所以这个数算大还是一般，暂时说不了。 |\n| 11/20 到期，约 53 天 | STM 的 Q3 财报一般在 10 月下旬，**这个到期日大概率跨过财报**，今年的日期还没核实。所以这更可能是一笔事件单，IV 里带着财报溢价。 |\n\n## 定性前要过的 6 关（按顺序，任何一关不过就不能按方向解读）\n\n1. **是不是多腿（pitfall 32）**：`multi_leg_volume / volume` 和 `stock_multi_leg_volume / volume` 都要低于 30%。如果和正股绑定，可能是买股票同时卖 call 的备兑单（buy-write），意思就完全反过来了。\n2. **能不能判断主动方**：sweep 一般在 ask 成交，这一关大概率能过，但要确认成交价是贴着 ask，而不是在 mid。\n3. **是开仓还是平仓**：要看第二天清算后的 ΔOI。收盘前可以先算一个下限：`ΔOI ≥ volume − 2×prior_OI`，这个值是正的就说明一定有新开仓。\n4. **是不是同一个决定**：同一分钟前后如果有别的行权价或到期日的 STM 大单，合起来算一笔，比如价差或展期。\n5. **和全天总流向是否一致**：看全天的 `net_call_premium` 和 `bullish − bearish`。如果全天是净卖出，这一笔的分量要往下调。\n6. **有没有持续性（pitfall 2）**：单笔再大也只是一张票。要看前几天有没有同方向的 Nov/Dec call 扫单，现在是第几天。\n\n另外，解读前要先查公司行为（pitfall 35）。STM 是外国发行人，报 6-K，要看近 30 天有没有回购、可转债之类会产生机械性成交量的事件。\n\n## 两种办法接着查\n\n- **A：放开数据权限。** 允许 Bash 加网络访问和读取 `.env`（或者直接设好 `UNUSUAL_WHALES_API_KEY`），或者把 UW MCP 挂上。然后我跑完整的 `/trade daily STM`：上面 6 关、IV 期限结构和 IV 排名（IVR）、做市商 GEX（gamma 敞口）、max pain、暗池、同业横向对比，最后给出一个状态结论和推翻条件。\n- **B：你直接贴 UW 上这笔单的原始行。** 包括时间、张数、成交价、bid/ask、股价、Vol、OI，有 multi-leg 字段也一起贴。我可以当场算虚值幅度、盈亏平衡点和它离现价的百分比、隐含的时间价值，并判断第 1 到第 3 关。\n\n在查完之前，这笔单只能算作一笔**急迫、偏财报的 call 买入活动**，还不能说机构在看涨。\n\n*口径：没有拉到任何实时数据，以上都是检查框架，没有结论。非投资建议。*"
+              },
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.4063654,
+            "judgeCostUsd": 0.015663999999999983,
+            "durationSeconds": 59,
+            "startedAt": "2026-09-29T03:30:28.617Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-RoZsDn/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": true,
+                "weight": 1,
+                "explanation": "judge votes: PASS PASS PASS",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  true,
+                  true,
+                  true
+                ],
+                "evidence": "我没能拿到这笔单的任何数据，所以现在没法深挖它，也不能判断它是不是真看涨。下面的数字一个都不是我查到的。\n\n## 为什么查不了\n- 这个会话里没有 shell，也没有 Unusual Whales、TradingView 或 Funda 的工具。我派出去的子任务同样发不了 HTTP 请求。\n- 我去找 `.env` 里有没有 `UNUSUAL_WHALES_API_KEY`，被权限拦了，所以连 key 在不在都不知道。\n- 当前的美东时间和交易时段也没查到。\n\n## 只看你给的信息能说的\n`$2.01M` 和 `iso_sweep` 这两个标签只说明两件事：有人主动去吃 ask，而且是分几个交易所扫的。下面这些都还不知道，每一条都可能把\"看涨\"推翻：\n\n| 要查的 | 为什么重要 |\n|---|---|\n| **是否多腿 / 绑定正股**（`multi_leg_volume`、`stock_multi_leg_volume` 占比 ≥30% 就不能按单腿看方向） | 如果同时卖了更高行权价的 call，就是价差单，看涨但有上限。如果连着买正股，可能是 buy-write，那就不是买 call 的观点。 |\n| **成交价在 NBBO 的哪里** | 扫单只能说明对方急，不说明是新建仓。 |\n| **开仓还是平仓**：先看这张合约的 OI。昨天 OI 为 0 就一定是新开仓；否则用 ΔOI ≥ 成交量 − 2×前一天 OI 来判断 | 如果是平掉之前卖出的 call，方向正好反过来。 |\n| **$55 离现价多远**，premium 里内在价值占多少 | 深度虚值是彩票式押注，深度实值更像替代正股。两种读法完全不同。 |\n| **全天总量**：call 成交量对比 30 日均量，净 call premium | 如果全天净流向是负的，一笔 $2M 的单要排在全天数据后面看。 |\n| **有没有连续性**：前 3–5 个交易日有没有同方向的 11 月或 12 月 call | 只有一笔大单不算信号（pitfall 2）。 |\n| **公司行为**：查 EDGAR 上 6-K 有没有可转债、回购或并购 | 这类事件带来的成交量是机械性的，不代表观点（pitfall 35）。 |\n| **催化剂**：STM 的财报一般在 10 月下旬，11/20 到期正好覆盖这次财报 | 如果是押财报，就要看 IV 期限结构里财报溢价是不是已经很贵。 |\n\n## 要继续有两种办法\n1. **把原始数据贴给我**：UW 那一行的时间、张数、成交价、bid/ask、OI、成交量、是否多腿，最好再加上当天 STM 的现价。我会按上面的步骤逐项走一遍。\n2. **接上数据源**：\n   ```\n   claude mcp add --transport http unusual-whales https://api.unusualwhales.com/api/mcp --header \"Authorization: Bearer $UNUSUAL_WHALES_API_KEY\"\n   ```\n   或者放开 Bash 和读 `.env` 的权限。接好以后我跑完整的 `/trade daily STM`，包括这笔单、全天流向、IV、GEX 和同行对比。\n\n非投资建议。"
+              },
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0.8333333333333333,
+        "passRate": 0.5
+      }
+    },
+    {
+      "name": "split-daily-lookup-05",
+      "dir": "evals/split-daily-lookup-05",
+      "source": "prose",
+      "promptMarkdown": "/trade NVDA jan 27为什么这么多200c，这是建仓吗",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "lookup-not-ladder",
+          "type": "llm",
+          "weight": 1,
+          "graderMarkdown": "Context: the user asked about one specific print, contract or block: \"/trade NVDA jan 27为什么这么多200c，这是建仓吗\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+          "config": {
+            "criteria": "Context: the user asked about one specific print, contract or block: \"/trade NVDA jan 27为什么这么多200c，这是建仓吗\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+            "focus": "last_message"
+          }
+        },
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 0.3333333333333333,
+            "passed": false,
+            "turns": 6,
+            "costUsd": 0.4452212,
+            "judgeCostUsd": 0.011706000000000008,
+            "durationSeconds": 59,
+            "startedAt": "2026-09-29T03:30:32.363Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-ptFqFh/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": true,
+                "weight": 1,
+                "explanation": "judge votes: PASS PASS PASS",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  true,
+                  true,
+                  true
+                ],
+                "evidence": "我没拿到任何 NVDA 的实时数据，所以现在没法告诉你 Jan-27 200C 这批仓位是不是建仓，也不会拿猜的数字充当结论。\n\n## 为什么没数据\n\n这次会话里没有接入 Unusual Whales、TradingView 或 Funda 的工具，也没有 shell 可以发 HTTP 请求。读 `.env` 查 UW key 被权限拦了（don't-ask 模式）。我还派了一个子 agent 去拉，结果一样，什么都没拿到。\n\n## 先说结论方向：OI 多 ≠ 建仓\n\n200C 堆这么多，常见有五种来源，只有第一种是你说的\"建仓\"：\n\n| 可能来源 | 在数据里长什么样 | 方向含义 |\n|---|---|---|\n| **1. 单腿开仓买入（真建仓）** | 在 ask 成交，多腿占比 <30%，第二天 OI 同步上升，且连续几天同一方向 | 看多 |\n| **2. 移仓（roll）** | 同一时间段出现平掉更近月份的 call（比如 Oct/Nov/Dec 的 180–200C）、开 Jan 200C，两边张数接近 | 老仓位续期，不是新增看多 |\n| **3. 价差的一条腿** | 多腿占比很高；同时段有 Jan 250C 被卖（call spread），或者 Jan 150P/160P 被卖（risk reversal） | 看多但封顶，或者方向更复杂，必须把整个组合一起算钱 |\n| **4. Buy-write / 对冲持股** | 和股票一起成交的占比很高，200C 在 bid 被卖 | 其实是有人**买了股票**、卖 call 收租，偏中性到小看多，不是看空 |\n| **5. 结构性累积** | 200 是整数关口，Jan 月度合约挂牌一年多，OI 本来就会慢慢堆起来 | 没有方向信息 |\n\n另外，就算这些都排除了，只看到一两笔大单也不能当\"聪明钱\"（pitfall 2），必须看到**连续几天、同一方向**的开仓才算数。\n\n## 我需要的数据\n\n下面随便满足一条，我就能跑完整的判断：\n\n1. **接上 Unusual Whales**（最直接）：\n   `claude mcp add --transport http unusual-whales https://api.unusualwhales.com/api/mcp --header \"Authorization: Bearer $UNUSUAL_WHALES_API_KEY\"`\n   UW 能直接给出多腿组合和每条腿的明细，判断是不是价差就不用靠推测。\n2. **开放 Bash 权限，并允许读 `/Users/himself65/trade/.env`**：我可以直接调 UW 的接口，查 OI 变化、每个 strike 的资金流、多腿成交和财报日期。\n3. **接上 TradingView 或 Funda 的 MCP**：可以作为退路，但判断多腿要靠占比估算，精度差一些。\n\n## 拿到数据后我会算什么\n\n- 过去 5–10 个交易日 200C 的 OI 每天变化多少，和成交量能不能对上（区分开仓和平仓）。\n- 大单在 ask 还是 bid 成交，多腿和带股票成交的占比各多少，按 <30% 过滤后再看净方向。\n- 同一时间段 Dec-26、Nov-26 附近 strike 的 OI 有没有对应减少（判断是不是移仓）。\n- 180、190、210、220、250C 和 150、160、170P 有没有同步变化（判断是不是价差的一条腿）。\n- 最后给出一个状态判断（吸筹、移仓、价差封顶、covered call、还是结构性累积），附上概率和\"什么情况说明我判断错了\"的信号。\n\n还有一点要确认：你说的 \"Jan 27\" 是指 **2027 年 1 月的月度合约（2027-01-15 到期）**吗？还是某个 1 月 27 日到期的周度合约？这两个的解读差很多。"
+              },
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0.3333333333333333,
+            "passed": false,
+            "turns": 6,
+            "costUsd": 0.5195960000000002,
+            "judgeCostUsd": 0.011945999999999984,
+            "durationSeconds": 76,
+            "startedAt": "2026-09-29T03:30:33.505Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-k5Trv5/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": true,
+                "weight": 1,
+                "explanation": "judge votes: PASS PASS PASS",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  true,
+                  true,
+                  true
+                ],
+                "evidence": "这次我拿不到任何实时数据，所以没法判断这批 200C 是不是在建仓。我试了 Unusual Whales、TradingView MCP、TradingView reader 和 Funda，这个会话里一个都没连上。我也没有 Bash，所以不能用 API key 直接请求 UW。下面没有任何 NVDA 的具体数字（现价、OI、成交量），因为不查数据我不会编。\n\n先回答方法上的问题：**光看「200C 很多」，判断不了是不是建仓。** 同样一片大 OI，可能是完全相反的几种交易。\n\n## 大 OI 集中在 Jan 2027 200C，常见的几种来源\n\n| 来源 | 在盘面上看起来 | 实际方向 |\n|---|---|---|\n| **① 真建仓**（单腿买入） | ask 成交，第二天 OI 同步涨，连续多日同方向 | 看多 + 做多 vega |\n| **② 移仓**（从 Oct/Dec 2026 滚到 Jan27） | 200C 买入，同一时间近月 call 平仓 | 仓位延续，不是新增敞口 |\n| **③ 价差的一条腿**（比如 150/200 bull call spread） | 200C 大单，常见在 bid 成交 | 200C 是**卖出**的那条腿，上涨空间被 200 封顶 |\n| **④ Buy-write / collar**（持有正股的人卖 call） | 200C 大额卖出，和正股一起成交 | 中性偏多：这个人手里有股票，只是把上涨封在 200 以上 |\n| **⑤ 整数关口的累积** | OI 是半年多一点点攒起来的 | 不是今天的信号，Jan LEAPS 本来就会吸 OI |\n\npitfall 32 就是专门讲这个坑：期权流数据会把价差的每条腿按全额权利金单独显示。所以没过滤的大单统计经常**方向直接反了**。NBIS 那个案例里，\"+$68.9M 看多流\" 过滤掉多腿成交后是 $0。\n\n## 判断是不是建仓，要依次查这几项\n\n1. **成交量和第二天 OI 的变化。** OI 是 T+1 更新的。如果成交 3 万张而 OI 只涨 3 千，大部分是换手或平仓，不是新开仓。\n2. **主动方。** 看是 ask 成交还是 bid 成交。注意 bid 成交只说明是卖方主动，不能直接等同于看空。\n3. **多腿占比。** `multi_leg_volume / volume` 和 `stock_multi_leg_volume / volume` 都低于 30%，才算单腿成交，才拿来读方向。\n4. **有没有配对成交。** 同一时间有没有近月 call 平仓（说明是移仓），或者同到期日其他行权价的反向成交（说明是价差）。\n5. **是不是持续的。** 按 pitfall 2，一天一笔大单只是一个仓位快照，不能当方向。要连续多日、同一方向，而且股价走势也配合，才能叫建仓。\n\n五项都满足（单腿、ask 成交、OI 同步增加、没有配对、连续多日），才叫「建仓」。实际上 LEAPS 的整数行权价上，② ④ ⑤ 最常见。\n\n还有一点要注意：就算真是有人单腿买入 Jan27 200C，这也是一笔**做多 vega 的长期仓位**（pitfall 11）。跟单等于同时押方向和押 IV 不跌，这是两个独立的赌注。\n\n## 下一步\n\n- 把 UW 的 MCP 或 API key（加 Bash 权限）、TradingView MCP、Funda 任意一个连上，我跑一遍 `/trade daily NVDA`。第 1–4 项能直接查出来：有 UW 的话，多腿拆分用 `/api/option-trades/multi-leg` 能精确到每一笔，不用靠推断。\n- 或者你把看到的截图或数据贴过来，我按上面这套逐项过。要有成交时间、张数、价格、bid/ask 位置、多腿标记，最好再加上前后两天的 OI。"
+              },
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0.3333333333333333,
+        "passRate": 0
+      }
+    },
+    {
+      "name": "split-daily-lookup-06",
+      "dir": "evals/split-daily-lookup-06",
+      "source": "prose",
+      "promptMarkdown": "What was that 2M-share MU block around 10:30?",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "lookup-not-ladder",
+          "type": "llm",
+          "weight": 1,
+          "graderMarkdown": "Context: the user asked about one specific print, contract or block: \"What was that 2M-share MU block around 10:30?\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+          "config": {
+            "criteria": "Context: the user asked about one specific print, contract or block: \"What was that 2M-share MU block around 10:30?\". No market-data source was connected in this session, so no real data could be pulled. The expected behavior is a lookup of that one print, not a full daily state report. Length is not a criterion.\n\nPASS if all of these hold:\n- The reply stays on that one print or contract. It either says what it would check to identify it (time, size, fill versus the bid/ask, trade code or multi-leg package, the open-interest change, that contract's or expiry's IV), or says it cannot tell without data.\n- The full daily read is at most offered as a next step.\n- It does not state who traded or why as fact. Hedged possibilities (\"可能\", \"更可能\", \"could be\") and background on the name, such as past earnings moves, a recent convertible or a prior case study, are allowed.\n\nFAIL if the reply is in substance a whole-name daily report or daily plan, meaning it covers two or more of: activity versus the name's own average, GEX or max pain, the dark-pool baseline, a named composite state. Also FAIL if it asserts a buyer, seller or directional intent as fact. Checking the IV of the print's own contract or expiry is part of the lookup and does not count toward the daily report.",
+            "focus": "last_message"
+          }
+        },
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.36383639999999995,
+            "judgeCostUsd": 0.018215999999999982,
+            "durationSeconds": 47,
+            "startedAt": "2026-09-29T03:30:41.015Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-FaTX09/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": true,
+                "weight": 1,
+                "explanation": "judge votes: PASS PASS PASS",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  true,
+                  true,
+                  true
+                ],
+                "evidence": "I couldn't look up that block. This session has no network access and no market-data tools, so I have no data on it, and I won't guess.\n\n**What's missing:**\n- **No shell or network access.** I can only read and search files here, so I can't call Unusual Whales for 1-minute bars or dark-pool prints, or check Micron's SEC filings.\n- **No market-data connection.** There's no Unusual Whales, TradingView or Funda tool in this session.\n- **`/Users/himself65/trade/.env` is blocked.** The permission settings stopped the read, so I don't know if your Unusual Whales API key is there. I didn't try to get around that.\n\n**Why not guess:** a 2M-share MU print at 10:30 in late September needs one check before it means anything. Micron usually reports fiscal Q4 earnings around this time. Earnings timing, a convertible-note hedge or an index rebalance can produce huge prints that aren't anyone's view on the stock. Only the print's data and Micron's filings can tell those apart from real buying or selling.\n\n**What the lookup would give you once data is available:**\n1. **The minute bar:** time, size, and whether volume stayed high afterward.\n2. **The dark-pool prints:** size, price against the bid/ask at the time, the trade code, and whether it was one print or several same-size pieces.\n3. **Size vs normal:** the block as a percentage of MU's 30-day average daily volume.\n4. **Filings and earnings:** Micron's recent filings and earnings date, checked before I say who was behind it or why.\n\n**To unblock it, pick one:**\n- Run this in a session with shell and network access, and allow reading `/Users/himself65/trade/.env` or export `UNUSUAL_WHALES_API_KEY`.\n- Add the Unusual Whales MCP server:\n  `claude mcp add --transport http unusual-whales https://api.unusualwhales.com/api/mcp --header \"Authorization: Bearer $UNUSUAL_WHALES_API_KEY\"`\n- Connect TradingView or Funda instead. That gets the 1-minute bars but not the dark-pool print details.\n\nOnce access works, I'll answer the block question first and then offer the full `daily MU` read."
+              },
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.36101,
+            "judgeCostUsd": 0.007056000000000007,
+            "durationSeconds": 42,
+            "startedAt": "2026-09-29T03:30:42.480Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-CO64Eo/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lookup-not-ladder",
+                "passed": true,
+                "weight": 1,
+                "explanation": "judge votes: PASS PASS PASS",
+                "withOnly": false,
+                "scored": true,
+                "judgeVotes": [
+                  true,
+                  true,
+                  true
+                ],
+                "evidence": "I can't tell you what that block was yet. This session can't reach any market data: I have no shell, no network access and no Unusual Whales connection, and the agent I sent to look it up hit the same wall. So I have no 1-minute bars, no dark-pool prints and no SEC filings for MU today. I won't guess at who was behind a 2M-share print without them.\n\nOnce data access works, it's about three pulls:\n\n1. **The minute:** MU's 1-minute bars from 10:20 to 10:45 ET, to confirm the spike and see whether price or lit volume followed it.\n2. **The print:** Unusual Whales dark-pool prints (and large options prints, if the block was a delta-hedge leg). This gives time, size, price against the bid/ask and the `trade_code`. A `qualified_contingent_trade` code means the shares were tied to another trade, like a convertible hedge or an options leg. That's plumbing, not someone taking a position.\n3. **Filings check:** Micron's recent filings on SEC EDGAR, looking for a convertible, secondary offering, accelerated buyback or index rebalance. Any of those can produce a 2M-share block that says nothing about direction, so this has to be ruled out before anyone reads the print as buying or selling.\n\nTo make this work, do one of these:\n- Allow Bash, network requests and reading `/Users/himself65/trade/.env` (where your `UNUSUAL_WHALES_API_KEY` would be), or restart with the Unusual Whales MCP server connected. Then ask again and I'll run the three pulls.\n- Or paste the print from your terminal or TradingView (time, size, price, bid/ask, condition code). I can read it straight away and tell you what's checkable from that alone.\n\nEither way, a single 2M-share print on MU is about 0.1% of a normal day's volume. That's not a signal by itself until it's filtered and repeats on later days. Not investment advice."
+              },
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/daily\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-import-01",
+      "dir": "evals/split-import-01",
+      "source": "prose",
+      "promptMarkdown": "/trade import https://www.youtube.com/watch?v=sykbVlSOhJs",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.19666140000000001,
+            "judgeCostUsd": 0,
+            "durationSeconds": 17,
+            "startedAt": "2026-09-29T03:30:54.051Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-4gHV6p/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 8,
+            "costUsd": 0.20051580000000005,
+            "judgeCostUsd": 0,
+            "durationSeconds": 16,
+            "startedAt": "2026-09-29T03:31:05.158Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-EPGLNc/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-import-02",
+      "dir": "evals/split-import-02",
+      "source": "prose",
+      "promptMarkdown": "/trade study https://www.zhihu.com/question/2070440887121864300/answer/2070854306874630802",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 3,
+            "costUsd": 0.40957620000000006,
+            "judgeCostUsd": 0,
+            "durationSeconds": 58,
+            "startedAt": "2026-09-29T03:31:10.769Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-y9eY9S/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.24319559999999996,
+            "judgeCostUsd": 0,
+            "durationSeconds": 31,
+            "startedAt": "2026-09-29T03:31:21.093Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-5MbdV4/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-import-03",
+      "dir": "evals/split-import-03",
+      "source": "prose",
+      "promptMarkdown": "/trade import",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 2,
+            "costUsd": 0.1577854,
+            "judgeCostUsd": 0,
+            "durationSeconds": 7,
+            "startedAt": "2026-09-29T03:31:24.504Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-FFxVnn/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 2,
+            "costUsd": 0.1588014,
+            "judgeCostUsd": 0,
+            "durationSeconds": 7,
+            "startedAt": "2026-09-29T03:31:27.314Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-0WfVpt/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-import-04",
+      "dir": "evals/split-import-04",
+      "source": "prose",
+      "promptMarkdown": "JPM 硬件与网络组周报告合并解读(2026-07-22/23) 一句话结论:AI 基建\"实物层\"的需求证据本周达到今年最强,但三份报告共同暴露了同一个供给侧裂缝——存储短缺正在从\"涨价故事\"升级为\"交付瓶颈\",订单质量开始打折。",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 6,
+            "costUsd": 0.201193,
+            "judgeCostUsd": 0,
+            "durationSeconds": 23,
+            "startedAt": "2026-09-29T03:31:27.846Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-RJLRap/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.1858908,
+            "judgeCostUsd": 0,
+            "durationSeconds": 18,
+            "startedAt": "2026-09-29T03:31:31.061Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-u8jTFP/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-import-05",
+      "dir": "evals/split-import-05",
+      "source": "mixed",
+      "promptMarkdown": "@deep-aidc-power.pdf /trade",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 9,
+            "costUsd": 0.21315379999999998,
+            "judgeCostUsd": 0,
+            "durationSeconds": 17,
+            "startedAt": "2026-09-29T03:31:31.253Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-fU9Uz4/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 9,
+            "costUsd": 0.2280552,
+            "judgeCostUsd": 0,
+            "durationSeconds": 20,
+            "startedAt": "2026-09-29T03:31:34.536Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-hgswrk/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-import-06",
+      "dir": "evals/split-import-06",
+      "source": "prose",
+      "promptMarkdown": "Digest this for my notes: https://example.substack.com/p/hbm-supply-2027",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/import\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 2,
+            "costUsd": 0.101487,
+            "judgeCostUsd": 0,
+            "durationSeconds": 16,
+            "startedAt": "2026-09-29T03:31:38.169Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-aQMyD5/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 3,
+            "costUsd": 0.11831420000000001,
+            "judgeCostUsd": 0,
+            "durationSeconds": 21,
+            "startedAt": "2026-09-29T03:31:47.991Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-MER6GW/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0,
+        "passRate": 0
+      }
+    },
+    {
+      "name": "split-menu-01",
+      "dir": "evals/split-menu-01",
+      "source": "prose",
+      "promptMarkdown": "/trade",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "lists-commands",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "^(?=[\\s\\S]*\\bsetup\\b)(?=[\\s\\S]*\\bimport\\b)(?=[\\s\\S]*\\breport\\b)(?=[\\s\\S]*\\bdaily\\b)(?=[\\s\\S]*\\banalysis\\b)",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "\"file_path\"\\s*:\\s*\"[^\"]*references/commands/",
+            "flags": "",
+            "match": "not_contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 1,
+            "costUsd": 0.11372059999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 5,
+            "startedAt": "2026-09-29T03:31:49.073Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-S6a1Sh/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lists-commands",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^(?=[\\s\\S]*\\bsetup\\b)(?=[\\s\\S]*\\bimport\\b)(?=[\\s\\S]*\\breport\\b)(?=[\\s\\S]*\\bdaily\\b)(?=[\\s\\S]*\\banalysis\\b)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 1,
+            "costUsd": 0.1141286,
+            "judgeCostUsd": 0,
+            "durationSeconds": 5,
+            "startedAt": "2026-09-29T03:31:49.204Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-llrakj/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "lists-commands",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^(?=[\\s\\S]*\\bsetup\\b)(?=[\\s\\S]*\\bimport\\b)(?=[\\s\\S]*\\breport\\b)(?=[\\s\\S]*\\bdaily\\b)(?=[\\s\\S]*\\banalysis\\b)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-report-01",
+      "dir": "evals/split-report-01",
+      "source": "prose",
+      "promptMarkdown": "/trade BE NBIS. 特别看一下大单",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 1,
+            "costUsd": 1.2613528,
+            "judgeCostUsd": 0,
+            "durationSeconds": 91,
+            "startedAt": "2026-09-29T03:31:50.800Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-KCaHKz/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 14,
+            "costUsd": 0.8964760000000002,
+            "judgeCostUsd": 0,
+            "durationSeconds": 76,
+            "startedAt": "2026-09-29T03:31:52.483Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-uQ2kOg/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": false,
+                "weight": 2,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0.5,
+        "passRate": 0.5
+      }
+    },
+    {
+      "name": "split-report-02",
+      "dir": "evals/split-report-02",
+      "source": "prose",
+      "promptMarkdown": "NBIS CRWV IREN 今天资金流入流出",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.3204032,
+            "judgeCostUsd": 0,
+            "durationSeconds": 38,
+            "startedAt": "2026-09-29T03:31:53.851Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-quviho/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.3255006,
+            "judgeCostUsd": 0,
+            "durationSeconds": 36,
+            "startedAt": "2026-09-29T03:31:53.857Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-DhEobl/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-report-03",
+      "dir": "evals/split-report-03",
+      "source": "prose",
+      "promptMarkdown": "Who's buying and who's selling in LITE, COHR and AAOI today?",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.3123132,
+            "judgeCostUsd": 0,
+            "durationSeconds": 39,
+            "startedAt": "2026-09-29T03:31:54.327Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-UOD7ba/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.3022242,
+            "judgeCostUsd": 0,
+            "durationSeconds": 37,
+            "startedAt": "2026-09-29T03:31:54.671Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-pLiM3R/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-report-04",
+      "dir": "evals/split-report-04",
+      "source": "prose",
+      "promptMarkdown": "/trade report MU SNDK WDC",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.36121359999999997,
+            "judgeCostUsd": 0,
+            "durationSeconds": 39,
+            "startedAt": "2026-09-29T03:32:08.709Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-Xk7gro/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.3553048,
+            "judgeCostUsd": 0,
+            "durationSeconds": 39,
+            "startedAt": "2026-09-29T03:32:09.452Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-rrbVMC/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-report-05",
+      "dir": "evals/split-report-05",
+      "source": "prose",
+      "promptMarkdown": "存储板块今天散户、大单、机构分别在干什么",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.3848042,
+            "judgeCostUsd": 0,
+            "durationSeconds": 56,
+            "startedAt": "2026-09-29T03:32:29.365Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-dmeSfl/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 4,
+            "costUsd": 0.1842744,
+            "judgeCostUsd": 0,
+            "durationSeconds": 15,
+            "startedAt": "2026-09-29T03:32:31.729Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-T6gngL/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/report\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-setup-01",
+      "dir": "evals/split-setup-01",
+      "source": "prose",
+      "promptMarkdown": "/trade setup",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/setup\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 2,
+            "costUsd": 0.1672772,
+            "judgeCostUsd": 0,
+            "durationSeconds": 11,
+            "startedAt": "2026-09-29T03:32:32.026Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-pxfui1/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/setup\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 3,
+            "costUsd": 0.1771556,
+            "judgeCostUsd": 0,
+            "durationSeconds": 13,
+            "startedAt": "2026-09-29T03:32:33.397Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-Rqem7V/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/setup\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-setup-02",
+      "dir": "evals/split-setup-02",
+      "source": "prose",
+      "promptMarkdown": "帮我初始化一下交易知识库目录，放在 ~/notes/trade",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/setup\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.3076558,
+            "judgeCostUsd": 0,
+            "durationSeconds": 47,
+            "startedAt": "2026-09-29T03:32:43.152Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-jh5ARM/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/setup\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.5183371999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 95,
+            "startedAt": "2026-09-29T03:32:46.043Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-4k6xd4/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/setup\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "split-setup-03",
+      "dir": "evals/split-setup-03",
+      "source": "prose",
+      "promptMarkdown": "Set up my trade knowledge folder",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "route-first",
+          "type": "regex",
+          "weight": 2,
+          "config": {
+            "target": "trace",
+            "pattern": "^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/setup\\.md\"",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.18072500000000002,
+            "judgeCostUsd": 0,
+            "durationSeconds": 14,
+            "startedAt": "2026-09-29T03:32:47.066Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-JsuXV8/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/setup\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 5,
+            "costUsd": 0.17658680000000002,
+            "judgeCostUsd": 0,
+            "durationSeconds": 13,
+            "startedAt": "2026-09-29T03:32:47.559Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-Y8JYB6/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "route-first",
+                "passed": true,
+                "weight": 2,
+                "explanation": "matched ^(?:(?!\"file_path\"\\s*:\\s*\"[^\"]*references/commands/)[\\s\\S])*\"file_path\"\\s*:\\s*\"[^\"]*references/commands/setup\\.md\"",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 60,
+    "casesPassed": 50,
+    "overallScore": 0.8722222222222222,
+    "overallPassRate": 0.8583333333333333
+  }
+}

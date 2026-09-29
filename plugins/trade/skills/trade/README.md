@@ -112,6 +112,7 @@ The repo includes a small behavioral suite for [`claude plugin eval`](https://co
 | `pushback-right-claim-update` | A correct pushback (IV floor plus a catalyst, so long vega) produces an update that says what changed |
 | `gate-snow-jade-lizard` | The bull-conviction count and the P/L matrix come before any structure, and there is no Jade Lizard at a count of 4 or more. The user's notes are loaded and `corpora/` is not |
 | `gate-sell-put-high-ivr` | A put sale is not approved on IV rank alone. The VRP gate (pitfall 36) runs first |
+| `split-*` (60 cases, tag `routing-split`) | Routing precision and recall across analysis / daily / one-print lookup / report / import / setup / menu, mostly on real prompts. `scripts/routing-matrix.mjs` builds the confusion matrix. See [`evals/README.md`](../../evals/README.md#routing-split-split-) |
 
 Graders check what the run did (which reference files it read, which tools it called, which files it wrote) and the shape of the final answer, which a judge model scores against PASS/FAIL rubrics. No case touches real market data. Runs are sandboxed without your MCP servers or API keys, and the one-print lookup gets its answers from a mocked `unusual-whales` server with canned prints.
 
@@ -127,6 +128,7 @@ claude plugin eval plugins/trade --scaffold --allow-tools Write Edit --ablation 
 - `--allow-tools Write Edit` lets the import case write its digest. Writes stay inside each run's workspace. Without this flag the import case cannot pass, and the link control's "nothing written" check passes trivially.
 - `--ablation none` runs only the with-plugin arm, which is 27 agent runs at the default of 3 runs per case. Drop the flag to add the no-plugin baseline and report Δ (48 runs). The pushback cases resume a transcript, so they always run one arm.
 - To iterate cheaply, use `--case route-print-lookup --runs 1`, or `--tag audit-v2.16` for the six cases that pin the audit's behavior changes.
+- Without `--case` or `--tag`, the command also runs the 60 `split-*` routing cases, at about $0.30 per run. Those cases have their own recommended flags (see the Evals authoring notes), so run them separately with `--tag routing-split`.
 - Pin the model when you compare runs over time (`--model claude-opus-5-5`). The default judge is Haiku, which sometimes splits 2–1 on the multi-condition rubrics; use `--judge-model sonnet` when a single verdict matters.
 - `--max-cost-usd` caps the spend. Each run prints a list-price cost estimate when it finishes.
 

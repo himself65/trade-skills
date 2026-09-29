@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: split-analysis-17
+context:
+  # Needs --scaffold to place the @-mentioned attachment in the workspace.
+  scaffold_script: scaffold.sh

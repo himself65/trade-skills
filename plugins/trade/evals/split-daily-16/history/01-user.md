@@ -1,0 +1,1 @@
+/trade:trade daily NBIS

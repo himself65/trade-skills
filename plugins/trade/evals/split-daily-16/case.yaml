@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: split-daily-16
+context:
+  # Built from history/*.md by scripts/build-history.mjs. The prompt is the next user turn.
+  history_file: history.jsonl
