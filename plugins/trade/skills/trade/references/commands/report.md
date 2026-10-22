@@ -98,7 +98,7 @@ Always flag **earnings proximity** (from #2): a name reporting in days explains 
 - **One table per basket**, columns: `Ticker | Chg% | Net options flow (bull−bear, $M) | Net call $M | Net put $M | Call vol / 30d | Bid-ask skew | Smart-money verdict`. Premiums in `$M`, one decimal.
 - Then a **cross-section synthesis**: who's the clean long, who's diverging/distributing, who's price-only-unconfirmed, who's event-driven; and the **basket vs basket** comparison if more than one.
 - A **retail (散户) news-sentiment** line: counts + tone, with the thin-coverage caveat.
-- **On the UW path**, add two lines the Funda path cannot produce: the **intraday shape** (when in the session the premium arrived) and the **dark-pool** layer (off-exchange premium + largest prints vs NBBO), each with its caveat. Name the data path in one clause so the reader knows which 口径 they're reading.
+- **On the UW path**, add two lines the Funda path cannot produce: the **intraday shape** (when in the session the premium arrived) and the **dark-pool** layer (off-exchange premium + largest prints vs NBBO), each with its caveat. Open the report with the **source line** (each number's source and session, per [`../../SKILL.md`](../../SKILL.md) → Data Access), so the reader knows which 口径 they're reading.
 - **Respond in the user's language** (see `SKILL.md` User Profile — the report is chat output; only git-tracked files stay English). The 散户 / 大单 / 机构 taxonomy keeps its Chinese names as domain terms — gloss them (retail / block / institutional) on first use when replying in English.
 
 ## Constraints
