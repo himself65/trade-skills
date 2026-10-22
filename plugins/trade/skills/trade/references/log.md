@@ -10,6 +10,12 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-10-22 — TradingView MCP: verified no single-stock overnight print; release v2.18.1
+
+- **Tested.** The TradingView MCP (`tradingview-mcp-server` 0.8.1) was installed at user scope and probed at 04:21–04:25 ET on 10/22 for BE, SMH and QQQ plus NQ1! / ES1!. `stock_extended_hours` returned a live pre-market print (BE 223.10 at 04:21 ET against a 238.53 RTH close). `stock_prices` and `yahoo_price` returned the RTH close. NQ1! / ES1! were live.
+- **No overnight coverage.** The MCP's extended-hours data is Yahoo's 1-minute chart with pre/post, and the raw series has no candles between 20:00 and 04:00 ET. So the MCP closes the pre-market gap, but no tier serves a single-stock overnight (24h) print. [`../SKILL.md`](../SKILL.md) → "Source first" step 2 now says so and names the MCP's coverage. Tier 1 records the session window, the `EXCHANGE:SYMBOL` format and how to add the server on an older `finance-data-providers` install. [`overnight-futures-framework.md`](overnight-futures-framework.md) notes that only the futures are live overnight.
+- **Trap.** In pre-market, `stock_extended_hours`' `previous_close` is one session stale: BE showed "+0.2%" when it was −6.5% against the last close. Tier 1 now says to compute the move against `regular.price`.
+
 ## 2026-10-22 — Data Access: source line first, ask when a source is missing; release v2.18.0
 
 - **The failure.** During Asia hours on a print day, someone asked whether to buy a name "tonight". The first answer used the 20:00 ET after-hours close from UW and presented it as current. The overnight (24h) session already had the name −5.5%. When challenged, the second answer pulled overnight prices from a broker's public quote page and searched the web for the cause. It never said that the TradingView tiers were down, or that the source had changed.
