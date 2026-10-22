@@ -10,6 +10,18 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-10-22 — Data Access: source line first, ask when a source is missing; release v2.18.0
+
+- **The failure.** During Asia hours on a print day, someone asked whether to buy a name "tonight". The first answer used the 20:00 ET after-hours close from UW and presented it as current. The overnight (24h) session already had the name −5.5%. When challenged, the second answer pulled overnight prices from a broker's public quote page and searched the web for the cause. It never said that the TradingView tiers were down, or that the source had changed.
+- **Why the tiers were down.** No TradingView MCP server was configured. The desktop app was running without its debug port. After a relaunch, the reader's `quote` still returned only the **RTH close** for stocks, while its futures quotes (NQ1! / ES1!) were live. UW candles stop at 20:00 ET. No tier in this skill covers the single-stock overnight price.
+- **The rule.** [`../SKILL.md`](../SKILL.md) → Data Access → "Source first, and ask when a source is missing" makes three changes:
+  1. Every reply that uses data opens with a **source line**: each number's source plus the time and session it reflects.
+  2. The session has to match the question. Outside RTH, the user means the latest print, not the last close.
+  3. When the tier that should serve a number is unavailable, the reply **asks** with `AskUserQuestion`: what is missing, why, and the options (enable it, use a named outside source, or answer without the number). It never switches sources silently.
+
+  "Do not substitute web search" now reads "for market data", and web news is still allowed for catalyst attribution when cited. The tier-2 line also documents the debug-port relaunch and the `open -a TradingView --args --remote-debugging-port=9222` fallback.
+- **Commands.** The rule is wired into [`commands/analysis.md`](commands/analysis.md) step 4, [`commands/daily.md`](commands/daily.md) (preflight data-path check against the clock; the source line is now output item 0) and [`commands/report.md`](commands/report.md) output. The `route-daily-block-check` honesty grader now accepts a leading source line, or a question about which source to use, as part of the "cannot tell yet" opening.
+
 ## 2026-09-29 — Routing: load the command file before answering; description covers single-stock asks and bare research; release v2.17.1
 
 - **The skill fired but skipped its subcommand.** In 6 of 46 analysis runs on a 60-prompt routing eval (46 of the prompts are real user prompts), the skill loaded and then answered straight from a case study, an attached PDF or general knowledge, without reading [`commands/analysis.md`](commands/analysis.md). That skips the preflight silently: which knowledge-dir notes to load, the vega sanity check, and how to report a missing data source. [`../SKILL.md`](../SKILL.md) → Routing rules now says to read the routed command's file before answering, even when the question looks answerable without it or no data source is connected. Only the no-argument menu answers without a command file.

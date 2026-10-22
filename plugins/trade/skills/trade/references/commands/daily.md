@@ -43,7 +43,7 @@ Route a multi-name money-flow sweep to `report`. Route "should I put this trade 
    ```
    with a `User-Agent` that includes a contact email — SEC's fair-access policy refuses anonymous agents, `Archives/` exhibit fetches included. Read the **exhibit** (EX-99.1), not just the form cover. A convertible note, secondary, ATM program, exchange offer, index rebalance, lock-up expiry or M&A consideration **generates enormous volume that carries no opinion**. Attributing that volume to positioning is the single most expensive error this command exists to prevent.
 4. **Knowledge dir.** Resolve it per [`analysis.md`](analysis.md) preflight step 1 and load any file matching the ticker — the user's own prior read on this name is context you must not re-derive or contradict silently.
-5. **Data path.** Run the Unusual Whales availability gate in [`../unusual-whales.md`](../unusual-whales.md) §1. UW direct is the assumed path for this command; several steps below have **no** substitute without it, and the reply must name the path either way.
+5. **Data path.** Run the Unusual Whales availability gate in [`../unusual-whales.md`](../unusual-whales.md) §1. UW direct is the assumed path for this command; several steps below have **no** substitute without it, and the reply must name the path either way. Check the clock from item 1 against each source's coverage. UW stops at 20:00 ET, so an overnight question needs another source. If that source isn't available, ask the user before reading, per [`../../SKILL.md`](../../SKILL.md) → Data Access.
 
 ---
 
@@ -256,12 +256,13 @@ This is the part that makes tomorrow's `daily` cheap to run: it tells the next s
 
 Match the language of the user's message. Keep it scannable:
 
+0. **Source line**: each number's source and the session it reflects. See [`../../SKILL.md`](../../SKILL.md) → Data Access → "Source first, and ask when a source is missing". If a needed source is down, ask before this read goes out.
 1. **One-line answer to the literal question asked** (今天有没有大单 → yes/no, before any table)
 2. Snapshot table (or **delta table** on a re-run)
 3. Only the sections that have content — a step that found nothing gets one line, not a table of zeros
 4. Composite state
 5. Signposts
-6. Data-path / 口径 line + **非投资建议**
+6. 口径 caveats (dark-pool direction is inference, aggregates are incomplete, truncation) + **非投资建议**
 
 ## Hard rules
 
