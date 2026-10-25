@@ -2,9 +2,9 @@
   "private": true,
   "name": "trade-skills",
   "version": "1.0.0",
-  "description": "Personal options trading Claude Code plugin marketplace.",
+  "description": "Personal options trading plugin marketplace for Claude Code and OpenAI Codex.",
   "scripts": {
-    "bump": "ccbump"
+    "bump": "ccbump --files plugins/trade/.codex-plugin/plugin.json"
   },
   "packageManager": "pnpm@11.22.0",
   "devDependencies": {

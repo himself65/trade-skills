@@ -10,6 +10,12 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-10-25 — OpenAI Codex plugin support; AGENTS.md; release v2.20.0
+
+- **Codex install.** The plugin now ships a Codex manifest (`plugins/trade/.codex-plugin/plugin.json`) and a Codex marketplace listing (`.agents/plugins/marketplace.json`) beside the Claude Code ones. `codex plugin marketplace add himself65/trade-skills` followed by `codex plugin add trade@trade` installs it, and Codex exposes the skill as `trade:trade`. Verified on codex-cli 0.161.0 against a throwaway `CODEX_HOME`: the plugin installed at 2.20.0 and the skill appeared in the model-visible skill list.
+- **Host-neutral commands.** The knowledge-dir lookup in [`commands/analysis.md`](commands/analysis.md), [`commands/import.md`](commands/import.md) and [`commands/setup.md`](commands/setup.md) now reads a `knowledge_path:` line from `AGENTS.md` as well as `CLAUDE.md` (global: `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md`). Every `AskUserQuestion` instruction, including the missing-source rule in [`../SKILL.md`](../SKILL.md), falls back to a plain question where that tool is missing, as in Codex.
+- **Repo.** The contributor guide moved from `CLAUDE.md` to `AGENTS.md`; `CLAUDE.md` is now an `@AGENTS.md` import. A `codex-manifest` CI job fails when the Codex manifest's version drifts from `plugins/trade/plugin.json`.
+
 ## 2026-10-25 — Pitfall 38: the market grades a print on the metric its current fear is about; BE case study closed; release v2.19.0
 
 - **New [pitfall 38](pitfalls/38-graded-metric-follows-the-regime.md).** BE beat a bullish third-party preview on its 10/22 Q3 print (revenue $1.236B vs 1.162 preview / 1.077 consensus, guide raised) and still fell 19% from T−1 to T+1 against ±8.1% implied. META's capex guide, read as an AI-financing problem, took 8.7% before the print as pure sector beta; negative free cash flow took 11.2% on T+1 with SMH up. The rule: write the graded-metric line before scoring a beat; decompose a drawdown into index beta versus a live factor before citing a "−X% → rebound" base rate; condition right-tail history on regime; write skip rules for same-factor peer prints inside the event window; execute a hard exit at the first print through it.

@@ -16,7 +16,7 @@ The default flow. Runs whenever the user invokes `/trade analysis ...` **or** wh
 
 1. **Locate and scan the personal knowledge directory.** Resolve its path in this order — first one that exists wins:
    1. `$TRADE_KNOWLEDGE_DIR` (environment variable), if set.
-   2. A `knowledge_path:` line in the nearest `CLAUDE.md` (project root, then `~/.claude/CLAUDE.md`) — an absolute or `~`-path. **This is how a knowledge dir kept in a _different_ repo (e.g. a private notes repo) is found regardless of the current working directory.**
+   2. A `knowledge_path:` line in the nearest agent instructions file — project-root `AGENTS.md` or `CLAUDE.md`, then the global `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md` — an absolute or `~`-path. **This is how a knowledge dir kept in a _different_ repo (e.g. a private notes repo) is found regardless of the current working directory.**
    3. `./knowledge/` relative to the current working directory.
 
    If none resolves to an existing directory, skip this step. Once located:

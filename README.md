@@ -3,7 +3,7 @@
 > [!WARNING]
 > This project is for educational and informational purposes only. Nothing here constitutes financial advice. Always do your own research and consult a qualified financial advisor before making investment decisions.
 
-A personal Claude Code plugin marketplace housing one options-trading skill — backed by a curated [Open Knowledge Format (OKF)](plugins/trade/skills/trade/references/OKF.md) library of 38 pitfalls and case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE). Layout follows the [`himself65/finance-skills`](https://github.com/himself65/finance-skills) convention.
+A personal plugin marketplace for Claude Code and OpenAI Codex, housing one options-trading skill — backed by a curated [Open Knowledge Format (OKF)](plugins/trade/skills/trade/references/OKF.md) library of 38 pitfalls and case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE). Layout follows the [`himself65/finance-skills`](https://github.com/himself65/finance-skills) convention.
 
 ## Quick Start
 
@@ -19,6 +19,15 @@ npx plugins add himself65/trade-skills
 npx skills add himself65/trade-skills
 ```
 
+### OpenAI Codex — Install the plugin
+
+```bash
+codex plugin marketplace add himself65/trade-skills
+codex plugin add trade@trade
+```
+
+Codex lists the skill as `trade:trade`. Mention it with `$`, or ask in plain language (for example "run the daily read on NVDA") and the skill's description triggers it. `codex plugin marketplace upgrade` refreshes the marketplace when a new release lands.
+
 ### Other agents
 
 ```bash
@@ -30,7 +39,11 @@ npx skills add himself65/trade-skills -a <agent-name>
 ```bash
 git clone https://github.com/himself65/trade-skills.git ~/trade-skills
 ln -s ~/trade-skills/plugins/trade/skills/trade ~/.claude/skills/trade
+# Codex: register the clone as a local marketplace instead
+codex plugin marketplace add ~/trade-skills && codex plugin add trade@trade
 ```
+
+Contributor instructions for coding agents live in [`AGENTS.md`](AGENTS.md); `CLAUDE.md` imports it.
 
 ## Available Skills
 

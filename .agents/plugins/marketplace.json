@@ -1,0 +1,20 @@
+{
+  "name": "trade",
+  "interface": {
+    "displayName": "Trade"
+  },
+  "plugins": [
+    {
+      "name": "trade",
+      "source": {
+        "source": "local",
+        "path": "./plugins/trade"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Finance"
+    }
+  ]
+}

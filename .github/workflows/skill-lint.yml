@@ -14,3 +14,21 @@ jobs:
       - uses: himself65/skill-lint@v3
         with:
           path: 'plugins'
+
+  # skill-lint only knows the Claude Code manifests. The Codex manifest mirrors
+  # plugins/trade/plugin.json too, and Codex caches installs per version, so a
+  # stale version there means Codex users never pick up a release.
+  codex-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Codex manifest version matches plugin.json
+        run: |
+          want=$(jq -r '.version' plugins/trade/plugin.json)
+          got=$(jq -r '.version' plugins/trade/.codex-plugin/plugin.json)
+          if [ "$want" != "$got" ]; then
+            echo "::error file=plugins/trade/.codex-plugin/plugin.json::version $got != plugins/trade/plugin.json $want"
+            exit 1
+          fi
+          jq -e '.plugins[] | select(.name == "trade") | .source.path == "./plugins/trade"' .agents/plugins/marketplace.json > /dev/null
+          echo "Codex manifest at $got."

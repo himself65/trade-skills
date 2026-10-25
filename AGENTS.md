@@ -1,0 +1,145 @@
+# AGENTS.md
+
+This file provides guidance to coding agents (Claude Code, OpenAI Codex, and any other tool that reads `AGENTS.md`) when working with code in this repository. `CLAUDE.md` is a one-line `@AGENTS.md` import so Claude Code loads the same file — edit this one, never that stub.
+
+## Project overview
+
+Personal options trading plugin marketplace for Claude Code and OpenAI Codex. Contains one plugin (`trade`) with a **single skill (`trade`) that exposes five subcommands** via the impeccable-style routing pattern:
+
+- `/trade setup` — asks the user where to scaffold a personal knowledge directory (default `./knowledge/`) and creates the substack / twitter / writedowns layout with templates
+- `/trade import <file_path>` — parses one raw artifact (PDF, screenshot, text) into structured YAML inside the knowledge directory
+- `/trade report [tickers | basket]` — today's capital-flow / 资金流向 read across one or more names (散户 / 大单 / 机构 from options premium-flow + dark pool)
+- `/trade daily <ticker>` — the repeatable one-name daily 看盘 read: tape → activity gate → 大单 block filter ladder → dark-pool baseline → IV term/percentile → dealer GEX + max pain → sector → a **named composite state** + falsification signposts. Routes here for "今天有没有大单 / 成交量怎么样 / IV 拉升了吗 / max pain 在哪 / 现在呢"
+- `/trade analysis [ticker | situation]` — default trade analysis flow. Triggered explicitly, or whenever the first argument doesn't match `setup` / `import` / `report` / `daily` (so natural-language invocations like "analyze NVDA" route here)
+
+## Repository structure
+
+```
+AGENTS.md                       # Agent instructions (this file); CLAUDE.md is an `@AGENTS.md` stub
+.claude-plugin/
+  marketplace.json              # Claude Code marketplace listing — registers the trade plugin
+.agents/
+  plugins/
+    marketplace.json            # Codex marketplace listing — registers the same plugin
+plugins/
+  trade/
+    plugin.json                 # Plugin manifest (Claude Code; version source of truth)
+    .codex-plugin/
+      plugin.json               # Codex plugin manifest — same plugin, Codex `interface` metadata
+    skills/
+      trade/
+        SKILL.md                # Single skill — frontmatter, always-on context, Commands table, Routing rules
+        README.md
+        references/
+          index.md              # OKF bundle root (README.md is a one-line stub)
+          OKF.md                # Open Knowledge Format conformance & schema
+          log.md                # Chronological change history (OKF reserved)
+          strategies.md         # Always-relevant framework
+          gamma-framework.md
+          price-action-framework.md
+          macro-framework.md    # Macro judgment pipeline + dashboard families + output modes
+          unusual-whales.md     # Data Access tier 0 — direct UW access when subscribed (gate, endpoints, traps)
+          overnight-futures-framework.md
+          parent-order-flow-framework.md
+          pitfalls/             # 38 trading pitfalls + index.md (one file per rule)
+          ticker/               # Case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE) + index.md
+          commands/             # Subcommand reference files (impeccable pattern)
+            setup.md            # /trade setup workflow
+            import.md           # /trade import workflow
+            report.md           # /trade report workflow (multi-name capital-flow read)
+            daily.md            # /trade daily workflow (one-name daily state read)
+            analysis.md         # default analysis preflight + situation→reference map
+            templates/          # Files copied into the user's knowledge dir by /trade setup
+              knowledge-index.md
+              knowledge-README.md
+              substack-template.yaml
+              twitter-template.yaml
+              writedown-template.md
+    evals/                      # `claude plugin eval` suite: routing, pushback, gates (not in the release zip)
+```
+
+## How the skill works
+
+The pattern is modeled on [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable):
+
+1. **SKILL.md is the single entry point.** It carries the trigger description, the always-on context (Hard Rules, Response Rules, Core Principles, the structure-selection rule, Data Access), a Commands table, and Routing rules.
+2. **Subcommand-specific instructions live in `references/commands/<name>.md`** and are lazy-loaded only when the user invokes that subcommand.
+3. **Reference content (pitfalls, case studies, frameworks) is lazy-loaded** too — `analysis.md` carries the situation → reference map so the model only reads the specific pitfall / case study files the current question needs.
+
+The `references/` tree is an **Open Knowledge Format (OKF) v0.1** bundle: every pitfall, case study, and framework is a typed markdown concept with YAML frontmatter (`type`, `title`, `description`, `tags`, `timestamp`), cross-linked into a graph and navigated via `index.md` (each directory keeps a one-line `README.md` stub for GitHub rendering). See `references/OKF.md` for the type vocabulary and schema; record notable additions in `references/log.md`.
+
+### Routing rules (from SKILL.md)
+
+1. No argument → render the Commands table as a menu.
+2. First word matches `setup`, `import`, `report`, `daily`, or `analysis` → load the matching `references/commands/<name>.md` and follow it.
+3. First word doesn't match → default to `analysis`; load `references/commands/analysis.md` and treat the full input as the analysis target.
+4. Two narrowing exceptions override rule 3: a **single-name "what is it doing today"** question routes to `daily`; a **multi-name money-flow sweep** routes to `report`.
+
+### SKILL.md frontmatter
+
+`skill-lint` allows only these fields: `name`, `description`, `license`, `allowed-tools`, `metadata`, `compatibility` — any other key (e.g. `version`, `user-invocable`, `argument-hint`) fails the lint. So keep the frontmatter to:
+
+- `name` — must match the skill directory name; lowercase letters / digits / hyphens, ≤ 64 chars.
+- `description` — the trigger definition (comprehensive list of phrases, not a summary). **Hard cap: 1024 characters** — `skill-lint` fails the build past it, so keep it tight.
+- `metadata` — a string→string map (skill-lint requirement); used here to declare OKF conformance (`okf_version: "0.1"`, `okf_conformance: references/OKF.md`).
+
+Version lives in `plugins/trade/plugin.json`, not in SKILL.md frontmatter.
+
+## Adding to the knowledge base
+
+> **Destination rule — decide first: *whose* knowledge is it?** First-party, reusable trading knowledge for *every* installer (a pitfall, a framework, a case study of the user's *own* trade) → the curated **`references/`** library (this repo, public). **Anything the user collected or shared from outside** (a substack/X post, a **macro/brokerage research report**, a KOL thread, **any third-party article or link they ask you to read / digest / save to the knowledge base**) → the **user's personal knowledge dir**, never `references/` — even when they say "our knowledge base." When unsure, ask.
+
+### Curated, shared library (lives in this repo, ships to all installers)
+
+- **New pitfall**: copy `plugins/trade/skills/trade/references/pitfalls/_template.md` → `pitfalls/NN-slug.md` (fill the OKF frontmatter — `type`, `title`, `description`, `tags`, `timestamp` — per `references/OKF.md`), then add a row to `pitfalls/index.md` and a dated entry to `references/log.md`. Also add the pitfall to the relevant situation row in `references/commands/analysis.md`.
+- **New case study**: copy `plugins/trade/skills/trade/references/ticker/_template.md` → `ticker/<ticker>-YYYY-MM.md` (fill the OKF frontmatter), then add a row to `ticker/index.md` and a dated entry to `references/log.md`. Cross-link from `references/commands/analysis.md` if it pattern-matches a common situation.
+- **Strategy update**: edit `references/strategies.md` directly — flat by design.
+- **New subcommand**: add a row to the Commands table in `SKILL.md`, update the Routing rules if needed, and create `references/commands/<name>.md`.
+- **Skill description tweak**: edit the YAML `description` field in `SKILL.md` frontmatter (controls what triggers the skill).
+
+### User-private knowledge (lives in a user-chosen directory, default `./knowledge/`, never committed back to this repo)
+
+- Set up by running `/trade setup` — asks for the target path, then scaffolds `<knowledge>/{substack,twitter,writedowns,corpora}/` with templates plus an `index.md` (OKF index, with a `README.md` stub). The user dir is itself an OKF bundle.
+- `/trade import <file_path>` parses a source artifact (PDF / screenshot / text) into structured YAML in `substack/` or `twitter/` and keeps a copy of the source in a corpus (L3 — `corpora/` or `$TRADE_CORPUS_DIR`). There are no `raw/` folders inside the knowledge dir; setup offers to migrate legacy ones.
+- `writedowns/` holds user-authored markdown notes (no parsing needed) **and digests of shared external research** — when the user hands over a macro/brokerage report, article, or link to study or save to the knowledge base, `/trade import <file_path | url>` reads & synthesizes it into a `writedowns/YYYY-MM-DD-<topic>.md` digest (source attribution + not-verified caveat + bear case), in the user's language. See `references/commands/import.md`.
+- The `analysis` flow auto-loads matching `.yaml` / `.md` files when relevant to the current trade question (it skips `corpora/`, which is queried on demand, and any legacy `*/raw/` folder).
+- Templates copied into the user's knowledge dir live under `plugins/trade/skills/trade/references/commands/templates/`.
+
+## Plugin system
+
+One plugin directory serves both hosts; each reads its own manifest and both discover the same `skills/trade/SKILL.md`.
+
+- `.claude-plugin/marketplace.json` — Claude Code marketplace listing.
+- `plugins/trade/plugin.json` — Claude Code plugin manifest. The skill under `plugins/trade/skills/trade/` is auto-discovered via its `SKILL.md` frontmatter.
+- `.agents/plugins/marketplace.json` — Codex marketplace listing (`source: local`, `path: ./plugins/trade`, relative to the repo root). `codex plugin marketplace add himself65/trade-skills` reads it off the default branch.
+- `plugins/trade/.codex-plugin/plugin.json` — Codex plugin manifest: `skills: ./skills/` plus the `interface` block the Codex plugin browser renders. Keep only `plugin.json` inside `.codex-plugin/`.
+
+**Version bumps must touch all three manifests.** `plugins/trade/plugin.json` is the source of truth. `.claude-plugin/marketplace.json` mirrors it in **two** places — `metadata.version` and `plugins[0].version` — and `plugins/trade/.codex-plugin/plugin.json` mirrors it in `version` (Codex caches installs per version, so a stale one never refreshes). They drift silently otherwise: the release workflow only packages the skill directories, so a stale manifest never appears in a release artifact, but it *is* what `npx plugins add himself65/trade-skills` and `codex plugin marketplace add himself65/trade-skills` read off the default branch (v2.4.0 and v2.5.0 both shipped with marketplace.json pinned at 2.3.0). CI enforces both: `himself65/skill-lint@v3` (3.1.0+) auto-detects `.claude-plugin/marketplace.json` and fails on drift, and the `codex-manifest` job in `skill-lint.yml` fails when the Codex manifest's version differs from `plugins/trade/plugin.json`. `pnpm bump` passes the Codex manifest to `ccbump --files`, so it bumps all three.
+
+**Release is automatic — bumping the version in `plugin.json` *is* the release.** On every push to `main`, `.github/workflows/auto-tag.yml` reads `plugins/trade/plugin.json`; if no `vX.Y.Z` tag matches that version yet, it creates and pushes the tag, then calls `.github/workflows/release-skills.yml` to zip each skill and publish the GitHub release. It is idempotent — a push whose version is already tagged does nothing — and `workflow_dispatch` can backfill a release that was missed. Pushing a `vX.Y.Z` tag by hand still works and takes the same path.
+
+The two workflows are wired via `workflow_call` rather than letting the tag push trigger the release, because **a tag pushed with `GITHUB_TOKEN` does not fire `on: push: tags`** — GitHub suppresses recursive workflow runs. Don't "simplify" that indirection away; the release would silently stop firing. (This is the failure the automation replaced: v2.7.0 merged to `main` and sat untagged, so the release page kept showing v2.6.0.)
+
+Users install via:
+
+```bash
+# Claude Code
+npx plugins add himself65/trade-skills
+
+# OpenAI Codex
+codex plugin marketplace add himself65/trade-skills
+codex plugin add trade@trade
+```
+
+When invoked as a plugin, the skill is namespaced. Since plugin and skill share the name `trade`, the Claude Code invocation form is `/trade <subcommand>` (or `/trade:trade <subcommand>` if disambiguation is needed). Codex lists it as `trade:trade`; mention it with `$` or ask in plain language and the description triggers it.
+
+**Host-neutral skill text.** The skill runs under both hosts, so instructions in `SKILL.md` and `references/` must not depend on one host's tools or files alone. Name the Claude Code tool and its fallback (for example "`AskUserQuestion`, or a plain question where that tool is missing, as in Codex"), and when the skill reads user config, check `AGENTS.md` beside `CLAUDE.md` (`~/.codex/AGENTS.md` beside `~/.claude/CLAUDE.md`).
+
+## Evals
+
+`plugins/trade/evals/` is a small behavioral suite for `claude plugin eval`. It covers routing, pushback handling and the structure gates, so a prompt edit to `SKILL.md` or `references/` can be measured against the previous version. The skill README (Evals section) explains how to run it and compare two versions, and `plugins/trade/evals/README.md` holds the authoring notes. The suite is outside the release zip, so editing it never needs a version bump. When a prompt change alters a behavior a case pins, such as the pushback rule, the lookup-vs-daily split, or a gate, update the case in the same PR.
+
+## Important constraints
+
+- **No live trade execution.** Analysis is read-only. Staging draft orders via the IBKR MCP `create_order_instruction` (which only creates an instruction the user must review and transmit in IBKR) is permitted; never transmit a live order or claim one was filled. Equity/ETF only — multi-leg options cannot be staged and stay manual. Never generate code that places trades.
+- **Market data priority — tier 0 + three tiers:** (0) **Unusual Whales, only when the user has a subscription** (`UNUSUAL_WHALES_API_KEY` resolves, or a UW MCP server is in the session) — first stop for options flow, dark pool, dealer GEX, IV rank, intraday net-premium ticks and multi-leg packages; it is the upstream source behind the Funda options fields. See `plugins/trade/skills/trade/references/unusual-whales.md` for the availability gate, the required `UW-CLIENT-API-ID: 100001` header, the endpoint whitelist, and the entitlement gaps (VIX term structure, congress, futures are **not** on this plan). No key → the tier does not exist; fall back and say which proxy the read used. Then: (1) TradingView MCP (`finance-data-providers:tradingview-mcp` skill, bundled headless [tradingview-mcp](https://github.com/atilaahmettaner/tradingview-mcp) server) FIRST for quotes, TA readouts, screeners, futures/夜盘, extended hours, unusual options activity. (2) TradingView desktop reader (`finance-data-providers:tradingview-reader` skill) for options chains **with greeks**, per-strike IV skew, watchlists, alerts, chart screenshots. (3) Funda AI API (`finance-data-providers:funda-data` skill) for fundamentals, filings, transcripts, analyst estimates, options flow/GEX, supply chain, sentiment, Polymarket, congressional trades, economics, etc. Do not substitute yfinance, web search, or guesses.
