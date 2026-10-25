@@ -10,6 +10,14 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-10-25 — Pitfall 38: the market grades a print on the metric its current fear is about; BE case study closed; release v2.18.0
+
+- **New [pitfall 38](pitfalls/38-graded-metric-follows-the-regime.md).** BE beat a bullish third-party preview on its 10/22 Q3 print (revenue $1.236B vs 1.162 preview / 1.077 consensus, guide raised) and still fell 19% from T−1 to T+1 against ±8.1% implied. META's capex guide, read as an AI-financing problem, took 8.7% before the print as pure sector beta; negative free cash flow took 11.2% on T+1 with SMH up. The rule: write the graded-metric line before scoring a beat; decompose a drawdown into index beta versus a live factor before citing a "−X% → rebound" base rate; condition right-tail history on regime; write skip rules for same-factor peer prints inside the event window; execute a hard exit at the first print through it.
+- **[`strategies.md`](strategies.md)**: the bull-conviction count now starts with the graded-metric line; the "de-risked" and "guide raise" items score 0 when the live fear is the metric the print feeds.
+- **[`commands/analysis.md`](commands/analysis.md)**: the earnings-play row gates on pitfall 38.
+- **[Pitfall 37](pitfalls/37-iv-floor-with-catalyst-is-a-ramp-trade.md) amended**: its own case failed the ramp. IV30 stayed at 77–90 through T−1 while back-month vol was supplied all month (overwrites, puts sold to open), against 118–168 at T−1 in the four prior cycles. Step 2 now checks who is supplying vol and re-checks the IV path at T−20.
+- **[`ticker/be-2026-09.md`](ticker/be-2026-09.md)** closed: Stages 4–6 (inclusion → pre-print plan → one-day event spread), the outcome table, and analyst errors 4–8.
+
 ## 2026-09-29 — Routing: load the command file before answering; description covers single-stock asks and bare research; release v2.17.1
 
 - **The skill fired but skipped its subcommand.** In 6 of 46 analysis runs on a 60-prompt routing eval (46 of the prompts are real user prompts), the skill loaded and then answered straight from a case study, an attached PDF or general knowledge, without reading [`commands/analysis.md`](commands/analysis.md). That skips the preflight silently: which knowledge-dir notes to load, the vega sanity check, and how to report a missing data source. [`../SKILL.md`](../SKILL.md) → Routing rules now says to read the routed command's file before answering, even when the question looks answerable without it or no data source is connected. Only the no-argument menu answers without a command file.
