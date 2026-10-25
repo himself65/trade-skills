@@ -10,13 +10,31 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
-## 2026-10-25 — Pitfall 38: the market grades a print on the metric its current fear is about; BE case study closed; release v2.18.0
+## 2026-10-25 — Pitfall 38: the market grades a print on the metric its current fear is about; BE case study closed; release v2.19.0
 
 - **New [pitfall 38](pitfalls/38-graded-metric-follows-the-regime.md).** BE beat a bullish third-party preview on its 10/22 Q3 print (revenue $1.236B vs 1.162 preview / 1.077 consensus, guide raised) and still fell 19% from T−1 to T+1 against ±8.1% implied. META's capex guide, read as an AI-financing problem, took 8.7% before the print as pure sector beta; negative free cash flow took 11.2% on T+1 with SMH up. The rule: write the graded-metric line before scoring a beat; decompose a drawdown into index beta versus a live factor before citing a "−X% → rebound" base rate; condition right-tail history on regime; write skip rules for same-factor peer prints inside the event window; execute a hard exit at the first print through it.
 - **[`strategies.md`](strategies.md)**: the bull-conviction count now starts with the graded-metric line; the "de-risked" and "guide raise" items score 0 when the live fear is the metric the print feeds.
 - **[`commands/analysis.md`](commands/analysis.md)**: the earnings-play row gates on pitfall 38.
 - **[Pitfall 37](pitfalls/37-iv-floor-with-catalyst-is-a-ramp-trade.md) amended**: its own case failed the ramp. IV30 stayed at 77–90 through T−1 while back-month vol was supplied all month (overwrites, puts sold to open), against 118–168 at T−1 in the four prior cycles. Step 2 now checks who is supplying vol and re-checks the IV path at T−20.
 - **[`ticker/be-2026-09.md`](ticker/be-2026-09.md)** closed: Stages 4–6 (inclusion → pre-print plan → one-day event spread), the outcome table, and analyst errors 4–8.
+
+## 2026-10-22 — TradingView MCP: verified no single-stock overnight print; release v2.18.1
+
+- **Tested.** The TradingView MCP (`tradingview-mcp-server` 0.8.1) was installed at user scope and probed at 04:21–04:25 ET on 10/22 for BE, SMH and QQQ plus NQ1! / ES1!. `stock_extended_hours` returned a live pre-market print (BE 223.10 at 04:21 ET against a 238.53 RTH close). `stock_prices` and `yahoo_price` returned the RTH close. NQ1! / ES1! were live.
+- **No overnight coverage.** The MCP's extended-hours data is Yahoo's 1-minute chart with pre/post, and the raw series has no candles between 20:00 and 04:00 ET. So the MCP closes the pre-market gap, but no tier serves a single-stock overnight (24h) print. [`../SKILL.md`](../SKILL.md) → "Source first" step 2 now says so and names the MCP's coverage. Tier 1 records the session window, the `EXCHANGE:SYMBOL` format and how to add the server on an older `finance-data-providers` install. [`overnight-futures-framework.md`](overnight-futures-framework.md) notes that only the futures are live overnight.
+- **Trap.** In pre-market, `stock_extended_hours`' `previous_close` is one session stale: BE showed "+0.2%" when it was −6.5% against the last close. Tier 1 now says to compute the move against `regular.price`.
+
+## 2026-10-22 — Data Access: source line first, ask when a source is missing; release v2.18.0
+
+- **The failure.** During Asia hours on a print day, someone asked whether to buy a name "tonight". The first answer used the 20:00 ET after-hours close from UW and presented it as current. The overnight (24h) session already had the name −5.5%. When challenged, the second answer pulled overnight prices from a broker's public quote page and searched the web for the cause. It never said that the TradingView tiers were down, or that the source had changed.
+- **Why the tiers were down.** No TradingView MCP server was configured. The desktop app was running without its debug port. After a relaunch, the reader's `quote` still returned only the **RTH close** for stocks, while its futures quotes (NQ1! / ES1!) were live. UW candles stop at 20:00 ET. No tier in this skill covers the single-stock overnight price.
+- **The rule.** [`../SKILL.md`](../SKILL.md) → Data Access → "Source first, and ask when a source is missing" makes three changes:
+  1. Every reply that uses data opens with a **source line**: each number's source plus the time and session it reflects.
+  2. The session has to match the question. Outside RTH, the user means the latest print, not the last close.
+  3. When the tier that should serve a number is unavailable, the reply **asks** with `AskUserQuestion`: what is missing, why, and the options (enable it, use a named outside source, or answer without the number). It never switches sources silently.
+
+  "Do not substitute web search" now reads "for market data", and web news is still allowed for catalyst attribution when cited. The tier-2 line also documents the debug-port relaunch and the `open -a TradingView --args --remote-debugging-port=9222` fallback.
+- **Commands.** The rule is wired into [`commands/analysis.md`](commands/analysis.md) step 4, [`commands/daily.md`](commands/daily.md) (preflight data-path check against the clock; the source line is now output item 0) and [`commands/report.md`](commands/report.md) output. The `route-daily-block-check` honesty grader now accepts a leading source line, or a question about which source to use, as part of the "cannot tell yet" opening.
 
 ## 2026-09-29 — Routing: load the command file before answering; description covers single-stock asks and bare research; release v2.17.1
 
