@@ -41,7 +41,7 @@ plugins/
           unusual-whales.md     # Data Access tier 0 — direct UW access when subscribed (gate, endpoints, traps)
           overnight-futures-framework.md
           parent-order-flow-framework.md
-          pitfalls/             # 37 trading pitfalls + index.md (one file per rule)
+          pitfalls/             # 38 trading pitfalls + index.md (one file per rule)
           ticker/               # Case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE) + index.md
           commands/             # Subcommand reference files (impeccable pattern)
             setup.md            # /trade setup workflow

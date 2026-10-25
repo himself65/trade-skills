@@ -18,7 +18,7 @@ Decision framework for matching options structures to market state.
 
 ### Bull-Conviction Count (mandatory pre-structure check)
 
-Tally before picking structure. Each = 1 point:
+Tally before picking structure. Each = 1 point. **First write the graded-metric line** ([pitfall 38](pitfalls/38-graded-metric-follows-the-regime.md)): *what is the tape grading this week, and what was the recent drawdown made of?* If the live fear is a metric the print feeds (financing, free cash flow, a key customer's credit), the "de-risked" and "new information / guide raise" items score 0 until that fear resolves.
 
 - [ ] 3+ independent channel checks aligned bullish
 - [ ] Sector / thematic narrative actively re-rating

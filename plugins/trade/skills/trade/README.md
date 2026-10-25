@@ -75,7 +75,7 @@ Full trigger list in the `description` field of `SKILL.md`.
 
 | File | Description |
 |---|---|
-| `references/pitfalls/index.md` | Index of 37 trading pitfalls (severity-tagged, lookup by trade type) |
+| `references/pitfalls/index.md` | Index of 38 trading pitfalls (severity-tagged, lookup by trade type) |
 | `references/pitfalls/NN-*.md` | One file per pitfall — loaded only when relevant |
 | `references/ticker/index.md` | Index of closed trade case studies |
 | `references/ticker/<name>.md` | One file per case study (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE) |
@@ -92,7 +92,7 @@ Full trigger list in the `description` field of `SKILL.md`.
 
 ## Coverage
 
-- 37 analytical and risk-management pitfalls covering consensus anchoring, flow misreading, multi-leg block-flow contamination, IV crush traps, T+1 reverse drift, LEAPS vega tax, manipulator-tape recognition, channel-check sample bias, AH order-book fades, demand-IV vs event-IV, vega-axis sanity checks, retest entry confirmation, macro-right/trade-wrong, second-derivative reading, stop-distance-determines-size, daily-loss-limit / drawdown governors, mechanical (corporate-action) volume, IV Rank vs the variance risk premium, IV-floor ramp trades, and more.
+- 38 analytical and risk-management pitfalls covering consensus anchoring, flow misreading, multi-leg block-flow contamination, IV crush traps, T+1 reverse drift, LEAPS vega tax, manipulator-tape recognition, channel-check sample bias, AH order-book fades, demand-IV vs event-IV, vega-axis sanity checks, retest entry confirmation, macro-right/trade-wrong, second-derivative reading, stop-distance-determines-size, daily-loss-limit / drawdown governors, mechanical (corporate-action) volume, IV Rank vs the variance risk premium, IV-floor ramp trades, regime-graded earnings metrics, and more.
 - 15 detailed case studies (INTC, Mag-7, APP, NOK, TSEM, CBRS, SNOW, MDB, VIX, SATS, 6981, MU, NQ, NBIS, BE) showing thesis evolution, structure selection, and post-mortem lessons.
 - Structure-to-regime table (`references/strategies.md`) covering high/low IV regimes paired with directional / neutral / manipulator-tape views, plus the bull-conviction count and banned-structure list.
 - Personal-knowledge layer for the user's own substack / X / writedown collection, auto-loaded on every analysis.
