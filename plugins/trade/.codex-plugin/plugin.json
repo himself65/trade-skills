@@ -1,0 +1,37 @@
+{
+  "name": "trade",
+  "version": "2.19.0",
+  "description": "Options trading knowledge — pitfalls, case studies, structure-to-regime matching.",
+  "author": {
+    "name": "himself65"
+  },
+  "homepage": "https://github.com/himself65/trade-skills",
+  "repository": "https://github.com/himself65/trade-skills",
+  "license": "MIT",
+  "keywords": [
+    "trading",
+    "options",
+    "earnings",
+    "finance",
+    "pitfalls",
+    "case-study"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Trade",
+    "shortDescription": "Options trading knowledge — pitfalls, case studies, structure-to-regime matching",
+    "longDescription": "Multi-leg options trading assistant for US equities: concrete strikes, IV-aware structures and probability-weighted scenarios, backed by a curated library of trading pitfalls, case studies and frameworks. One skill with setup, import, report, daily and analysis subcommands.",
+    "developerName": "himself65",
+    "category": "Finance",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/himself65/trade-skills",
+    "defaultPrompt": [
+      "Use Trade to run the daily read on NVDA",
+      "Use Trade for today's capital-flow report on MU, NBIS and CRWV",
+      "Use Trade: is a bull put spread on AAPL into earnings worth it?"
+    ]
+  }
+}

@@ -10,6 +10,12 @@ timestamp: 2026-06-13T00:00:00Z
 
 OKF reserved `log.md` — chronological history of this knowledge bundle, most recent first. Seeded from git history; append a dated entry whenever you add or materially revise a concept (see [`OKF.md`](OKF.md) conformance checklist).
 
+## 2026-10-25 — OpenAI Codex plugin support; AGENTS.md; release v2.19.0
+
+- **Codex install.** The plugin now ships a Codex manifest (`plugins/trade/.codex-plugin/plugin.json`) and a Codex marketplace listing (`.agents/plugins/marketplace.json`) beside the Claude Code ones. `codex plugin marketplace add himself65/trade-skills` followed by `codex plugin add trade@trade` installs it, and Codex exposes the skill as `trade:trade`. Verified on codex-cli 0.161.0 against a throwaway `CODEX_HOME`: the plugin installed at 2.19.0 and the skill appeared in the model-visible skill list.
+- **Host-neutral commands.** The knowledge-dir lookup in [`commands/analysis.md`](commands/analysis.md), [`commands/import.md`](commands/import.md) and [`commands/setup.md`](commands/setup.md) now reads a `knowledge_path:` line from `AGENTS.md` as well as `CLAUDE.md` (global: `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md`). Every `AskUserQuestion` instruction, including the missing-source rule in [`../SKILL.md`](../SKILL.md), falls back to a plain question where that tool is missing, as in Codex.
+- **Repo.** The contributor guide moved from `CLAUDE.md` to `AGENTS.md`; `CLAUDE.md` is now an `@AGENTS.md` import. A `codex-manifest` CI job fails when the Codex manifest's version drifts from `plugins/trade/plugin.json`.
+
 ## 2026-10-22 — TradingView MCP: verified no single-stock overnight print; release v2.18.1
 
 - **Tested.** The TradingView MCP (`tradingview-mcp-server` 0.8.1) was installed at user scope and probed at 04:21–04:25 ET on 10/22 for BE, SMH and QQQ plus NQ1! / ES1!. `stock_extended_hours` returned a live pre-market print (BE 223.10 at 04:21 ET against a 238.53 RTH close). `stock_prices` and `yahoo_price` returned the RTH close. NQ1! / ES1! were live.

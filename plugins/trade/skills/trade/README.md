@@ -27,7 +27,7 @@ Full trigger list in the `description` field of `SKILL.md`.
 
 ## Platform
 
-**CLI only** — **tier 0 (optional): Unusual Whales**, used directly when the user has a subscription, for options flow, dark pool, dealer GEX, IV rank and intraday net-premium ticks (see `references/unusual-whales.md`); then the headless TradingView MCP (`finance-data-providers:tradingview-mcp`, bundled server, no app/login); TradingView desktop reader (`finance-data-providers:tradingview-reader`) for watchlists / alerts / chart screenshots; Funda AI API (`finance-data-providers:funda-data`) for fundamentals, transcripts, supply chain, sentiment, and as the options flow / GEX fallback.
+**CLI only** (Claude Code or OpenAI Codex; under Codex the skill asks plain questions where it would use `AskUserQuestion`, and reads `knowledge_path:` from `AGENTS.md`) — **tier 0 (optional): Unusual Whales**, used directly when the user has a subscription, for options flow, dark pool, dealer GEX, IV rank and intraday net-premium ticks (see `references/unusual-whales.md`); then the headless TradingView MCP (`finance-data-providers:tradingview-mcp`, bundled server, no app/login); TradingView desktop reader (`finance-data-providers:tradingview-reader`) for watchlists / alerts / chart screenshots; Funda AI API (`finance-data-providers:funda-data`) for fundamentals, transcripts, supply chain, sentiment, and as the options flow / GEX fallback.
 
 ## Setup
 

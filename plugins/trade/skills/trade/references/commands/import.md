@@ -13,7 +13,7 @@ Ingest one external trading-knowledge item into the **user's personal knowledge 
 - **A clean platform post** (a substack post, or an X / twitter post / thread), as a raw artifact *or* a link → parse per the matching template into **structured YAML** in `substack/` or `twitter/`.
 - **Other external research** (a macro / brokerage report, a blog or WeChat article, a pasted thesis — anything you must *read and synthesize* rather than mechanically extract) → write a **writedown** markdown digest in `writedowns/`.
 
-> **Destination — read first.** Output **always** lands in the user's personal knowledge dir (resolved the way `analysis` does: `$TRADE_KNOWLEDGE_DIR` → a `knowledge_path:` line in `CLAUDE.md` → `./knowledge/`). A third-party article digest is the *user's* collected research — it does **NOT** go in this repo's curated `references/` library, **even if the user says "our knowledge base."** `references/` is first-party content that ships to every installer; see the destination rule in `SKILL.md` → "Knowledge Architecture." If you genuinely can't tell which is meant, ask before writing.
+> **Destination — read first.** Output **always** lands in the user's personal knowledge dir (resolved the way `analysis` does: `$TRADE_KNOWLEDGE_DIR` → a `knowledge_path:` line in `AGENTS.md` / `CLAUDE.md` → `./knowledge/`). A third-party article digest is the *user's* collected research — it does **NOT** go in this repo's curated `references/` library, **even if the user says "our knowledge base."** `references/` is first-party content that ships to every installer; see the destination rule in `SKILL.md` → "Knowledge Architecture." If you genuinely can't tell which is meant, ask before writing.
 
 > **Keep the source.** After parsing or digesting a file, copy it into a **corpus directory (L3)** — resolved per [`../data-collection.md`](../data-collection.md) — not into the knowledge dir next to the digest; a digest whose source has vanished cannot be re-checked. Record the copy's path in the output (`raw_artifact:` in YAML, the source line of a writedown). The original stays where the user put it.
 >
@@ -43,7 +43,7 @@ If a file doesn't exist or the type isn't supported, stop and report — do not 
 An explicit `--knowledge-dir=<path>` flag wins (accept it as an optional inline flag). Otherwise resolve it the way `analysis` does — first hit wins:
 
 1. `$TRADE_KNOWLEDGE_DIR`, if set.
-2. A `knowledge_path:` line in the nearest `CLAUDE.md` (project root, then `~/.claude/CLAUDE.md`) — this is how a knowledge dir kept in a different repo is found.
+2. A `knowledge_path:` line in the nearest agent instructions file (project-root `AGENTS.md` or `CLAUDE.md`, then `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md`) — this is how a knowledge dir kept in a different repo is found.
 3. `./knowledge/` in the cwd.
 4. The source path sits inside a legacy `*/{substack,twitter}/raw/` subtree → walk up to that knowledge root.
 5. Walk up from cwd looking for a directory containing `index.md` (or a legacy `README.md`) with `# Personal Trade Knowledge` as the heading.
@@ -64,7 +64,7 @@ Decide among three kinds: **substack post**, **X / twitter post / thread**, or *
 - Short numbered posts, @handle visible, like/retweet counts, "Quote" / "Reply" UI → twitter (YAML)
 - **Anything that isn't a clean substack/X post** — a macro or brokerage research report, a WeChat / blog article, a long thesis you must read and *synthesize* (distilling viewpoints, not extracting a post's fields) → **research digest → writedown** (markdown, not YAML). This is the default for "read this article and save its viewpoints."
 
-**Ambiguous → ask the user.** Present the options (substack / twitter / research-writedown / cancel) via `AskUserQuestion`. Never silently guess on ambiguous input.
+**Ambiguous → ask the user.** Present the options (substack / twitter / research-writedown / cancel) via `AskUserQuestion` (a plain question where that tool is missing, as in Codex). Never silently guess on ambiguous input.
 
 For the **research-digest** kind, skip the YAML steps (4 & 6) and follow [§ Research-digest path](#research-digest-path-writedown) below.
 

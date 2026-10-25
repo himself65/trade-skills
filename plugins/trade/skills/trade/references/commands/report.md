@@ -23,7 +23,7 @@ Runs whenever the user invokes `/trade report ...`, or asks for 资金流向 / �
 ## Arguments
 
 - **Explicit tickers** (space- or comma-separated): `report COHR LITE MU` → run those.
-- **A sector / theme word** (e.g. "光" / optical, "存储" / memory, "光模块+存储"): **confirm the ticker universe first** (propose constituents + a market, ask via `AskUserQuestion`) — don't silently guess a basket. Once confirmed, group the output by basket.
+- **A sector / theme word** (e.g. "光" / optical, "存储" / memory, "光模块+存储"): **confirm the ticker universe first** (propose constituents + a market, ask via `AskUserQuestion`, or a plain question where that tool is missing) — don't silently guess a basket. Once confirmed, group the output by basket.
 - **Optional date**: default **today**. The endpoints return the latest session; if the user names a date, pass it through where the endpoint supports `date=`.
 - Mixed baskets → render one table per basket so the cross-section reads cleanly.
 
