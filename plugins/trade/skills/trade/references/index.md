@@ -1,7 +1,7 @@
 ---
 type: Index
 title: Trade Knowledge Base — Bundle Root
-description: OKF v0.1 entry point for the curated trade knowledge bundle — frameworks, 37 pitfalls, case studies, command references.
+description: OKF v0.1 entry point for the curated trade knowledge bundle — frameworks, 38 pitfalls, case studies, command references.
 tags: [index, okf, bundle-root, trading]
 timestamp: 2026-07-30T04:30:00Z
 ---
@@ -35,7 +35,7 @@ The curated, shared knowledge bundle behind the `trade` skill. It is an **[Open 
 
 ## Pitfalls
 
-**[`pitfalls/index.md`](pitfalls/index.md)** — 37 analytical and risk-management biases (`Trading Pitfall`), one file per rule, with lookup-by-trade-type. Load individual `pitfalls/NN-*.md` files when a matching situation arises.
+**[`pitfalls/index.md`](pitfalls/index.md)** — 38 analytical and risk-management biases (`Trading Pitfall`), one file per rule, with lookup-by-trade-type. Load individual `pitfalls/NN-*.md` files when a matching situation arises.
 
 ## Case studies
 

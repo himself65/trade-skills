@@ -1,14 +1,14 @@
 ---
 type: Index
 title: Trading Pitfalls — Index
-description: Lookup index for 37 analytical and risk-management biases to avoid in directional/options/futures trades; load individual files by trade type.
+description: Lookup index for 38 analytical and risk-management biases to avoid in directional/options/futures trades; load individual files by trade type.
 tags: [index, pitfalls, biases]
 timestamp: 2026-08-07T17:05:00Z
 ---
 
 # Trading Pitfalls
 
-37 analytical and risk-management biases to avoid when evaluating directional/options/futures trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
+38 analytical and risk-management biases to avoid when evaluating directional/options/futures trades. One file per rule, designed for lazy loading — read individual files only when relevant. This is the OKF navigable index for this directory; see [`../OKF.md`](../OKF.md) for the format, [`../index.md`](../index.md) for the bundle root.
 
 ## Index
 
@@ -51,6 +51,7 @@ timestamp: 2026-08-07T17:05:00Z
 | 35 | HIGH | Check for a corporate action before reading volume as positioning — convertible pricings, secondaries, exchange offers and index rebalances generate record block and dark-pool volume that carries no opinion, and the two halves of one deal often run opposite ways | `35-mechanical-volume-not-opinion.md` |
 | 36 | HIGH | IV Rank ranks vol against its own history — only the variance risk premium (implied vs *subsequent* realized) says whether selling it has edge; IVR picks the vega side, IV level sets what you collect, VRP decides if there is edge at all | `36-ivr-ranks-vol-vrp-prices-it.md` |
 | 37 | HIGH | An IV floor with a dated catalyst 30–60 days out is a long-vega regime — express it as a ramp trade (carrier 2–3 expiries out or a no-event/event calendar, event month only from ~T−15, convert to a spread at T−1), never as "buy options and wait"; a post-crush trailing VRP is not evidence against it | `37-iv-floor-with-catalyst-is-a-ramp-trade.md` |
+| 38 | HIGH | The market grades a print on the metric its current fear is about — in a financing-stress tape a cash-burning name's beat-and-raise is graded on free cash flow; a "down >20%, de-risked" rebound base rate is void while the drawdown's driver is still live; write peer-print skip rules before the peer reports and execute hard exits at the first print through them | `38-graded-metric-follows-the-regime.md` |
 
 ## Quick Lookup by Trade Type
 
@@ -59,7 +60,7 @@ timestamp: 2026-08-07T17:05:00Z
 - **Averaging down / 摊平 / 扛单 / "add to lower the average cost" / martingale**: **30** (a fixed dollar cap means each add *shrinks* remaining stop distance: 130 pts → 43 pts), **4** (broken structure = exit, not an add), **13**
 - **Drawdown / losing streak / tilt / revenge trading / "how do I make it back"**: **31** (day stop = 2–3× per-trade risk; 3 straight losses → flat; de-gear at −5/−10/−15%; −30% needs +43%), **23**
 - **Reviewing a trading system, plan, or educational material for soundness**: **30** + **31** first (sizing causality and the missing day-level governor are the two most common structural defects), then **19**, **24**, **28**
-- **Earnings**: 5, 7, 9, 10, 11, **20**, **24**
+- **Earnings**: 5, 7, 9, 10, 11, **20**, **24**, **38** (name the graded metric and the drawdown's driver before scoring a beat or a rebound)
 - **Directional / fundamental**: 1, 2, 3, 4, 19, **24**
 - **Volatile / manipulator tapes**: 12, 13, 15, **23**
 - **Exit / take-profit / optimal-stopping**: 13, **23** (hazard rate sets the exit threshold)
